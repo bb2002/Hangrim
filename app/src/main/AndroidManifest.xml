@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="kr.saintdev.hangrim">
+    <uses-sdk
+            android:minSdkVersion="21"
+            android:targetSdkVersion="27" />
+    <application
+            android:allowBackup="true"
+            android:icon="@mipmap/ic_launcher"
+            android:label="@string/app_name"
+            android:roundIcon="@mipmap/ic_launcher_round"
+            android:supportsRtl="true"
+            android:theme="@style/AppTheme" >
+        <activity
+                android:name="kr.saintdev.hangrim.MainActivity"
+                android:screenOrientation="landscape" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- My Card Activity -->
+        <activity
+                android:name="kr.saintdev.hangrim.views.activities.MyCardActivity"
+                android:screenOrientation="landscape" />
+
+        <!-- Shuffle Activity -->
+        <activity
+                android:name="kr.saintdev.hangrim.views.activities.ShuffleActivity"
+                android:screenOrientation="landscape" />
+
+        <!-- Create Card Activity -->
+        <activity
+                android:name="kr.saintdev.hangrim.views.activities.CreateCardActivity"
+                android:screenOrientation="landscape" />
+
+        <!-- Create Sign Activity -->
+        <activity
+                android:name="kr.saintdev.hangrim.views.activities.CreateSignActivity"
+                android:screenOrientation="landscape" />
+    </application>
+
+</manifest>

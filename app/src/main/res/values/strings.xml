@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Hangrim</string>
+
+    <string name="main_portal_mycards">내 카드로 이동</string>
+    <string name="main_portal_createcard">카드를 만들기</string>
+    <string name="main_portal_createsign">싸인 하기</string>
+    <string name="main_portal_shuffle">따라쓰기 공부</string>
+</resources>
