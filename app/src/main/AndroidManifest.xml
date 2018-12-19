@@ -12,14 +12,21 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme" >
         <activity
-                android:name="kr.saintdev.hangrim.MainActivity"
-                android:screenOrientation="landscape" >
+                android:name=".views.activities.SplashActivity"
+                android:screenOrientation="landscape"
+                android:theme="@style/NoActionBarAppTheme" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Splash Activity -->
+        <activity
+                android:name="kr.saintdev.hangrim.MainActivity"
+                android:screenOrientation="landscape"
+                android:theme="@style/NoActionBarAppTheme"/>
 
         <!-- My Card Activity -->
         <activity
