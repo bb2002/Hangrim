@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
-
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <kr.saintdev.hangrim.modules.hgpaint.HGPaint
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:placeholder="사람"
+        app:canvasWidth="700"
+        app:canvasHeight="400"
+        app:useDivideTop="true"
+        app:useDivideBottom="true"
+        app:useDivideLeft="true"
+        app:useDivideRight="true"/>
 </RelativeLayout>
