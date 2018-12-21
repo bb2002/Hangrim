@@ -75,6 +75,9 @@ class HGPaint : RelativeLayout {
                 divideLineRef[i].visibility = if(divideLineArr[i]) View.VISIBLE else View.INVISIBLE
             }
 
+            // Set bottom comment
+            this.hgView.findViewById<TextView>(R.id.hg_paint_comment_title).text = tArr.getString(R.styleable.HGPaint_commentTitle)
+            this.hgView.findViewById<TextView>(R.id.hg_paint_comment_content).text = tArr.getString(R.styleable.HGPaint_commentContent)
             tArr.recycle()
         }
 

@@ -10,7 +10,8 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
         android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@color/hgpaintToolkitColor">
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -94,5 +95,27 @@
             android:layerType="software"
             android:src="@drawable/hg_paint_divide_vert"
             android:layout_alignStart="@id/hg_paint_container"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/hg_paint_commentlib"
+            android:orientation="vertical"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:gravity="center"
+            android:layout_marginBottom="8dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/hg_paint_comment_title"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/hg_paint_comment_content"
+                android:textSize="18sp" />
+        </LinearLayout>
     </RelativeLayout>
 </RelativeLayout>

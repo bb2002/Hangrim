@@ -9,5 +9,8 @@
         <attr name="useDivideRight" format="reference|boolean" />
         <attr name="useDivideTop" format="reference|boolean" />
         <attr name="useDivideBottom" format="reference|boolean" />
+
+        <attr name="commentTitle" format="reference|string" />
+        <attr name="commentContent" format="reference|string" />
     </declare-styleable>
 </resources>

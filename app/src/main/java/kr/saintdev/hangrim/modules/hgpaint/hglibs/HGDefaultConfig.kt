@@ -6,30 +6,23 @@ import android.graphics.Paint
 import android.graphics.Typeface
 
 object HGDefaultPaint {
-    const val PLACEHOLDER_FONT_SIZE = 300F
+    const val PLACEHOLDER_FONT_SIZE = 240F
 
     fun getDefaultPaint() : Paint {
         val paint = Paint()
-        paint.color = Color.BLACK
+        paint.color = Color.rgb(44, 62, 80)
         paint.strokeWidth = HGPenSize.HG_NORMAL.size
         paint.style = Paint.Style.FILL
+        paint.isAntiAlias = true
         return paint
     }
 
     fun getPlaceHolderPaint() : Paint {
         val paint = getDefaultPaint()
-        paint.color = Color.GRAY
+        paint.color = Color.rgb(189, 195, 199)
         paint.textSize = PLACEHOLDER_FONT_SIZE
         paint.typeface = Typeface.DEFAULT
-        return paint
-    }
-
-    fun getDivideLinePaint() : Paint {
-        val paint = Paint()
-        paint.strokeWidth = 20F
-        paint.color = Color.GRAY
-        paint.style = Paint.Style.FILL_AND_STROKE
-        paint.pathEffect = DashPathEffect(floatArrayOf(2F, 4F), 50F)
+        paint.isAntiAlias = true
         return paint
     }
 }
