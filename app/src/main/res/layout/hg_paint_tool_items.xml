@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/hg_painttool_root">
+    <!-- 기본 창 닫기 버튼을 추가 한다. -->
+    <ImageButton
+        android:layout_width="54dp"
+        android:layout_height="54dp"
+        android:id="@+id/hg_painttool_close"
+        android:background="@null"
+        android:src="@drawable/ic_pentool_close"
+        android:scaleType="centerInside"
+        android:padding="4dp"/>
+</LinearLayout>

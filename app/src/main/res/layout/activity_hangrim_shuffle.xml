@@ -7,12 +7,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:placeholder="지금 이 순간"
+        app:title="한글을 따라 써 봅시다."
         app:canvasWidth="-1"
-        app:canvasHeight="250"
+        app:canvasHeight="280"
         app:useDivideTop="true"
         app:useDivideBottom="true"
-        app:useDivideLeft="true"
-        app:useDivideRight="true"
+        app:useDivideLeft="false"
+        app:useDivideRight="false"
         app:commentTitle="사람"
         app:commentContent="파루사논"/>
 </RelativeLayout>

@@ -6,11 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
 import kr.saintdev.hangrim.R
 import kr.saintdev.hangrim.modules.hgpaint.canvas.HGCanvasView
+import kr.saintdev.hangrim.modules.hgpaint.pentool.OnPenToolClick
+import org.w3c.dom.Text
 
 class HGPaint : RelativeLayout {
     private lateinit var hgView: RelativeLayout
@@ -47,6 +50,9 @@ class HGPaint : RelativeLayout {
         if(attrs != null) {
             val tArr = context.obtainStyledAttributes(attrs, R.styleable.HGPaint)
 
+            // set title
+            this.hgView.findViewById<TextView>(R.id.hg_paint_title).text = tArr.getString(R.styleable.HGPaint_title)
+
             // set placeholder text
             val placeholderText = tArr.getString(R.styleable.HGPaint_placeholder)
             drawView.placeholderText = placeholderText
@@ -80,6 +86,17 @@ class HGPaint : RelativeLayout {
             this.hgView.findViewById<TextView>(R.id.hg_paint_comment_content).text = tArr.getString(R.styleable.HGPaint_commentContent)
             tArr.recycle()
         }
+
+        // Load pentool
+        val pentoolButtons = arrayOf<ImageButton>(
+                this.hgView.findViewById(R.id.hg_paint_tool_penstyle),          // 팬 스타일 지정
+                this.hgView.findViewById(R.id.hg_paint_tool_penthickness),      // 팬 두께 지정
+                this.hgView.findViewById(R.id.hg_paint_tool_eraser),            // 지우게로 사용
+                this.hgView.findViewById(R.id.hg_paint_tool_pencolor)           // 색상 선택
+        )
+
+        val toolClickListener = OnPenToolClick(context, this.hgView)
+        for(i in pentoolButtons) i.setOnClickListener(toolClickListener)
 
         hgCont.addView(drawView)
 

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="HGPaint">
+        <attr name="title" format="reference|string" />
         <attr name="placeholder" format="reference|string" />
         <attr name="canvasWidth" format="integer" />
         <attr name="canvasHeight" format="integer" />
