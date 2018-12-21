@@ -42,14 +42,6 @@
             android:src="@drawable/ic_launcher_foreground"/>
     </LinearLayout>
 
-    <!-- HG Toolbar sub context -->
-    <FrameLayout
-        android:layout_width="54dp"
-        android:layout_height="match_parent"
-        android:id="@+id/hg_paint_tool_context"
-        android:visibility="gone"
-        android:layout_toStartOf="@id/hg_paint_toolkit"/>
-
 
     <!-- Comment view -->
     <TextView
@@ -136,4 +128,14 @@
                 android:textSize="14sp" />
         </LinearLayout>
     </RelativeLayout>
+
+    <!-- HG Toolbar sub context -->
+    <FrameLayout
+        android:layout_width="54dp"
+        android:layout_height="match_parent"
+        android:id="@+id/hg_paint_tool_context"
+        android:visibility="gone"
+        android:background="#ffffff"
+        android:layout_margin="8dp"
+        android:layout_toStartOf="@id/hg_paint_toolkit"/>
 </RelativeLayout>

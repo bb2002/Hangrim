@@ -9,11 +9,11 @@
         app:placeholder="지금 이 순간"
         app:title="한글을 따라 써 봅시다."
         app:canvasWidth="-1"
-        app:canvasHeight="280"
+        app:canvasHeight="250"
         app:useDivideTop="true"
         app:useDivideBottom="true"
         app:useDivideLeft="false"
         app:useDivideRight="false"
         app:commentTitle="사람"
-        app:commentContent="파루사논"/>
+        app:commentContent="파루사논" />
 </RelativeLayout>

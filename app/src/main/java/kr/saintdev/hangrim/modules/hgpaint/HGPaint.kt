@@ -95,7 +95,7 @@ class HGPaint : RelativeLayout {
                 this.hgView.findViewById(R.id.hg_paint_tool_pencolor)           // 색상 선택
         )
 
-        val toolClickListener = OnPenToolClick(context, this.hgView)
+        val toolClickListener = OnPenToolClick(context, this.hgView, this, drawView)
         for(i in pentoolButtons) i.setOnClickListener(toolClickListener)
 
         hgCont.addView(drawView)

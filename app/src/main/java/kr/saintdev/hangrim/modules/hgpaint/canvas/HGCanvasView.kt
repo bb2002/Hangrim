@@ -6,12 +6,12 @@ import android.graphics.Paint
 import android.view.MotionEvent
 import android.view.View
 import kr.saintdev.hangrim.modules.hgpaint.hglibs.HGDefaultPaint
-import kr.saintdev.hangrim.modules.hgpaint.hglibs.HGDefaultPaint.PLACEHOLDER_FONT_SIZE
+import kr.saintdev.hangrim.modules.hgpaint.hglibs.HGDefaultPaint.getPlaceHolderFontSize
 import kr.saintdev.hangrim.modules.hgpaint.hglibs.HGFontLibrary
 
 class HGCanvasView(context: Context) : View(context) {
     private val points = arrayListOf<HGPoint>()     // Draw Points
-    private var pen: Paint = HGDefaultPaint.getDefaultPaint()         // Now Pen
+    val pen: Paint = HGDefaultPaint.getDefaultPaint()         // Now Pen
 
     // HGCanvasView Properties
     var placeholderText: String = ""    // PlaceHolder Text
@@ -19,11 +19,11 @@ class HGCanvasView(context: Context) : View(context) {
     override fun onDraw(canvas: Canvas?) {
         if(canvas != null) {
             // Draw Placeholder Text
-            val psHolderTextSize = HGFontLibrary.getTextSize(PLACEHOLDER_FONT_SIZE.toInt(), placeholderText)
+            val psHolderTextSize = HGFontLibrary.getTextSize(getPlaceHolderFontSize(context).toInt(), placeholderText)
             canvas.drawText(placeholderText,
                     HGFontLibrary.getCenterWidth(width, psHolderTextSize.width()).toFloat(),
                     (psHolderTextSize.height() + HGFontLibrary.getCenterWidth(height, psHolderTextSize.height())).toFloat(),
-                    HGDefaultPaint.getPlaceHolderPaint())
+                    HGDefaultPaint.getPlaceHolderPaint(context))
 
             // Draw User image
             for(i in 1 until points.size) {

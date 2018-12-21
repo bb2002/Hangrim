@@ -1,26 +1,31 @@
 package kr.saintdev.hangrim.modules.hgpaint.hglibs
 
+import android.content.Context
 import android.graphics.Color
 import android.graphics.DashPathEffect
 import android.graphics.Paint
 import android.graphics.Typeface
+import android.util.TypedValue
+import kr.saintdev.hangrim.modules.hgpaint.hglibs.HGFontLibrary.pxToDpi
 
 object HGDefaultPaint {
-    const val PLACEHOLDER_FONT_SIZE = 240F
+    fun getPlaceHolderFontSize(context: Context) = pxToDpi(context, 80)
 
     fun getDefaultPaint() : Paint {
         val paint = Paint()
         paint.color = Color.rgb(44, 62, 80)
         paint.strokeWidth = HGPenSize.HG_NORMAL.size
-        paint.style = Paint.Style.FILL
+        paint.style = Paint.Style.STROKE
         paint.isAntiAlias = true
+        paint.strokeJoin = Paint.Join.ROUND
+        paint.strokeCap = Paint.Cap.ROUND
         return paint
     }
 
-    fun getPlaceHolderPaint() : Paint {
+    fun getPlaceHolderPaint(c: Context) : Paint {
         val paint = getDefaultPaint()
         paint.color = Color.rgb(189, 195, 199)
-        paint.textSize = PLACEHOLDER_FONT_SIZE
+        paint.textSize = getPlaceHolderFontSize(c)
         paint.typeface = Typeface.DEFAULT
         paint.isAntiAlias = true
         return paint
@@ -28,7 +33,7 @@ object HGDefaultPaint {
 }
 
 enum class HGPenSize(val size: Float) {
-    HG_THICK(13F),
-    HG_NORMAL(9F),
-    HG_THIN(6F)
+    HG_THICK(11F),
+    HG_NORMAL(7F),
+    HG_THIN(4F)
 }
