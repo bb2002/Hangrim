@@ -10,8 +10,12 @@ import android.R.attr.gravity
 import android.view.ViewGroup
 import kr.saintdev.hangrim.modules.hgpaint.HGPaint
 import kr.saintdev.hangrim.modules.hgpaint.canvas.HGCanvasView
+import kr.saintdev.hangrim.modules.hgpaint.hglibs.HGDefaultPaint
+import kr.saintdev.hangrim.modules.hgpaint.hglibs.HGPenSize
 import kr.saintdev.hangrim.modules.hgpaint.pentool.pen.PenStyleDotted
 import kr.saintdev.hangrim.modules.hgpaint.pentool.pen.PenStyleStroke
+import kr.saintdev.hangrim.modules.hgpaint.pentool.pen.PenThickness
+import kr.saintdev.hangrim.modules.hgpaint.pentool.reset.ResetTool
 
 
 class OnPenToolClick(
@@ -37,19 +41,39 @@ class OnPenToolClick(
 
     override fun onClick(v: View) {
         toolkitContextClose()       // 현재 열린것을 닫고
-        toolkitContextOpen()        // 새로운것을 연다.
 
-        when(v.id) {
+        val openContextMenu = when(v.id) {
             R.id.hg_paint_tool_penstyle -> {
                 this.toolKitItem.add(PenStyleStroke(context, this))
                 this.toolKitItem.add(PenStyleDotted(context, this))
+                true
+            }
+            R.id.hg_paint_tool_penthickness -> {
+                this.toolKitItem.add(PenThickness(context, this, HGPenSize.HG_THIN.size))
+                this.toolKitItem.add(PenThickness(context, this, HGPenSize.HG_NORMAL.size))
+                this.toolKitItem.add(PenThickness(context, this, HGPenSize.HG_THICK.size))
+                true
+            }
+            R.id.hg_paint_tool_reset -> {
+                ResetTool.onReset(context, this)
+                false
+            }
+            else -> {
+                false
             }
         }
+
+        if(openContextMenu) toolkitContextOpen()        // 새로운것을 연다.
 
         for(i in this.toolKitItem) {
             this.toolkitView.addView(i)
         }
     }
+
+
+
+
+
 
     private fun toolkitContextClose() {
         try {

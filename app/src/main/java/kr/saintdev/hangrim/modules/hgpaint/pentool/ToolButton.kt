@@ -11,7 +11,7 @@ import kr.saintdev.hangrim.libs.dpToPixel
 import kr.saintdev.hangrim.modules.hgpaint.HGPaint
 import kr.saintdev.hangrim.modules.hgpaint.canvas.HGCanvasView
 
-open abstract class ToolButton(context: Context, val penToolClick: OnPenToolClick) : ImageButton(context), View.OnClickListener {
+abstract class ToolButton(context: Context, val penToolClick: OnPenToolClick) : ImageButton(context), View.OnClickListener {
     init {
         val param = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 40.dpToPixel(context))
         param.setMargins(4,8,4,4)

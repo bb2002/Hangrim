@@ -3,6 +3,7 @@ package kr.saintdev.hangrim.modules.hgpaint.canvas
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Paint
+import android.graphics.Path
 import android.view.MotionEvent
 import android.view.View
 import kr.saintdev.hangrim.modules.hgpaint.hglibs.HGDefaultPaint
@@ -15,6 +16,7 @@ class HGCanvasView(context: Context) : View(context) {
 
     // HGCanvasView Properties
     var placeholderText: String = ""    // PlaceHolder Text
+    private val path = Path()                   // Path instance
 
     override fun onDraw(canvas: Canvas?) {
         if(canvas != null) {
@@ -28,7 +30,11 @@ class HGCanvasView(context: Context) : View(context) {
             // Draw User image
             for(i in 1 until points.size) {
                 val p = points[i]
-                if(p.isDraw) canvas.drawLine(points[i - 1].x, points[i - 1].y, p.x, p.y, p.paint)
+                path.reset()
+                path.moveTo(points[i - 1].x, points[i - 1].y)
+                path.lineTo(p.x, p.y)
+
+                if(p.isDraw) canvas.drawPath(path, p.paint)
             }
         }
     }
@@ -39,12 +45,17 @@ class HGCanvasView(context: Context) : View(context) {
 
             when(event.action) {
                 MotionEvent.ACTION_DOWN ->
-                    points.add(HGPoint(x, y, pen, false))
+                    points.add(HGPoint(x, y, Paint(pen), false))
                 MotionEvent.ACTION_MOVE ->
-                    points.add(HGPoint(x, y, pen, true))
+                    points.add(HGPoint(x, y, Paint(pen), true))
             }
 
             invalidate()
             return true
+    }
+
+    fun resetCanvas() {
+        this.points.clear()
+        invalidate()
     }
 }

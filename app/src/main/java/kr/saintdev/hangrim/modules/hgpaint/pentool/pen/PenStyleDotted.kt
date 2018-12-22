@@ -10,15 +10,10 @@ import android.view.View
 import android.support.v4.view.ViewCompat.setAlpha
 
 
-
-
 class PenStyleDotted(context: Context, penToolClick: OnPenToolClick) : ToolButton(context, penToolClick) {
     override fun onClick(p0: View?) {
         val nowPen = penToolClick.hgCanvas.pen
-        nowPen.alpha = 255
-        nowPen.strokeWidth = 2F
-        nowPen.color = Color.CYAN
         nowPen.style = Paint.Style.FILL_AND_STROKE
-        nowPen.pathEffect = DashPathEffect(floatArrayOf(2f, 4f), 50f)
+        nowPen.pathEffect = DashPathEffect(floatArrayOf(10f, 10f), 10f)
     }
 }

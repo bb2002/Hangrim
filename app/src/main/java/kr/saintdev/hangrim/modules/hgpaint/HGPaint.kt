@@ -11,6 +11,7 @@ import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
 import kr.saintdev.hangrim.R
+import kr.saintdev.hangrim.libs.dpToPixel
 import kr.saintdev.hangrim.modules.hgpaint.canvas.HGCanvasView
 import kr.saintdev.hangrim.modules.hgpaint.pentool.OnPenToolClick
 import org.w3c.dom.Text
@@ -91,7 +92,7 @@ class HGPaint : RelativeLayout {
         val pentoolButtons = arrayOf<ImageButton>(
                 this.hgView.findViewById(R.id.hg_paint_tool_penstyle),          // 팬 스타일 지정
                 this.hgView.findViewById(R.id.hg_paint_tool_penthickness),      // 팬 두께 지정
-                this.hgView.findViewById(R.id.hg_paint_tool_eraser),            // 지우게로 사용
+                this.hgView.findViewById(R.id.hg_paint_tool_reset),            // 리셋으로 사용
                 this.hgView.findViewById(R.id.hg_paint_tool_pencolor)           // 색상 선택
         )
 

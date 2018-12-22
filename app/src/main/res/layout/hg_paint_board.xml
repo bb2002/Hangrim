@@ -30,7 +30,7 @@
         <ImageButton
             android:layout_width="52dp"
             android:layout_height="52dp"
-            android:id="@+id/hg_paint_tool_eraser"
+            android:id="@+id/hg_paint_tool_reset"
             android:background="@null"
             android:src="@drawable/ic_launcher_foreground"
             android:layout_marginBottom="4dp"/>

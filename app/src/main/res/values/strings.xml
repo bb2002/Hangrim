@@ -5,4 +5,10 @@
     <string name="main_portal_createcard">카드를 만들기</string>
     <string name="main_portal_createsign">싸인 하기</string>
     <string name="main_portal_shuffle">따라쓰기 공부</string>
+
+    <string name="hgpaint_reset_title">얌마</string>
+    <string name="hgpaint_reset_message">전부 지우시겠습니까?</string>
+
+    <string name="common_yes">네</string>
+    <string name="common_no">아니오</string>
 </resources>
