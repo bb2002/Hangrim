@@ -8,12 +8,11 @@ import kr.saintdev.hangrim.modules.hgpaint.pentool.ToolButton
 import android.graphics.DashPathEffect
 import android.view.View
 import android.support.v4.view.ViewCompat.setAlpha
+import kr.saintdev.hangrim.modules.hgpaint.canvas.DrawMode
 
 
 class PenStyleDotted(context: Context, penToolClick: OnPenToolClick) : ToolButton(context, penToolClick) {
     override fun onClick(p0: View?) {
-        val nowPen = penToolClick.hgCanvas.pen
-        nowPen.style = Paint.Style.FILL_AND_STROKE
-        nowPen.pathEffect = DashPathEffect(floatArrayOf(10f, 10f), 10f)
+//        penToolClick.hgCanvas.penMode = DrawMode.CRAYON
     }
 }

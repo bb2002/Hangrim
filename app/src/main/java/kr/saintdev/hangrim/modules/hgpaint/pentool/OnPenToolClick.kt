@@ -7,11 +7,13 @@ import android.widget.*
 import kr.saintdev.hangrim.R
 import android.view.Gravity
 import android.R.attr.gravity
+import android.graphics.Color
 import android.view.ViewGroup
 import kr.saintdev.hangrim.modules.hgpaint.HGPaint
 import kr.saintdev.hangrim.modules.hgpaint.canvas.HGCanvasView
 import kr.saintdev.hangrim.modules.hgpaint.hglibs.HGDefaultPaint
 import kr.saintdev.hangrim.modules.hgpaint.hglibs.HGPenSize
+import kr.saintdev.hangrim.modules.hgpaint.pentool.pen.PenColor
 import kr.saintdev.hangrim.modules.hgpaint.pentool.pen.PenStyleDotted
 import kr.saintdev.hangrim.modules.hgpaint.pentool.pen.PenStyleStroke
 import kr.saintdev.hangrim.modules.hgpaint.pentool.pen.PenThickness
@@ -57,6 +59,9 @@ class OnPenToolClick(
             R.id.hg_paint_tool_reset -> {
                 ResetTool.onReset(context, this)
                 false
+            }
+            R.id.hg_paint_tool_pencolor -> {
+                this.toolKitItem.add(PenColor(context, this, Color.rgb(192, 57, 43)))
             }
             else -> {
                 false
