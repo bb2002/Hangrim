@@ -1,10 +1,7 @@
 package kr.saintdev.hangrim.modules.hgpaint.hglibs
 
 import android.content.Context
-import android.graphics.Color
-import android.graphics.DashPathEffect
-import android.graphics.Paint
-import android.graphics.Typeface
+import android.graphics.*
 import android.util.TypedValue
 import kr.saintdev.hangrim.modules.hgpaint.hglibs.HGFontLibrary.pxToDpi
 

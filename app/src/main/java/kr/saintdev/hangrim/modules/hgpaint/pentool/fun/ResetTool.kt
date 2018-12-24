@@ -1,4 +1,4 @@
-package kr.saintdev.hangrim.modules.hgpaint.pentool.reset
+package kr.saintdev.hangrim.modules.hgpaint.pentool.`fun`
 
 import android.app.AlertDialog
 import android.content.Context

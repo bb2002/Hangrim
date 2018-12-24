@@ -18,6 +18,7 @@ abstract class ToolButton(context: Context, val penToolClick: OnPenToolClick) : 
         this.layoutParams = param
         this.setBackgroundColor(Color.RED)      // Debug
         this.scaleType = ScaleType.CENTER_INSIDE
+        this.setImageResource(R.drawable.ic_error)
         this.setOnClickListener(this)
     }
 }

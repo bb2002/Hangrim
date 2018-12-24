@@ -33,20 +33,11 @@ class HGCanvasView(context: Context) : View(context) {
                 val p = points[i]
                 if(!p.isDraw) continue
 
-                when(p.drawMode) {
-                    DrawMode.PEN -> {
-                            path.moveTo(points[i - 1].x, points[i - 1].y)
-                            path.lineTo(p.x, p.y)
-                            canvas.drawPath(path, p.paint)
-                            path.reset()
-                    }
+                path.moveTo(points[i - 1].x, points[i - 1].y)
+                path.lineTo(p.x, p.y)
+                canvas.drawPath(path, p.paint)
 
-                    DrawMode.CRAYON -> {
-//                        for(l in p.crayonPoints) {
-//                            canvas.drawPoint(l.x, l.y, p.paint)
-//                        }
-                    }
-                }
+                path.reset()
             }
         }
     }
@@ -56,23 +47,10 @@ class HGCanvasView(context: Context) : View(context) {
             val y = event.y
 
             when(event.action) {
-                MotionEvent.ACTION_DOWN ->
+                MotionEvent.ACTION_DOWN, MotionEvent.ACTION_UP ->
                     points.add(HGPoint(x, y, Paint(pen), false, penMode))
                 MotionEvent.ACTION_MOVE -> {
-                    when(penMode) {
-                        DrawMode.PEN ->
-                            points.add(HGPoint(x, y, Paint(pen), true, penMode))
-                        DrawMode.CRAYON -> {
-//                            val tmp = Paint(pen)
-//                            tmp.strokeWidth = 3F
-//
-//                            points.add(HGPoint(x, y, tmp, true, penMode, makeSmoke(x, y, pen.strokeWidth)))
-//                            val linearPoints = getP2P(points[points.size - 1], points[points.size - 2], 7)
-//                            for(l in linearPoints) {
-//                                points.add(HGPoint(l.x, l.y, tmp, true, penMode, makeSmoke(l.x, l.y, pen.strokeWidth)))
-//                            }
-                        }
-                    }
+                    points.add(HGPoint(x, y, Paint(pen), true, penMode))
                 }
             }
 
@@ -84,29 +62,4 @@ class HGCanvasView(context: Context) : View(context) {
         this.points.clear()
         invalidate()
     }
-
-//    fun getP2P(start: HGPoint, end: HGPoint, delay: Int) : ArrayList<HGPoint> {
-//        val distance = Math.abs(start.x - end.x).toInt()
-//        val arrow = start.x - end.x > 0            // true = 증감 false - 감소
-//
-//        val pointArr = arrayListOf<HGPoint>()
-//
-//        for(i in 0 .. distance step delay) {
-//            val x = if(arrow) start.x + i else start.x - i
-//            val y = start.y + (end.y - start.y) * (x - start.x) / (end.x - start.x)     // 선형 보간
-//            val tmp = Paint(pen)
-//            tmp.strokeWidth = 3F
-//            pointArr.add(HGPoint(x, y, tmp))
-//        }
-//
-//        return pointArr
-//    }
-//
-//    private val rd = Random()                       // 크레용 모드 렌덤
-//    private fun makeSmoke(x: Float, y: Float, radius: Float) : ArrayList<XY> {
-//        val points = arrayListOf<XY>()
-//        for(i in 0 .. 5)
-//            points += XY(rd.nextInt(radius.toInt()) + (x - radius / 2), rd.nextInt(radius.toInt()) + (y - radius / 2))
-//        return points
-//    }
 }
