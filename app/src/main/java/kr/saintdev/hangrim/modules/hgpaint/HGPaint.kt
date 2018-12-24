@@ -5,16 +5,14 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
 import kr.saintdev.hangrim.R
-import kr.saintdev.hangrim.libs.dpToPixel
+import kr.saintdev.hangrim.libs.pxToDpi
 import kr.saintdev.hangrim.modules.hgpaint.canvas.HGCanvasView
 import kr.saintdev.hangrim.modules.hgpaint.pentool.OnPenToolClick
-import org.w3c.dom.Text
 
 class HGPaint : RelativeLayout {
     private lateinit var hgView: RelativeLayout
@@ -61,7 +59,7 @@ class HGPaint : RelativeLayout {
             // set canvas size
             val canvasWidth = tArr.getInt(R.styleable.HGPaint_canvasWidth, 0)
             val canvasHeight = tArr.getInt(R.styleable.HGPaint_canvasHeight, 0)
-            drawView.layoutParams = ViewGroup.LayoutParams(canvasWidth, canvasHeight)
+            drawView.layoutParams = ViewGroup.LayoutParams(canvasWidth.pxToDpi(context), canvasHeight.pxToDpi(context))
 
             // set Divide line
             val divideLineArr = booleanArrayOf(

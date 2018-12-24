@@ -7,5 +7,9 @@ import android.support.annotation.Dimension.DP
 
 
 
-fun Int.dpToPixel(context: Context) =
-    TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, this.toFloat(), context.resources.displayMetrics).toInt()
+fun Int.pxToDpi(context: Context) : Int {
+    return if(this == -1 || this == -2)
+        this
+    else
+        TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, this.toFloat(), context.resources.displayMetrics).toInt()
+}

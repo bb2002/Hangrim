@@ -9,7 +9,7 @@
         app:placeholder="지금 이 순간"
         app:title="한글을 따라 써 봅시다."
         app:canvasWidth="-1"
-        app:canvasHeight="250"
+        app:canvasHeight="110"
         app:useDivideTop="true"
         app:useDivideBottom="true"
         app:useDivideLeft="false"

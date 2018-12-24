@@ -7,13 +7,11 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.LinearLayout
 import kr.saintdev.hangrim.R
-import kr.saintdev.hangrim.libs.dpToPixel
-import kr.saintdev.hangrim.modules.hgpaint.HGPaint
-import kr.saintdev.hangrim.modules.hgpaint.canvas.HGCanvasView
+import kr.saintdev.hangrim.libs.pxToDpi
 
 abstract class ToolButton(context: Context, val penToolClick: OnPenToolClick) : ImageButton(context), View.OnClickListener {
     init {
-        val param = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 40.dpToPixel(context))
+        val param = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 40.pxToDpi(context))
         param.setMargins(4,8,4,4)
         this.layoutParams = param
         this.setBackgroundColor(Color.RED)      // Debug
