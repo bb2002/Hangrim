@@ -3,12 +3,10 @@ package kr.saintdev.hangrim.modules.hgpaint.canvas
 import android.content.Context
 import android.graphics.Paint
 import android.graphics.Path
-import android.view.MotionEvent
-import android.view.SurfaceHolder
-import android.view.SurfaceView
-import android.view.ViewGroup
+import android.view.*
 import kr.saintdev.hangrim.libs.pxToDpi
 import kr.saintdev.hangrim.modules.hgpaint.hglibs.HGDefaultPaint
+import java.lang.Exception
 
 class HGCanvasSurface(plsHolder: String?, context: Context) : SurfaceView(context), SurfaceHolder.Callback {
     private val hgThread: HGCanvasThread                // Draw Thread
@@ -30,7 +28,11 @@ class HGCanvasSurface(plsHolder: String?, context: Context) : SurfaceView(contex
     }
 
     override fun surfaceDestroyed(p0: SurfaceHolder?) {
-        this.hgThread.doStop()
+        try {
+            this.hgThread.join()
+        } catch(ex: Exception) {
+            ex.printStackTrace()
+        }
     }
 
     override fun onTouchEvent(event: MotionEvent): Boolean {

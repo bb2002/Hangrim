@@ -96,6 +96,8 @@ class HGPaint : RelativeLayout {
         this.hgCanvasView.layoutParams = ViewGroup.LayoutParams(width.pxToDpi(context), height.pxToDpi(context))
     }
 
+
+
     /**
      * 12.25 2018
      * 구분선을 그립니다.

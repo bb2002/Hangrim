@@ -1,11 +1,13 @@
 package kr.saintdev.hangrim.modules.hgpaint.canvas
 
 import android.content.Context
+import android.graphics.Canvas
 import android.graphics.Path
 import android.util.Log
 import android.view.SurfaceHolder
 import kr.saintdev.hangrim.modules.hgpaint.hglibs.HGDefaultPaint
 import kr.saintdev.hangrim.modules.hgpaint.hglibs.HGFontLibrary
+import java.lang.Exception
 import java.util.*
 
 class HGCanvasThread(val context: Context, val holder: SurfaceHolder, val surface: HGCanvasSurface) : Thread() {
@@ -27,10 +29,14 @@ class HGCanvasThread(val context: Context, val holder: SurfaceHolder, val surfac
         this.plsHolderY = (surface.height / 2) - ((plsPaint.descent() + plsPaint.ascent()) / 2)
 
         while(true) {
-            val canvas = holder.lockCanvas()
+            var canvas: Canvas? = null
+
             try {
+                canvas = holder.lockCanvas()
+                if (isStopped || canvas == null) break
+
                 synchronized(holder) {
-                    canvas.drawARGB(255,255,255,255)
+                    canvas.drawARGB(255, 255, 255, 255)
 
                     // Draw Placeholder Text
                     canvas.drawText(surface.placeHolder, this.plsHolderX, this.plsHolderY, plsPaint)
@@ -47,16 +53,17 @@ class HGCanvasThread(val context: Context, val holder: SurfaceHolder, val surfac
                         }
                     }
                 }
+            } catch(ex: Exception) {
+                ex.printStackTrace()
             } finally {
-                holder.unlockCanvasAndPost(canvas)
+                if(canvas != null)
+                    holder.unlockCanvasAndPost(canvas)
+                else
+                    isStopped = true
             }
-
-            if(isStopped) break
         }
-    }
 
-    fun doStop() {
-        isStopped = true
+        Log.d("HAM", "OUT")
     }
 
     /**
