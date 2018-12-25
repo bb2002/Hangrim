@@ -5,22 +5,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.*
 import kr.saintdev.hangrim.R
-import android.graphics.Color
-import kr.saintdev.hangrim.modules.hgpaint.HGPaint
-import kr.saintdev.hangrim.modules.hgpaint.canvas.HGCanvasView
+import kr.saintdev.hangrim.modules.hgpaint.canvas.HGCanvasSurface
 import kr.saintdev.hangrim.modules.hgpaint.hglibs.HGPenSize
 import kr.saintdev.hangrim.modules.hgpaint.pentool.`fun`.PenColors
 import kr.saintdev.hangrim.modules.hgpaint.pentool.`fun`.PenTool
-import kr.saintdev.hangrim.modules.hgpaint.pentool.pen.PenColor
-import kr.saintdev.hangrim.modules.hgpaint.pentool.pen.PenStyleStroke
 import kr.saintdev.hangrim.modules.hgpaint.pentool.pen.PenThickness
 import kr.saintdev.hangrim.modules.hgpaint.pentool.`fun`.ResetTool
 
 
 class OnPenToolClick(
     private val context: Context,
-    private val rootView: RelativeLayout,
-    val hgPaint: HGPaint, val hgCanvas: HGCanvasView
+    private val rootView: RelativeLayout, val hgCanvas: HGCanvasSurface
 ) : View.OnClickListener {
     private val contextMenuRoot: FrameLayout =
         rootView.findViewById(R.id.hg_paint_tool_context)                // Context menu 의 Root

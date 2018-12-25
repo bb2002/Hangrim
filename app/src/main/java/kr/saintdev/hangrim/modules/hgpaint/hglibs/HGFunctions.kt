@@ -17,13 +17,13 @@ object HGFontLibrary {
         return b
     }
 
-    fun pxToDpi(context: Context, px: Int) : Float {
-        return TypedValue.applyDimension(
+    fun pxToDpi(context: Context, px: Int) =
+        TypedValue.applyDimension(
             TypedValue.COMPLEX_UNIT_DIP,
             px.toFloat(),
             context.resources.displayMetrics
         )
-    }
+
 
     /**
      * Get center Position

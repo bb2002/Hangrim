@@ -14,7 +14,7 @@ object ResetTool {
         builder.setPositiveButton(R.string.common_yes) {
             dialogInterface, _ ->
             // canvas clear.
-            penClick.hgCanvas.resetCanvas()
+            penClick.hgCanvas.clear()
             dialogInterface.dismiss()
         }
         builder.setNegativeButton(R.string.common_no) {
