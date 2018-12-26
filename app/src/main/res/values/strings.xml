@@ -11,4 +11,8 @@
 
     <string name="common_yes">네</string>
     <string name="common_no">아니오</string>
+    <string name="common_error">An error occurred.</string>
+
+    <string name="shuffle_paint_title">Write Hangeul along the line!</string>
+    <string name="shuffle_call_word_error">단어를 가져올 수 없습니다.</string>
 </resources>

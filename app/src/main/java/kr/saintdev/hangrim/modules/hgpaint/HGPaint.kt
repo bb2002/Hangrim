@@ -10,7 +10,7 @@ import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
 import kr.saintdev.hangrim.R
-import kr.saintdev.hangrim.libs.pxToDpi
+import kr.saintdev.hangrim.libs.func.pxToDpi
 import kr.saintdev.hangrim.modules.hgpaint.canvas.HGCanvasSurface
 import kr.saintdev.hangrim.modules.hgpaint.pentool.OnPenToolClick
 
@@ -129,4 +129,11 @@ class HGPaint : RelativeLayout {
         if(submsg != null)
             this.hgView.findViewById<TextView>(R.id.hg_paint_comment_content).text = submsg
     }
+
+
+    fun setPlaceHolderText(text: String) {
+        this.hgCanvasView.placeHolder = text
+    }
+
+    fun setComment(title: String?, msg: String?) = drawCommentMessage(title, msg)
 }

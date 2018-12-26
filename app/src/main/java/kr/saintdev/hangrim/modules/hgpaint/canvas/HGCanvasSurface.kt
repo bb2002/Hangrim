@@ -2,18 +2,20 @@ package kr.saintdev.hangrim.modules.hgpaint.canvas
 
 import android.content.Context
 import android.graphics.Paint
-import android.graphics.Path
 import android.view.*
-import kr.saintdev.hangrim.libs.pxToDpi
 import kr.saintdev.hangrim.modules.hgpaint.hglibs.HGDefaultPaint
 import java.lang.Exception
 
 class HGCanvasSurface(plsHolder: String?, context: Context) : SurfaceView(context), SurfaceHolder.Callback {
-    private val hgThread: HGCanvasThread                // Draw Thread
+    private var hgThread: HGCanvasThread                // Draw Thread
 
     // HGCanvas Properties
     var pen: Paint = HGDefaultPaint.getDefaultPaint()         // Now Pen
     var placeHolder: String = plsHolder ?: ""
+    set(text) {
+        field = text
+        this.hgThread.resizePlaceholder()
+    }
 
     init {
         holder.addCallback(this)            // Add callback
@@ -21,6 +23,10 @@ class HGCanvasSurface(plsHolder: String?, context: Context) : SurfaceView(contex
     }
 
     override fun surfaceCreated(p0: SurfaceHolder?) {
+        if(this.hgThread.state == Thread.State.TERMINATED) {
+            this.hgThread = HGCanvasThread(context, holder, this)       // create canvas thread
+        }
+
         this.hgThread.start()
     }
 

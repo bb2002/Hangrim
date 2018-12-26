@@ -6,14 +6,12 @@
     <kr.saintdev.hangrim.modules.hgpaint.HGPaint
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:placeholder="지금 이 순간"
-        app:title="한글을 따라 써 봅시다."
+        android:id="@+id/shuffle_paint"
+        app:title="@string/shuffle_paint_title"
         app:canvasWidth="-1"
         app:canvasHeight="110"
         app:useDivideTop="true"
         app:useDivideBottom="true"
         app:useDivideLeft="false"
-        app:useDivideRight="false"
-        app:commentTitle="사람"
-        app:commentContent="파루사논" />
+        app:useDivideRight="false" />
 </RelativeLayout>

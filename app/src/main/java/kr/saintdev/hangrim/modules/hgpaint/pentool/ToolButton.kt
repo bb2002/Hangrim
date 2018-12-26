@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.LinearLayout
 import kr.saintdev.hangrim.R
-import kr.saintdev.hangrim.libs.pxToDpi
+import kr.saintdev.hangrim.libs.func.pxToDpi
 
 abstract class ToolButton(context: Context, val penToolClick: OnPenToolClick) : ImageButton(context), View.OnClickListener {
     init {

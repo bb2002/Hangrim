@@ -21,12 +21,8 @@ class HGCanvasThread(val context: Context, val holder: SurfaceHolder, val surfac
 
     override fun run() {
         super.run()
-
-        // size 계산
-        val psHolderTextSize = HGFontLibrary.getTextSize(HGDefaultPaint.getPlaceHolderFontSize(context).toInt(), surface.placeHolder)
+        resizePlaceholder()
         val plsPaint = HGDefaultPaint.getPlaceHolderPaint(context)
-        this.plsHolderX = HGFontLibrary.getCenterWidth(surface.width, psHolderTextSize.width()).toFloat()
-        this.plsHolderY = (surface.height / 2) - ((plsPaint.descent() + plsPaint.ascent()) / 2)
 
         while(true) {
             var canvas: Canvas? = null
@@ -62,8 +58,6 @@ class HGCanvasThread(val context: Context, val holder: SurfaceHolder, val surfac
                     isStopped = true
             }
         }
-
-        Log.d("HAM", "OUT")
     }
 
     /**
@@ -80,5 +74,17 @@ class HGCanvasThread(val context: Context, val holder: SurfaceHolder, val surfac
      */
     fun clearPoints() {
         points.clear()
+    }
+
+    /**
+     * @Date 12.27 2018
+     * Resize placeholder size
+     */
+    fun resizePlaceholder() {
+        // size 계산
+        val psHolderTextSize = HGFontLibrary.getTextSize(HGDefaultPaint.getPlaceHolderFontSize(context).toInt(), surface.placeHolder)
+        val plsPaint = HGDefaultPaint.getPlaceHolderPaint(context)
+        this.plsHolderX = HGFontLibrary.getCenterWidth(surface.width, psHolderTextSize.width()).toFloat()
+        this.plsHolderY = (surface.height / 2) - ((plsPaint.descent() + plsPaint.ascent()) / 2)
     }
 }
