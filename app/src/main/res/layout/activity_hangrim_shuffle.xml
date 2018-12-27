@@ -3,15 +3,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <kr.saintdev.hangrim.modules.hgpaint.HGPaint
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <fragment
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/shuffle_paint"
-        app:title="@string/shuffle_paint_title"
-        app:canvasWidth="-1"
-        app:canvasHeight="110"
-        app:useDivideTop="true"
-        app:useDivideBottom="true"
-        app:useDivideLeft="false"
-        app:useDivideRight="false" />
+        android:id="@+id/hg_shuffle_main"
+        android:layout_below="@id/toolbar"
+        class="kr.saintdev.hangrim.views.fragments.EmptyFragment" />
 </RelativeLayout>
