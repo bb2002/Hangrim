@@ -5,11 +5,14 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import kr.saintdev.hangrim.R
 import kr.saintdev.hangrim.libs.func.HGFunctions
 import kr.saintdev.hangrim.libs.func.alert
 import kr.saintdev.hangrim.libs.func.str
 import kr.saintdev.hangrim.modules.hgpaint.HGPaint
+import kr.saintdev.hangrim.modules.hgpaint.toolbar.HGToolbarTool
+import kr.saintdev.hangrim.modules.hgpaint.toolbar.OnToolClick
 import kr.saintdev.hangrim.modules.retrofit.HangrimService
 import kr.saintdev.hangrim.modules.retrofit.HangrimWord
 import kr.saintdev.hangrim.modules.retrofit.Retrofit
@@ -18,7 +21,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class ShuffleFragment : Fragment() {
+class ShuffleFragment : Fragment(), OnToolClick {
     private lateinit var v: View
 
     private lateinit var paintBoard: HGPaint
@@ -30,11 +33,9 @@ class ShuffleFragment : Fragment() {
         this.rootActivity = activity as ShuffleActivity
 
         callRandomWord()        // 랜덤으로 단어를 가져온다.
-        this.rootActivity.setToolbarBackbutton(true)
-
-        val customBar = inflater.inflate(R.layout.hg_paint_toolbar, container, false)
-        this.rootActivity.setCustomToolbar(customBar)
-
+        this.paintBoard.setHGPaintToolbar(this.rootActivity)        // HGPaint Toolbar 를 적용 한다.
+        this.paintBoard.setHGPaintToolListener(this)                // HGPaint Toolbar 의 Listener 를 적용 한다.
+        this.rootActivity.setToolbarBackbutton(false)               // Backbutton 을 제거 한다.
         return this.v
     }
 
@@ -65,5 +66,24 @@ class ShuffleFragment : Fragment() {
                 }
             }
         })
+    }
+
+    /**
+     * @Date 12.28 2018
+     * Backward / Forward 버튼 이벤트 처리
+     */
+    override fun onClick(tool: HGToolbarTool, hgPaint: HGPaint) {
+        when(tool) {
+            HGToolbarTool.FORWARD -> {
+                // Bitmap 을 뽑아서 저장한다.
+                val file = hgPaint.exportImage(HGFunctions.createTempFileName())
+                this.rootActivity.fragmentTemp["shuffle-file"] = file
+                this.rootActivity.gotoForward()
+            }
+
+            HGToolbarTool.BACKWARD -> {
+                this.rootActivity.gotoBackward()
+            }
+        }
     }
 }

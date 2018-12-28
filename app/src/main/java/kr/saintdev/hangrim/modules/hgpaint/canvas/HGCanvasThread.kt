@@ -41,7 +41,7 @@ class HGCanvasThread(val context: Context, val holder: SurfaceHolder, val surfac
                     synchronized(points) {
                         for (i in 1 until points.size) {
                             val p = points[i]
-                            if (!p.isDraw) continue
+                            if (!p.isDraw || p.isUndo) continue
                             drawPath.moveTo(points[i - 1].x, points[i - 1].y)
                             drawPath.lineTo(p.x, p.y)
                             canvas.drawPath(drawPath, p.paint)
@@ -87,4 +87,48 @@ class HGCanvasThread(val context: Context, val holder: SurfaceHolder, val surfac
         this.plsHolderX = HGFontLibrary.getCenterWidth(surface.width, psHolderTextSize.width()).toFloat()
         this.plsHolderY = (surface.height / 2) - ((plsPaint.descent() + plsPaint.ascent()) / 2)
     }
+
+    /**
+     * @Date 12.28 2018
+     * Undo Point
+     */
+    fun undoPoint() : Boolean {
+        if(points.isEmpty()) return false
+
+        for(i in points.size-1 downTo 0) {
+            val p = points[i]
+            if(p.isDraw && !p.isUndo) {
+                // Undo 처리 한다.
+                p.isUndo = true
+                return true
+            }
+        }
+
+        return false
+    }
+
+    /**
+     * @Date 12.28 2018
+     * Redo point
+     */
+    fun redoPoint() : Boolean {
+        if(points.isEmpty()) return false
+
+        for(i in 0 until points.size) {
+            val p = points[i]
+            if(p.isDraw && p.isUndo) {
+                // Redo 처리 한다.
+                p.isUndo = false
+                return true
+            }
+        }
+
+        return false
+    }
+
+    /**
+     * @Date 12.28 2018
+     * Export points
+     */
+    fun exportDrawingPoints()  = points.filter { !it.isUndo }
 }

@@ -1,9 +1,11 @@
 package kr.saintdev.hangrim.libs.func
 
 import android.content.Context
+import android.os.Environment
 import kr.saintdev.hangrim.libs.sql.SQLManager
 import kr.saintdev.hangrim.modules.retrofit.HangrimWord
 import org.json.JSONArray
+import java.io.File
 
 object HGFunctions {
     fun getShuffeledWords(context: Context) : ArrayList<HangrimWord> {
@@ -20,4 +22,10 @@ object HGFunctions {
 
         return dataArr
     }
+
+    fun getSaveLocation(filename: String, context: Context) =
+        File(context.cacheDir, filename)
+
+    fun createTempFileName() =
+            System.currentTimeMillis().toString() + ".png"
 }

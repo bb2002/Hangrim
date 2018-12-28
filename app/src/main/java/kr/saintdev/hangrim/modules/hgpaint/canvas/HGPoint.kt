@@ -9,5 +9,6 @@ data class HGPoint (
         val x: Float = 0.0F,
         val y: Float = 0.0F,
         val paint: Paint,
-        val isDraw: Boolean = false
+        val isDraw: Boolean = false,    // is draw?
+        var isUndo: Boolean = false     // Undo
 )

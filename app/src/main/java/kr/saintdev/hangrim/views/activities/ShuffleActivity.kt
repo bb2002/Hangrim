@@ -24,6 +24,7 @@ class ShuffleActivity : AppCompatActivity() {
         DrawPictureFragment(),
         ShareFragment())
     private lateinit var toolbar: Toolbar
+    val fragmentTemp = mutableMapOf<String, Any?>()           // 프래그먼트의 임시 저장 공간
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +38,7 @@ class ShuffleActivity : AppCompatActivity() {
         gotoForward()
     }
 
-    var idx = -1
+    var idx = 0
     /**
      * 프레그먼트를 뒤로 이동
      */
@@ -57,7 +58,7 @@ class ShuffleActivity : AppCompatActivity() {
     fun gotoForward() =
         if(idx < FRAGMENTS.size) {
             val trans = supportFragmentManager.beginTransaction()
-            trans.replace(R.id.hg_shuffle_main, FRAGMENTS[++idx])
+            trans.replace(R.id.hg_shuffle_main, FRAGMENTS[idx++])
             trans.commit()
             true
         } else {
@@ -65,6 +66,10 @@ class ShuffleActivity : AppCompatActivity() {
         }
 
 
+    /**
+     * @Date 12.28 2018
+     * 기본 toolbar 의 작업
+     */
     fun setToolbarBackbutton(b: Boolean) {
         supportActionBar?.setDisplayHomeAsUpEnabled(b)
     }

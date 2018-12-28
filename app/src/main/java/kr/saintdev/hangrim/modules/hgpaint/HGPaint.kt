@@ -1,6 +1,8 @@
 package kr.saintdev.hangrim.modules.hgpaint
 
 import android.content.Context
+import android.support.v7.app.ActionBar
+import android.support.v7.app.AppCompatActivity
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
@@ -10,9 +12,13 @@ import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
 import kr.saintdev.hangrim.R
+import kr.saintdev.hangrim.libs.func.alert
 import kr.saintdev.hangrim.libs.func.pxToDpi
 import kr.saintdev.hangrim.modules.hgpaint.canvas.HGCanvasSurface
 import kr.saintdev.hangrim.modules.hgpaint.pentool.OnPenToolClick
+import kr.saintdev.hangrim.modules.hgpaint.toolbar.HGToolbarTool
+import kr.saintdev.hangrim.modules.hgpaint.toolbar.OnToolClick
+import java.io.File
 
 class HGPaint : RelativeLayout {
     private lateinit var hgView: RelativeLayout         // PaintBoard Layout
@@ -136,4 +142,65 @@ class HGPaint : RelativeLayout {
     }
 
     fun setComment(title: String?, msg: String?) = drawCommentMessage(title, msg)
+
+    /**
+     * 12.28 2018
+     * 해당 액티비티의 Toolbar 에 HGToolbar 를 적용합니다.
+     */
+    private lateinit var hgPaintToolBar: View
+    fun setHGPaintToolbar(activity: AppCompatActivity) {
+        val toolbar = activity.supportActionBar
+        val inflater = activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        this.hgPaintToolBar = inflater.inflate(R.layout.hg_paint_toolbar, null, false)
+
+        toolbar?.setDisplayShowCustomEnabled(true)
+        toolbar?.setCustomView(
+            this.hgPaintToolBar,
+            ActionBar.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        )
+
+        // toolbar 의 undo / redo 활성화
+        val btns = arrayOf<ImageButton>(
+            this.hgPaintToolBar.findViewById(R.id.hg_paint_toolbar_undo),
+            this.hgPaintToolBar.findViewById(R.id.hg_paint_toolbar_redo)
+        )
+
+        btns[0].setOnClickListener {
+            if(!this.hgCanvasView.unredo(true)) {
+                R.string.common_warn.alert(R.string.hgpaint_undo_fail, activity)
+            }
+        }
+
+        btns[1].setOnClickListener {
+            if(!this.hgCanvasView.unredo(false)) {
+                R.string.common_warn.alert(R.string.hgpaint_redo_fail, activity)
+            }
+        }
+    }
+
+    fun setHGPaintToolListener(listener: OnToolClick) {
+        val btns = arrayOf<ImageButton>(
+            this.hgPaintToolBar.findViewById(R.id.hg_paint_toolbar_next),
+            this.hgPaintToolBar.findViewById(R.id.hg_paint_toolbar_back)
+        )
+
+        val clickListener = View.OnClickListener {
+            val tool = when(it.id) {
+                R.id.hg_paint_toolbar_next -> HGToolbarTool.FORWARD
+                R.id.hg_paint_toolbar_back -> HGToolbarTool.BACKWARD
+                else -> HGToolbarTool.FORWARD
+            }
+
+            listener.onClick(tool, this@HGPaint)
+        }
+
+        for(b in btns) b.setOnClickListener(clickListener)
+    }
+
+    /**
+     * @Date 12.28 2018
+     * Export image
+     */
+    fun exportImage(filename: String) =
+            this.hgCanvasView.exportDrawing(filename)
 }

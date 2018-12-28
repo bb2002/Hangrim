@@ -8,11 +8,16 @@
 
     <string name="hgpaint_reset_title">얌마</string>
     <string name="hgpaint_reset_message">전부 지우시겠습니까?</string>
+    <string name="hgpaint_undo_fail">Undo 작업을 실행 할 수 없습니다.</string>
+    <string name="hgpaint_redo_fail">Redo 작업을 실행 할 수 없습니다.</string>
 
     <string name="common_yes">네</string>
     <string name="common_no">아니오</string>
     <string name="common_error">An error occurred.</string>
+    <string name="common_warn">저런!</string>
 
     <string name="shuffle_paint_title">Write Hangeul along the line!</string>
+    <string name="shuffle_draw_picture_title">Draw a picture that reminds you of the word</string>
     <string name="shuffle_call_word_error">단어를 가져올 수 없습니다.</string>
+    <string name="shuffle_attach_failed">드로잉 데이터를 찾을 수 없습니다!</string>
 </resources>

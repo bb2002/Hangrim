@@ -29,3 +29,8 @@ fun String.alert(msg: String, context: Context) {
     }
     builder.show()
 }
+
+fun Int.alert(msg: Int, context: Context) {
+    val res = context.resources
+    res.getString(this).alert(res.getString(msg), context)
+}
