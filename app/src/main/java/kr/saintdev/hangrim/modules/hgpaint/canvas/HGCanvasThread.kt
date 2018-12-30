@@ -131,4 +131,13 @@ class HGCanvasThread(val context: Context, val holder: SurfaceHolder, val surfac
      * Export points
      */
     fun exportDrawingPoints()  = points.filter { !it.isUndo }
+
+    /**
+     * @Date 12.30 2018
+     * stop canvas
+     */
+    fun stopThread() {
+        this.isStopped = true
+        this.join()
+    }
 }

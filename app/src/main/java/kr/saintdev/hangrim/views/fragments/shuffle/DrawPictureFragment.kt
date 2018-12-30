@@ -30,6 +30,8 @@ class DrawPictureFragment : Fragment() {
                     HGToolbarTool.FORWARD -> {
                         val drawFile = paintBoard.exportImage(HGFunctions.createTempFileName())
                         rootActivity.fragmentTemp["draw-file"] = drawFile
+                        paintBoard.exit()           // Paint board off
+
                         rootActivity.gotoForward()
                     }
                     HGToolbarTool.BACKWARD -> {

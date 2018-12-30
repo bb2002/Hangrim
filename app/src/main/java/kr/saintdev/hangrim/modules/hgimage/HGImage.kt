@@ -12,8 +12,8 @@ object HGImage {
      *
      */
     fun attachShuffleAndDrawing(shuffle: File, picture: File) : Bitmap {
-        var shuffleBitmap = BitmapFactory.decodeFile(shuffle.absolutePath)
-        var pictureBitmap = BitmapFactory.decodeFile(picture.absolutePath)
+        val shuffleBitmap = BitmapFactory.decodeFile(shuffle.absolutePath)
+        val pictureBitmap = BitmapFactory.decodeFile(picture.absolutePath)
         val newBitmap = Bitmap.createBitmap(shuffleBitmap.width, shuffleBitmap.height + pictureBitmap.height, Bitmap.Config.ARGB_8888)
         val paint = Paint()
 

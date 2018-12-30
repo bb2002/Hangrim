@@ -203,4 +203,9 @@ class HGPaint : RelativeLayout {
      */
     fun exportImage(filename: String) =
             this.hgCanvasView.exportDrawing(filename)
+
+    fun exit() {
+        this.hgCanvasView.clear()
+        this.hgCanvasView.release()
+    }
 }

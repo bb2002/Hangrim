@@ -57,10 +57,15 @@ class ShuffleFragment : Fragment(), OnToolClick {
             }
 
             override fun onResponse(call: Call<HangrimWord>, response: Response<HangrimWord>) {
-                if(response.isSuccessful) {
-                    val body = response.body()
-                    paintBoard.setPlaceHolderText(body!!.word_korean)
+                val body = response.body()
+
+                if(response.isSuccessful && body != null) {
+                    paintBoard.setPlaceHolderText(body.word_korean)           // Placeholder 을 그린다.
                     paintBoard.setComment(body.word_english, body.word_symbol)
+
+                    rootActivity.fragmentTemp["word-english"] = body.word_english
+                    rootActivity.fragmentTemp["word-symbol"] = body.word_symbol
+                    rootActivity.fragmentTemp["word-uuid"] = body.prop_uuid
                 } else {
                     onFailure(null, null)
                 }
@@ -78,6 +83,10 @@ class ShuffleFragment : Fragment(), OnToolClick {
                 // Bitmap 을 뽑아서 저장한다.
                 val file = hgPaint.exportImage(HGFunctions.createTempFileName())
                 this.rootActivity.fragmentTemp["shuffle-file"] = file
+
+                // canvas stop
+                paintBoard.exit()
+
                 this.rootActivity.gotoForward()
             }
 

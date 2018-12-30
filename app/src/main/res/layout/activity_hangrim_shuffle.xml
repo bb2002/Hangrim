@@ -11,10 +11,9 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
-    <fragment
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/hg_shuffle_main"
-        android:layout_below="@id/toolbar"
-        class="kr.saintdev.hangrim.views.fragments.EmptyFragment" />
+        android:layout_below="@id/toolbar" />
 </RelativeLayout>

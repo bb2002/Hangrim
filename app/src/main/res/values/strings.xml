@@ -20,4 +20,8 @@
     <string name="shuffle_draw_picture_title">Draw a picture that reminds you of the word</string>
     <string name="shuffle_call_word_error">단어를 가져올 수 없습니다.</string>
     <string name="shuffle_attach_failed">드로잉 데이터를 찾을 수 없습니다!</string>
+
+    <string name="drawing_preview_content">You have created a new HanGrim\nShare the card with your friends!</string>
+    <string name="drawing_preview_input1">What is it called?</string>
+    <string name="drawing_preview_input2">How to pronounciate in your language?</string>
 </resources>

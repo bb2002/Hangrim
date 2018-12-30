@@ -23,8 +23,13 @@ object HGFunctions {
         return dataArr
     }
 
-    fun getSaveLocation(filename: String, context: Context) =
+    // 임시파일의 저장 경로.
+    fun getTempFileLocation(filename: String, context: Context) =
         File(context.cacheDir, filename)
+
+    // 실제 파일의 저장 경로
+    fun getSaveFileLocation(filename: String, context: Context) =
+            File(context.filesDir, filename)
 
     fun createTempFileName() =
             System.currentTimeMillis().toString() + ".png"

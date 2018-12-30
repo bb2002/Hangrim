@@ -41,7 +41,7 @@ class HGCanvasSurface(plsHolder: String?, context: Context) : SurfaceView(contex
 
     override fun surfaceDestroyed(p0: SurfaceHolder?) {
         try {
-            this.hgThread.join()
+            this.hgThread.stopThread()
         } catch(ex: Exception) {
             ex.printStackTrace()
         }
@@ -79,7 +79,7 @@ class HGCanvasSurface(plsHolder: String?, context: Context) : SurfaceView(contex
         val drawPath = Path()
         val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
         val canvas = Canvas(bitmap)
-        val filePath = HGFunctions.getSaveLocation(filename, context)
+        val filePath = HGFunctions.getTempFileLocation(filename, context)
 
         // Draw White
         canvas.drawARGB(255, 255, 255, 255)
@@ -99,12 +99,23 @@ class HGCanvasSurface(plsHolder: String?, context: Context) : SurfaceView(contex
         return try {
             // Create Bitmap file
             fos = FileOutputStream(filePath)
-            bitmap.compress(Bitmap.CompressFormat.PNG, 100, fos)
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 80, fos)
             fos.close()
             filePath
         } catch(ex: Exception) {
             ex.printStackTrace()
             null
         }
+    }
+
+    /**
+     * @Date 12.30 2018
+     * Canvas surface release
+     */
+    fun release() {
+        try {
+            holder.removeCallback(this)
+            this.hgThread.stopThread()
+        } catch(ex: Exception) {}
     }
 }

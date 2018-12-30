@@ -1,6 +1,7 @@
 package kr.saintdev.hangrim.views.activities
 
 import android.os.Bundle
+import android.os.PersistableBundle
 import android.support.v7.app.ActionBar
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
@@ -37,6 +38,7 @@ class ShuffleActivity : AppCompatActivity() {
         // 화면을 이동 한다.
         gotoForward()
     }
+
 
     var idx = 0
     /**
