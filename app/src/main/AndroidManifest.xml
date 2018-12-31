@@ -32,25 +32,32 @@
 
         <!-- My Card Activity -->
         <activity
-                android:name="kr.saintdev.hangrim.views.activities.MyCardActivity"
+                android:name="kr.saintdev.hangrim.views.activities.list.MyCardActivity"
                 android:screenOrientation="landscape" />
 
         <!-- Shuffle Activity -->
         <activity
-                android:name="kr.saintdev.hangrim.views.activities.ShuffleActivity"
+                android:name="kr.saintdev.hangrim.views.activities.drawing.ShuffleActivity"
                 android:screenOrientation="landscape"
                 android:theme="@style/NoActionBarAppTheme" />
 
         <!-- Create Card Activity -->
         <activity
-                android:name="kr.saintdev.hangrim.views.activities.CreateCardActivity"
+                android:name="kr.saintdev.hangrim.views.activities.drawing.CreateCardActivity"
                 android:screenOrientation="landscape" />
 
         <!-- Create Sign Activity -->
         <activity
-                android:name="kr.saintdev.hangrim.views.activities.CreateSignActivity"
+                android:name="kr.saintdev.hangrim.views.activities.drawing.CreateSignActivity"
                 android:screenOrientation="landscape" />
 
+        <!-- Preview Activitys -->
+        <activity android:name=".views.activities.preview.DrawingPreviewActivity"
+                  android:screenOrientation="landscape" />
+        <activity android:name=".views.activities.preview.MyExprViewActivity"
+                  android:screenOrientation="landscape" />
+
+        <!-- Share provider -->
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="${applicationId}.fileprovider"

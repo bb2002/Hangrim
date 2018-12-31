@@ -114,8 +114,8 @@ class HGCanvasSurface(plsHolder: String?, context: Context) : SurfaceView(contex
      */
     fun release() {
         try {
-            holder.removeCallback(this)
             this.hgThread.stopThread()
+            holder.removeCallback(this)
         } catch(ex: Exception) {}
     }
 }

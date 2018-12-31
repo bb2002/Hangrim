@@ -10,7 +10,7 @@ import kr.saintdev.hangrim.libs.func.HGFunctions
 import kr.saintdev.hangrim.modules.hgpaint.HGPaint
 import kr.saintdev.hangrim.modules.hgpaint.toolbar.HGToolbarTool
 import kr.saintdev.hangrim.modules.hgpaint.toolbar.OnToolClick
-import kr.saintdev.hangrim.views.activities.ShuffleActivity
+import kr.saintdev.hangrim.views.activities.drawing.ShuffleActivity
 
 class DrawPictureFragment : Fragment() {
     private lateinit var v: View

@@ -1,6 +1,7 @@
 package kr.saintdev.hangrim.libs.func
 
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
@@ -26,20 +27,21 @@ fun Int.str(context: Context) = context.resources.getString(this)
  * 12.26 2018
  * Alert 창을 발생한다.
  */
-fun String.alert(msg: String, context: Context) {
+fun String.alert(msg: String,
+                 context: Context,
+                 listener: DialogInterface.OnClickListener = DialogInterface.OnClickListener{dialogInterface, _ ->  dialogInterface.dismiss() }) {
     val builder = AlertDialog.Builder(context)
     builder.setTitle(this)
     builder.setMessage(msg)
-    builder.setPositiveButton("Yes") {
-        dialogInterface, _ ->
-        dialogInterface.dismiss()
-    }
+    builder.setPositiveButton("Yes", listener)
     builder.show()
 }
 
-fun Int.alert(msg: Int, context: Context) {
+fun Int.alert(msg: Int,
+              context: Context,
+              listener: DialogInterface.OnClickListener = DialogInterface.OnClickListener{dialogInterface, _ ->  dialogInterface.dismiss() }) {
     val res = context.resources
-    res.getString(this).alert(res.getString(msg), context)
+    res.getString(this).alert(res.getString(msg), context, listener)
 }
 
 fun Bitmap.save(path: File) : Boolean {

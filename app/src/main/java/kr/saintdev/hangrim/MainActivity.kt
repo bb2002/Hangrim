@@ -5,10 +5,10 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import kotlinx.android.synthetic.main.activity_main.*
-import kr.saintdev.hangrim.views.activities.CreateCardActivity
-import kr.saintdev.hangrim.views.activities.CreateSignActivity
-import kr.saintdev.hangrim.views.activities.MyCardActivity
-import kr.saintdev.hangrim.views.activities.ShuffleActivity
+import kr.saintdev.hangrim.views.activities.drawing.CreateCardActivity
+import kr.saintdev.hangrim.views.activities.drawing.CreateSignActivity
+import kr.saintdev.hangrim.views.activities.list.MyCardActivity
+import kr.saintdev.hangrim.views.activities.drawing.ShuffleActivity
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

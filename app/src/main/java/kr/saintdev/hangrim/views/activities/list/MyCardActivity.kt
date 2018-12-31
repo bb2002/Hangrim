@@ -1,4 +1,4 @@
-package kr.saintdev.hangrim.views.activities
+package kr.saintdev.hangrim.views.activities.list
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity

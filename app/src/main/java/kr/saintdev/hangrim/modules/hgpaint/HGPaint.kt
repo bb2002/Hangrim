@@ -207,5 +207,6 @@ class HGPaint : RelativeLayout {
     fun exit() {
         this.hgCanvasView.clear()
         this.hgCanvasView.release()
+        this.hgCanvasView.visibility = View.GONE
     }
 }

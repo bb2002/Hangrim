@@ -1,7 +1,8 @@
-package kr.saintdev.hangrim.views.activities
+package kr.saintdev.hangrim.views.activities.drawing
 
 import android.os.Bundle
 import android.os.PersistableBundle
+import android.support.v4.app.Fragment
 import android.support.v7.app.ActionBar
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
@@ -20,10 +21,6 @@ import kr.saintdev.hangrim.views.fragments.shuffle.ShuffleFragment
  * Hangrim Shuffle Activity.
  */
 class ShuffleActivity : AppCompatActivity() {
-    private val FRAGMENTS = arrayOf(
-        ShuffleFragment(),
-        DrawPictureFragment(),
-        ShareFragment())
     private lateinit var toolbar: Toolbar
     val fragmentTemp = mutableMapOf<String, Any?>()           // 프래그먼트의 임시 저장 공간
 
@@ -41,30 +38,50 @@ class ShuffleActivity : AppCompatActivity() {
 
 
     var idx = 0
+    var nowFragment: Fragment? = null
     /**
      * 프레그먼트를 뒤로 이동
      */
-    fun gotoBackward() =
-        if(idx < 0) {
+    fun gotoBackward() : Boolean {
+         return if (idx < 0) {
+             val trans = supportFragmentManager.beginTransaction()
+
+             // 이전 프레그먼트 제거
+             if(this.nowFragment != null) trans.remove(this.nowFragment)
+
+             // 새 프레그먼트 생성
+             nowFragment = createFragment(--idx)
+             trans.replace(R.id.hg_shuffle_main, nowFragment)
+             trans.commit()
+             true
+        } else {
+             false
+        }
+    }
+
+    /**
+     * Fragment 를 앞으로 이동
+     */
+    fun gotoForward() =
+        if(idx < 3) {
             val trans = supportFragmentManager.beginTransaction()
-            trans.replace(R.id.hg_shuffle_main, FRAGMENTS[--idx])
+
+            // 이전 프레그먼트 제거
+            if(this.nowFragment != null) trans.remove(this.nowFragment)
+            this.nowFragment = createFragment(idx++)        // 새 프레그먼트 생성
+
+            trans.replace(R.id.hg_shuffle_main, this.nowFragment)
             trans.commit()
             true
         } else {
             false
         }
 
-    /**
-     * Fragment 를 앞으로 이동
-     */
-    fun gotoForward() =
-        if(idx < FRAGMENTS.size) {
-            val trans = supportFragmentManager.beginTransaction()
-            trans.replace(R.id.hg_shuffle_main, FRAGMENTS[idx++])
-            trans.commit()
-            true
-        } else {
-            false
+    private fun createFragment(idx: Int) = when(idx) {
+            0 -> ShuffleFragment()
+            1 -> DrawPictureFragment()
+            2 -> ShareFragment()
+            else -> ShuffleFragment()
         }
 
 
@@ -74,14 +91,6 @@ class ShuffleActivity : AppCompatActivity() {
      */
     fun setToolbarBackbutton(b: Boolean) {
         supportActionBar?.setDisplayHomeAsUpEnabled(b)
-    }
-
-    fun setCustomToolbar(v: View) {
-        supportActionBar?.setDisplayShowCustomEnabled(true)
-        supportActionBar?.setCustomView(
-            v,
-            ActionBar.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-        )
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

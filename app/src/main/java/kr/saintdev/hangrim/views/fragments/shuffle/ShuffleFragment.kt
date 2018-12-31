@@ -5,7 +5,7 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import ir.alirezabdn.wp7progress.WP10ProgressBar
 import kr.saintdev.hangrim.R
 import kr.saintdev.hangrim.libs.func.HGFunctions
 import kr.saintdev.hangrim.libs.func.alert
@@ -16,7 +16,7 @@ import kr.saintdev.hangrim.modules.hgpaint.toolbar.OnToolClick
 import kr.saintdev.hangrim.modules.retrofit.HangrimService
 import kr.saintdev.hangrim.modules.retrofit.HangrimWord
 import kr.saintdev.hangrim.modules.retrofit.Retrofit
-import kr.saintdev.hangrim.views.activities.ShuffleActivity
+import kr.saintdev.hangrim.views.activities.drawing.ShuffleActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -26,16 +26,22 @@ class ShuffleFragment : Fragment(), OnToolClick {
 
     private lateinit var paintBoard: HGPaint
     private lateinit var rootActivity: ShuffleActivity
+    private lateinit var progressBar: WP10ProgressBar
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         this.v = inflater.inflate(R.layout.fragment_shuffle_word, container, false)
         this.paintBoard = this.v.findViewById(R.id.shuffle_paint)
         this.rootActivity = activity as ShuffleActivity
+        this.progressBar = this.v.findViewById(R.id.progress)
 
         callRandomWord()        // 랜덤으로 단어를 가져온다.
         this.paintBoard.setHGPaintToolbar(this.rootActivity)        // HGPaint Toolbar 를 적용 한다.
         this.paintBoard.setHGPaintToolListener(this)                // HGPaint Toolbar 의 Listener 를 적용 한다.
         this.rootActivity.setToolbarBackbutton(false)               // Backbutton 을 제거 한다.
+
+        // progress run
+        this.progressBar.showProgressBar()
+
         return this.v
     }
 
@@ -58,6 +64,7 @@ class ShuffleFragment : Fragment(), OnToolClick {
 
             override fun onResponse(call: Call<HangrimWord>, response: Response<HangrimWord>) {
                 val body = response.body()
+                progressBar.hideProgressBar()
 
                 if(response.isSuccessful && body != null) {
                     paintBoard.setPlaceHolderText(body.word_korean)           // Placeholder 을 그린다.

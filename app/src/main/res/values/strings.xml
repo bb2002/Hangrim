@@ -15,11 +15,13 @@
     <string name="common_no">아니오</string>
     <string name="common_error">An error occurred.</string>
     <string name="common_warn">저런!</string>
+    <string name="common_file_err">File not found.</string>
 
     <string name="shuffle_paint_title">Write Hangeul along the line!</string>
     <string name="shuffle_draw_picture_title">Draw a picture that reminds you of the word</string>
     <string name="shuffle_call_word_error">단어를 가져올 수 없습니다.</string>
     <string name="shuffle_attach_failed">드로잉 데이터를 찾을 수 없습니다!</string>
+    <string name="shuffle_loading">이미지를 생성하고 있습니다...</string>
 
     <string name="drawing_preview_content">You have created a new HanGrim\nShare the card with your friends!</string>
     <string name="drawing_preview_input1">What is it called?</string>
