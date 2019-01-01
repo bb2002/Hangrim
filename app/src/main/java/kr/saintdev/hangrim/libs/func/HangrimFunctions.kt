@@ -33,4 +33,17 @@ object HGFunctions {
 
     fun createTempFileName() =
             System.currentTimeMillis().toString() + ".png"
+
+    /**
+     * @Date 01.01 2019
+     * Drawing data 가 존재하는지 확인 한다.
+     */
+    fun isExsitDrawingFile(hgWord: HangrimWord, context: Context) : File? {
+        val file = getSaveFileLocation(hgWord.prop_uuid + ".jpg", context)
+        return if(file.exists()) {
+            file
+        } else {
+            null
+        }
+    }
 }

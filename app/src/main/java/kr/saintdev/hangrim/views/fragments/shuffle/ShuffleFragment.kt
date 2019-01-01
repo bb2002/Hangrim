@@ -53,7 +53,7 @@ class ShuffleFragment : Fragment(), OnToolClick {
     private fun callRandomWord() {
         val exceptID = HGFunctions.getShuffledWordsUUID(activity!!)       // 예외 목록
 
-        val service = Retrofit.retrofit.create(HangrimService::class.java)
+        val service = Retrofit.getRetrofit().create(HangrimService::class.java)
         val request = service.requestRandomWord("Any", exceptID.toString())
         request.enqueue(object : Callback<HangrimWord> {
             override fun onFailure(call: Call<HangrimWord>?, t: Throwable?) {
