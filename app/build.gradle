@@ -34,6 +34,5 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.5.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
     implementation 'com.github.shadowalker77:wp7progressbar:1.0.5'
-    implementation 'com.github.ceryle:FitGridView:v1.0.5'
     implementation "com.android.support:design:27.1.1"
 }

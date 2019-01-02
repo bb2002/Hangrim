@@ -14,4 +14,8 @@
         <attr name="commentTitle" format="reference|string" />
         <attr name="commentContent" format="reference|string" />
     </declare-styleable>
+
+    <declare-styleable name="HGirdView">
+        <attr name="column" format="reference|integer" />
+    </declare-styleable>
 </resources>

@@ -1,25 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-     android:layout_width="match_parent"
-     android:layout_height="match_parent"
-     xmlns:app="http://schemas.android.com/apk/res-auto"
-     android:orientation="vertical"
-     android:background="#ffffff">
-    <include
-        android:layout_width="match_parent"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <!-- List -->
+    <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"
+         xmlns:app="http://schemas.android.com/apk/res-auto"
+         android:orientation="vertical"
+         android:background="#ffffff">
+        <include
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/my_card_container"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            layout="@layout/mycard_category_items" />
+
+        <GridView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/my_card_grid"
+            android:padding="4dp"
+            android:columnWidth="100dp"
+            android:numColumns="3"
+            android:verticalSpacing="10dp"
+            android:horizontalSpacing="10dp"
+            android:gravity="center"/>
+    </LinearLayout>
+
+    <!-- WP Loader -->
+    <ir.alirezabdn.wp7progress.WP10ProgressBar
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/my_card_container"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        layout="@layout/mycard_category_items" />
-    <co.ceryle.fitgridview.FitGridView
-        android:id="@+id/my_card_grid"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:listSelector="@android:color/transparent"
-        app:column="3"
-        app:row="2"
-        app:layout_constraintTop_toBottomOf="@id/my_card_container"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"/>
-</LinearLayout>
+        android:id="@+id/mycard_progress"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"/>
+</RelativeLayout>

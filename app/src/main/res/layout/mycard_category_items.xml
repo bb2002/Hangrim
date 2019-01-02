@@ -7,14 +7,14 @@
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
+        android:id="@+id/mycard_cate_0"
         android:orientation="vertical"
         android:layout_weight="1"
         android:background="@drawable/ic_stroke_box"
         android:padding="4dp">
-        <ImageButton
+        <ImageView
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:id="@+id/mycard_cate_0"
             android:scaleType="centerInside"
             android:src="@drawable/ic_not_drawing"
             android:background="@null"
@@ -32,13 +32,13 @@
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
+        android:id="@+id/mycard_cate_1"
         android:orientation="vertical"
         android:layout_weight="1"
         android:padding="4dp">
-        <ImageButton
+        <ImageView
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:id="@+id/mycard_cate_1"
             android:scaleType="centerInside"
             android:src="@drawable/ic_not_drawing"
             android:background="@null"
@@ -47,7 +47,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/mycard_cate_1_title"
-            android:text="OBJECT"
+            android:text="나의 표현"
             android:textSize="12sp"
             android:textStyle="bold"
             android:gravity="center"/>
@@ -56,13 +56,13 @@
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
+        android:id="@+id/mycard_cate_2"
         android:orientation="vertical"
         android:layout_weight="1"
         android:padding="4dp">
-        <ImageButton
+        <ImageView
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:id="@+id/mycard_cate_2"
             android:scaleType="centerInside"
             android:src="@drawable/ic_not_drawing"
             android:background="@null"
@@ -71,7 +71,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/mycard_cate_2_title"
-            android:text="OBJECT"
+            android:text="Expression"
             android:textSize="12sp"
             android:textStyle="bold"
             android:gravity="center"/>
@@ -80,13 +80,13 @@
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
+        android:id="@+id/mycard_cate_3"
         android:orientation="vertical"
         android:layout_weight="1"
         android:padding="4dp">
-        <ImageButton
+        <ImageView
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:id="@+id/mycard_cate_3"
             android:scaleType="centerInside"
             android:src="@drawable/ic_not_drawing"
             android:background="@null"
@@ -95,7 +95,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/mycard_cate_3_title"
-            android:text="OBJECT"
+            android:text="Kitchen"
             android:textSize="12sp"
             android:textStyle="bold"
             android:gravity="center"/>
@@ -104,13 +104,13 @@
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
+        android:id="@+id/mycard_cate_4"
         android:orientation="vertical"
         android:layout_weight="1"
         android:padding="4dp">
-        <ImageButton
+        <ImageView
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:id="@+id/mycard_cate_4"
             android:scaleType="centerInside"
             android:src="@drawable/ic_not_drawing"
             android:background="@null"
@@ -119,7 +119,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/mycard_cate_4_title"
-            android:text="OBJECT"
+            android:text="People"
             android:textSize="12sp"
             android:textStyle="bold"
             android:gravity="center"/>
@@ -128,13 +128,13 @@
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
+        android:id="@+id/mycard_cate_5"
         android:orientation="vertical"
         android:layout_weight="1"
         android:padding="4dp">
-        <ImageButton
+        <ImageView
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:id="@+id/mycard_cate_5"
             android:scaleType="centerInside"
             android:src="@drawable/ic_not_drawing"
             android:background="@null"
@@ -143,7 +143,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/mycard_cate_5_title"
-            android:text="OBJECT"
+            android:text="Time"
             android:textSize="12sp"
             android:textStyle="bold"
             android:gravity="center"/>
@@ -152,13 +152,13 @@
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
+        android:id="@+id/mycard_cate_6"
         android:orientation="vertical"
         android:layout_weight="1"
         android:padding="4dp">
-        <ImageButton
+        <ImageView
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:id="@+id/mycard_cate_6"
             android:scaleType="centerInside"
             android:src="@drawable/ic_not_drawing"
             android:background="@null"
@@ -167,7 +167,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/mycard_cate_6_title"
-            android:text="OBJECT"
+            android:text="Number"
             android:textSize="12sp"
             android:textStyle="bold"
             android:gravity="center"/>
@@ -176,13 +176,13 @@
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
+        android:id="@+id/mycard_cate_7"
         android:orientation="vertical"
         android:layout_weight="1"
         android:padding="4dp">
-        <ImageButton
+        <ImageView
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:id="@+id/mycard_cate_7"
             android:scaleType="centerInside"
             android:src="@drawable/ic_not_drawing"
             android:background="@null"
@@ -191,7 +191,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/mycard_cate_7_title"
-            android:text="OBJECT"
+            android:text="Body"
             android:textSize="12sp"
             android:textStyle="bold"
             android:gravity="center"/>
@@ -200,13 +200,13 @@
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
+        android:id="@+id/mycard_cate_8"
         android:orientation="vertical"
         android:layout_weight="1"
         android:padding="4dp">
-        <ImageButton
+        <ImageView
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:id="@+id/mycard_cate_8"
             android:scaleType="centerInside"
             android:src="@drawable/ic_not_drawing"
             android:background="@null"
@@ -215,7 +215,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/mycard_cate_8_title"
-            android:text="OBJECT"
+            android:text="Place"
             android:textSize="12sp"
             android:textStyle="bold"
             android:gravity="center"/>
@@ -224,13 +224,13 @@
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
+        android:id="@+id/mycard_cate_9"
         android:orientation="vertical"
         android:layout_weight="1"
         android:padding="4dp">
-        <ImageButton
+        <ImageView
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:id="@+id/mycard_cate_9"
             android:scaleType="centerInside"
             android:src="@drawable/ic_not_drawing"
             android:background="@null"
@@ -239,7 +239,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/mycard_cate_9_title"
-            android:text="OBJECT"
+            android:text="Animal"
             android:textSize="12sp"
             android:textStyle="bold"
             android:gravity="center"/>
@@ -248,13 +248,13 @@
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
+        android:id="@+id/mycard_cate_10"
         android:orientation="vertical"
         android:layout_weight="1"
         android:padding="4dp">
-        <ImageButton
+        <ImageView
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:id="@+id/mycard_cate_10"
             android:scaleType="centerInside"
             android:src="@drawable/ic_not_drawing"
             android:background="@null"
@@ -263,7 +263,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/mycard_cate_10_title"
-            android:text="OBJECT"
+            android:text="ETC."
             android:textSize="12sp"
             android:textStyle="bold"
             android:gravity="center"/>

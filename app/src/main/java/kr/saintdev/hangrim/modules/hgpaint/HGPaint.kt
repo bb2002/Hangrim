@@ -18,7 +18,6 @@ import kr.saintdev.hangrim.modules.hgpaint.canvas.HGCanvasSurface
 import kr.saintdev.hangrim.modules.hgpaint.pentool.OnPenToolClick
 import kr.saintdev.hangrim.modules.hgpaint.toolbar.HGToolbarTool
 import kr.saintdev.hangrim.modules.hgpaint.toolbar.OnToolClick
-import java.io.File
 
 class HGPaint : RelativeLayout {
     private lateinit var hgView: RelativeLayout         // PaintBoard Layout

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorPrimary">#f5f6fa</color>
+    <color name="colorPrimaryDark">#2f3640</color>
+    <color name="colorAccent">#c23616</color>
 
     <color name="canvasPlaceholderColor">#626262</color>
     <color name="canvasDivideLineColor">#2a2a2a</color>
