@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+        <!-- HGPaint Toolbar area -->
+        <LinearLayout
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:id="@+id/hgpaint_toolbar_container"
+            android:orientation="vertical"
+            android:layout_alignParentEnd="true"
+            android:gravity="center">
+            <ImageButton
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/hgpaint_toolbar_penstyle"
+                android:src="@drawable/ic_tmp_fordev"
+                android:scaleType="centerInside"
+                android:background="@null"/>
+             <include
+                 android:layout_width="20dp"
+                 android:layout_height="1dp"
+                 android:layout_margin="8dp"
+                 layout="@layout/hgpaint_hr_line" />
+
+            <ImageButton
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/hgpaint_toolbar_thickness"
+                android:src="@drawable/ic_tmp_fordev"
+                android:scaleType="centerInside"
+                android:background="@null"/>
+            <include
+                android:layout_width="20dp"
+                android:layout_height="1dp"
+                android:layout_margin="8dp"
+                layout="@layout/hgpaint_hr_line" />
+
+            <ImageButton
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/hgpaint_toolbar_reset"
+                android:src="@drawable/ic_tmp_fordev"
+                android:scaleType="centerInside"
+                android:background="@null"/>
+            <include
+                android:layout_width="20dp"
+                android:layout_height="1dp"
+                android:layout_margin="8dp"
+                layout="@layout/hgpaint_hr_line" />
+
+            <ImageButton
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/hgpaint_toolbar_color"
+                android:src="@drawable/ic_tmp_fordev"
+                android:scaleType="centerInside"
+                android:background="@null"/>
+        </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toStartOf="@+id/hgpaint_toolbar_container">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/hgpaint_canvas_area">
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/hgpaint_canvas_container"
+                android:background="@color/hgpaint2Background"
+                android:padding="2dp"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"/>
+
+            <!-- Divide Line draw -->
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="6dp"
+                android:id="@+id/hgpaint_divide_top"
+                android:layerType="software"
+                android:src="@drawable/hgpaint_divide_hor"
+                android:layout_alignTop="@id/hgpaint_canvas_container"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="6dp"
+                android:id="@+id/hgpaint_divide_bottom"
+                android:layerType="software"
+                android:src="@drawable/hgpaint_divide_hor"
+                android:layout_alignBottom="@id/hgpaint_canvas_container"/>
+
+            <!-- Divide Line Left -->
+            <ImageView
+                android:layout_width="5dp"
+                android:layout_height="match_parent"
+                android:id="@+id/hgpaint_divide_right"
+                android:layerType="software"
+                android:src="@drawable/hgpaint_divide_vert"
+                android:layout_alignEnd="@id/hgpaint_canvas_container"/>
+
+            <ImageView
+                android:layout_width="5dp"
+                android:layout_height="match_parent"
+                android:id="@+id/hgpaint_divide_left"
+                android:layerType="software"
+                android:src="@drawable/hgpaint_divide_vert"
+                android:layout_alignStart="@id/hgpaint_canvas_container"/>
+        </RelativeLayout>
+
+        <!-- Comment layout -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/hgpaint_comment_title"
+            android:layout_centerHorizontal="true"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"
+            android:text="NULL"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/hgpaint_comment_content"
+            android:layout_below="@id/hgpaint_comment_title"
+            android:layout_centerHorizontal="true"
+            android:textSize="14sp"
+            android:text="Comment is null"/>
+    </RelativeLayout>
+</RelativeLayout>

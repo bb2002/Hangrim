@@ -15,7 +15,21 @@
         <attr name="commentContent" format="reference|string" />
     </declare-styleable>
 
-    <declare-styleable name="HGirdView">
-        <attr name="column" format="reference|integer" />
+    <declare-styleable name="HGPaintView">
+        <!-- Content -->
+        <attr name="comment_title" format="string"/>
+        <attr name="comment_content" format="string" />
+        <attr name="placeholder" format="string" />
+
+        <!-- Canvas -->
+        <attr name="canvas_width" format="integer" />
+        <attr name="canvas_height" format="integer" />
+
+        <!-- Divide line -->
+        <attr name="divide_left_right" format="boolean" />
+        <attr name="divide_top_bottom" format="boolean" />
+
+        <!-- Toolbar -->
+        <attr name="toolbar_color_enable" format="boolean" />
     </declare-styleable>
 </resources>
