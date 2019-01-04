@@ -2,66 +2,91 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
-    <!-- HG Paint Toolkit bar -->
+    <!-- HGPaint Toolbar area -->
     <LinearLayout
-        android:id="@+id/hg_paint_toolkit"
-        android:layout_width="56dp"
+        android:layout_width="60dp"
         android:layout_height="match_parent"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentTop="true"
-        android:gravity="center"
+        android:id="@+id/hg_paint_toolkit"
         android:orientation="vertical"
-        android:background="@color/hgpaintToolkitColor">
+        android:layout_alignParentEnd="true"
+        android:gravity="center">
         <ImageButton
-            android:layout_width="52dp"
-            android:layout_height="52dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:id="@+id/hg_paint_tool_penstyle"
-            android:background="@null"
-            android:src="@drawable/ic_launcher_foreground"
-            android:layout_marginBottom="4dp"/>
-        <ImageButton
-            android:layout_width="52dp"
-            android:layout_height="52dp"
-            android:id="@+id/hg_paint_tool_penthickness"
-            android:background="@null"
-            android:src="@drawable/ic_launcher_foreground"
-            android:layout_marginBottom="4dp"/>
+            android:src="@drawable/ic_tmp_fordev"
+            android:scaleType="centerInside"
+            android:background="@null"/>
+        <include
+            android:layout_width="20dp"
+            android:layout_height="1dp"
+            android:layout_margin="8dp"
+            layout="@layout/hgpaint_hr_line" />
 
         <ImageButton
-            android:layout_width="52dp"
-            android:layout_height="52dp"
-            android:id="@+id/hg_paint_tool_reset"
-            android:background="@null"
-            android:src="@drawable/ic_launcher_foreground"
-            android:layout_marginBottom="4dp"/>
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/hg_paint_tool_penthickness"
+            android:src="@drawable/ic_tmp_fordev"
+            android:scaleType="centerInside"
+            android:background="@null"/>
+        <include
+            android:layout_width="20dp"
+            android:layout_height="1dp"
+            android:layout_margin="8dp"
+            layout="@layout/hgpaint_hr_line" />
+
         <ImageButton
-            android:layout_width="52dp"
-            android:layout_height="52dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/hg_paint_tool_reset"
+            android:src="@drawable/ic_tmp_fordev"
+            android:scaleType="centerInside"
+            android:background="@null"/>
+        <include
+            android:layout_width="20dp"
+            android:layout_height="1dp"
+            android:layout_margin="8dp"
+            layout="@layout/hgpaint_hr_line" />
+
+        <ImageButton
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:id="@+id/hg_paint_tool_pencolor"
-            android:background="@null"
-            android:src="@drawable/ic_launcher_foreground"/>
+            android:src="@drawable/ic_tmp_fordev"
+            android:scaleType="centerInside"
+            android:background="@null"/>
     </LinearLayout>
 
 
-    <!-- Comment view -->
-    <TextView
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/hg_paint_title"
-        android:textStyle="bold"
-        android:text="Welcome to HG Paint library"
-        android:textColor="@color/canvasPlaceholderColor"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="64dp"/>
+        android:id="@+id/hg_paint_commentlib"
+        android:orientation="vertical"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:gravity="center"
+        android:layout_marginEnd="60dp"
+        android:layout_marginTop="4dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/hg_paint_comment_title"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/hg_paint_comment_content"
+            android:textSize="14sp" />
+    </LinearLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/hg_paint"
         android:gravity="center"
-        android:layout_below="@id/hg_paint_title"
         android:layout_toStartOf="@id/hg_paint_toolkit">
         <!-- HG Paint View Area -->
         <RelativeLayout
@@ -105,28 +130,6 @@
             android:layerType="software"
             android:src="@drawable/hg_paint_divide_vert"
             android:layout_alignStart="@id/hg_paint_container"/>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/hg_paint_commentlib"
-            android:orientation="vertical"
-            android:layout_centerHorizontal="true"
-            android:layout_alignParentBottom="true"
-            android:gravity="center"
-            android:layout_marginBottom="4dp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/hg_paint_comment_title"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/hg_paint_comment_content"
-                android:textSize="14sp" />
-        </LinearLayout>
     </RelativeLayout>
 
     <!-- HG Toolbar sub context -->

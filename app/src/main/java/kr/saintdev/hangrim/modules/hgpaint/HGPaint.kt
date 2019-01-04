@@ -57,8 +57,6 @@ class HGPaint : RelativeLayout {
             /**
              * Set canvas layout
              */
-            this.hgView.findViewById<TextView>(R.id.hg_paint_title).text = tArr.getString(R.styleable.HGPaint_title)
-
             drawDivideLine(
                 tArr.getBoolean(R.styleable.HGPaint_useDivideLeft, false),
                 tArr.getBoolean(R.styleable.HGPaint_useDivideRight, false),

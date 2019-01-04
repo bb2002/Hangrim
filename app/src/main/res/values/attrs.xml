@@ -19,11 +19,12 @@
         <!-- Content -->
         <attr name="comment_title" format="string"/>
         <attr name="comment_content" format="string" />
-        <attr name="placeholder" format="string" />
+        <attr name="hint" format="string" />
 
         <!-- Canvas -->
         <attr name="canvas_width" format="integer" />
         <attr name="canvas_height" format="integer" />
+        <attr name="canvas_alpha" format="integer" />
 
         <!-- Divide line -->
         <attr name="divide_left_right" format="boolean" />

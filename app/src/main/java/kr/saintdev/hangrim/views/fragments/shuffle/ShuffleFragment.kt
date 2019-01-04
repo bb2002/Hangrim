@@ -2,6 +2,7 @@ package kr.saintdev.hangrim.views.fragments.shuffle
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -91,9 +92,6 @@ class ShuffleFragment : Fragment(), OnToolClick {
                 val file = hgPaint.exportImage(HGFunctions.createTempFileName())
                 this.rootActivity.fragmentTemp["shuffle-file"] = file
 
-                // canvas stop
-                paintBoard.exit()
-
                 this.rootActivity.gotoForward()
             }
 
@@ -101,5 +99,10 @@ class ShuffleFragment : Fragment(), OnToolClick {
                 this.rootActivity.gotoBackward()
             }
         }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        this.paintBoard.exit()
     }
 }

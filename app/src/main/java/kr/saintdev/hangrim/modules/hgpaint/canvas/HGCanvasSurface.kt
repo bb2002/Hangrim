@@ -5,6 +5,7 @@ import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.Path
+import android.util.Log
 import android.view.*
 import kr.saintdev.hangrim.libs.func.HGFunctions
 import kr.saintdev.hangrim.modules.hgpaint.hglibs.HGDefaultPaint
@@ -34,6 +35,8 @@ class HGCanvasSurface(plsHolder: String?, context: Context) : SurfaceView(contex
         }
 
         this.hgThread.start()
+
+        Log.e("HAN", "HG SURFACE START : " + System.currentTimeMillis())      // Debug
     }
 
     override fun surfaceChanged(p0: SurfaceHolder?, p1: Int, p2: Int, p3: Int) {
@@ -45,6 +48,7 @@ class HGCanvasSurface(plsHolder: String?, context: Context) : SurfaceView(contex
         } catch(ex: Exception) {
             ex.printStackTrace()
         }
+        Log.e("HAN", "HG SURFACE STOP : " + System.currentTimeMillis())      // Debug
     }
 
     override fun onTouchEvent(event: MotionEvent): Boolean {

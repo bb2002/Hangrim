@@ -2,6 +2,7 @@ package kr.saintdev.hangrim.views.fragments.shuffle
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,7 +31,6 @@ class DrawPictureFragment : Fragment() {
                     HGToolbarTool.FORWARD -> {
                         val drawFile = paintBoard.exportImage(HGFunctions.createTempFileName())
                         rootActivity.fragmentTemp["draw-file"] = drawFile
-                        paintBoard.exit()           // Paint board off
 
                         rootActivity.gotoForward()
                     }
@@ -42,6 +42,13 @@ class DrawPictureFragment : Fragment() {
         })
         this.rootActivity.setToolbarBackbutton(false)
 
+
         return this.v
+    }
+
+    override fun onStop() {
+        super.onStop()
+        this.paintBoard.exit()
+        Log.e("HAN", "DRAW PIC OFF : " + System.currentTimeMillis())     // Debug
     }
 }

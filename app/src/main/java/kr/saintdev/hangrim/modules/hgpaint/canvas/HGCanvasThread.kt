@@ -31,31 +31,24 @@ class HGCanvasThread(val context: Context, val holder: SurfaceHolder, val surfac
                 canvas = holder.lockCanvas()
                 if (isStopped || canvas == null) break
 
-                synchronized(holder) {
-                    canvas.drawARGB(255, 255, 255, 255)
+                canvas.drawARGB(255, 255, 255, 255)
 
-                    // Draw Placeholder Text
-                    canvas.drawText(surface.placeHolder, this.plsHolderX, this.plsHolderY, plsPaint)
+                // Draw Placeholder Text
+                canvas.drawText(surface.placeHolder, this.plsHolderX, this.plsHolderY, plsPaint)
 
-                    // Draw User image
-                    synchronized(points) {
-                        for (i in 1 until points.size) {
-                            val p = points[i]
-                            if (!p.isDraw || p.isUndo) continue
-                            drawPath.moveTo(points[i - 1].x, points[i - 1].y)
-                            drawPath.lineTo(p.x, p.y)
-                            canvas.drawPath(drawPath, p.paint)
-                            drawPath.reset()
-                        }
+                synchronized(points) {
+                    for (i in 1 until points.size) {
+                        val p = points[i]
+                        if (!p.isDraw || p.isUndo) continue
+                        drawPath.moveTo(points[i - 1].x, points[i - 1].y)
+                        drawPath.lineTo(p.x, p.y)
+                        canvas.drawPath(drawPath, p.paint)
+                        drawPath.reset()
                     }
                 }
-            } catch(ex: Exception) {
-                ex.printStackTrace()
             } finally {
                 if(canvas != null)
                     holder.unlockCanvasAndPost(canvas)
-                else
-                    isStopped = true
             }
         }
     }
