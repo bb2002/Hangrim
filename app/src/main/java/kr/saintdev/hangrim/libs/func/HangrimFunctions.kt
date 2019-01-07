@@ -2,6 +2,7 @@ package kr.saintdev.hangrim.libs.func
 
 import android.content.Context
 import android.os.Environment
+import android.util.Log
 import kr.saintdev.hangrim.libs.sql.SQLManager
 import kr.saintdev.hangrim.modules.retrofit.HangrimWord
 import org.json.JSONArray
@@ -25,7 +26,7 @@ object HGFunctions {
 
     // 임시파일의 저장 경로.
     fun getTempFileLocation(filename: String, context: Context) =
-        File(context.cacheDir, filename)
+            File(context.cacheDir, filename)
 
     // 실제 파일의 저장 경로
     fun getSaveFileLocation(filename: String, context: Context) =
@@ -33,6 +34,11 @@ object HGFunctions {
 
     fun createTempFileName() =
             System.currentTimeMillis().toString() + ".png"
+
+    fun getSignaturePath(context: Context) : File {
+        Log.e("HAN", File(context.filesDir, "signature.png").absolutePath)
+        return File(context.filesDir, "signature.png")
+    }
 
     /**
      * @Date 01.01 2019

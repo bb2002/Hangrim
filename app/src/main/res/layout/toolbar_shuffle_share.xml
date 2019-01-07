@@ -5,17 +5,8 @@
     <ImageButton
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:id="@+id/shuffle_backward"
-        android:src="@drawable/ic_arrow_backward"
-        android:scaleType="centerInside"
-        android:background="@null"
-        android:layout_margin="8dp"/>
-
-    <ImageButton
-        android:layout_width="40dp"
-        android:layout_height="40dp"
         android:id="@+id/shuffle_forward"
-        android:src="@drawable/ic_arrow_forward"
+        android:src="@drawable/ic_hgpaint_action_next"
         android:scaleType="centerInside"
         android:background="@null"
         android:layout_margin="8dp"

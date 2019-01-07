@@ -4,10 +4,26 @@
     <color name="colorPrimaryDark">#2f3640</color>
     <color name="colorAccent">#c23616</color>
 
+    <color name="hgpaint2Background">#E6E7E9</color>
+    <color name="hgpaint2Divide">#A7A8AA</color>
     <color name="canvasPlaceholderColor">#626262</color>
     <color name="canvasDivideLineColor">#2a2a2a</color>
     <color name="hgpaintToolkitColor">#2c3e50</color>
+    <color name="hgpaint_toolbar">#F1F2F2</color>
 
-    <color name="hgpaint2Background">#E6E7E9</color>
-    <color name="hgpaint2Divide">#A7A8AA</color>
+    <color name="hgpaintColor1">#303030</color>
+    <color name="hgpaintColor2">#656565</color>
+    <color name="hgpaintColor3">#737373</color>
+    <color name="hgpaintColor4">#DDDDDD</color>
+    <color name="hgpaintColor5">#FFFFFF</color>
+    <color name="hgpaintColor6">#B95959</color>
+    <color name="hgpaintColor7">#ED8080</color>
+    <color name="hgpaintColor8">#D1AB90</color>
+    <color name="hgpaintColor9">#FCD310</color>
+    <color name="hgpaintColor10">#CBD97B</color>
+    <color name="hgpaintColor11">#76A47D</color>
+    <color name="hgpaintColor12">#BFE1F1</color>
+    <color name="hgpaintColor13">#80A8CD</color>
+    <color name="hgpaintColor14">#9A96C9</color>
+    <color name="hgpaintColor15">#454979</color>
 </resources>

@@ -6,10 +6,11 @@
     <string name="main_portal_createsign">싸인 하기</string>
     <string name="main_portal_shuffle">따라쓰기 공부</string>
 
-    <string name="hgpaint_reset_title">얌마</string>
-    <string name="hgpaint_reset_message">전부 지우시겠습니까?</string>
-    <string name="hgpaint_undo_fail">Undo 작업을 실행 할 수 없습니다.</string>
-    <string name="hgpaint_redo_fail">Redo 작업을 실행 할 수 없습니다.</string>
+    <string name="hgpaint_reset_title">HEY!!</string>
+    <string name="hgpaint_reset_content">Would you like to try again?</string>
+    <string name="hgpaint_unredo_error">데이터 없음</string>
+    <string name="hgpaint_undo_error_content">Undo 를 실행할 수 없습니다.</string>
+    <string name="hgpaint_redo_error_content">Redo 를 실행할 수 없습니다.</string>
 
     <string name="common_yes">네</string>
     <string name="common_no">아니오</string>
@@ -26,4 +27,6 @@
     <string name="drawing_preview_content">You have created a new HanGrim\nShare the card with your friends!</string>
     <string name="drawing_preview_input1">What is it called?</string>
     <string name="drawing_preview_input2">How to pronounciate in your language?</string>
+
+    <string name="sign_saveerr">사인을 저장 할 수 없습니다.</string>
 </resources>

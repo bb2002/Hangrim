@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:layout_width="60dp"
+              android:layout_height="match_parent"
+              android:gravity="center">
+        <android.support.v7.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="4dp">
+                <ImageButton
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:id="@+id/hgpaint_thickness_1"
+                        android:src="@drawable/ic_hgpaint_burshsize1_none"
+                        android:scaleType="centerInside"
+                        android:background="@null"/>
+        </android.support.v7.widget.CardView>
+
+        <View
+                android:layout_width="16dp"
+                android:layout_height="8dp"/>
+
+        <android.support.v7.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="4dp">
+        <ImageButton
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:id="@+id/hgpaint_thickness_2"
+                android:src="@drawable/ic_hgpaint_burshsize2_selected"
+                android:scaleType="centerInside"
+                android:background="@null"/>
+        </android.support.v7.widget.CardView>
+
+        <View
+                android:layout_width="16dp"
+                android:layout_height="8dp"/>
+
+        <android.support.v7.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="4dp">
+        <ImageButton
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:id="@+id/hgpaint_thickness_3"
+                android:src="@drawable/ic_hgpaint_burshsize3_none"
+                android:scaleType="centerInside"
+                android:background="@null"/>
+        </android.support.v7.widget.CardView>
+
+        <!-- 크기를 위해 빈 뷰 삽입 -->
+        <View android:layout_width="48dp"
+              android:layout_height="48dp"
+              android:layout_marginTop="8dp"/>
+</LinearLayout>

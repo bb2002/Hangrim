@@ -3,15 +3,18 @@
              android:layout_width="match_parent"
              android:layout_height="match_parent"
              xmlns:app="http://schemas.android.com/apk/res-auto">
-    <kr.saintdev.hangrim.modules.hgpaint.HGPaint
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/shuffle_paint"
-        app:title="@string/shuffle_draw_picture_title"
-        app:canvasWidth="-1"
-        app:canvasHeight="-1"
-        app:useDivideTop="false"
-        app:useDivideBottom="false"
-        app:useDivideLeft="false"
-        app:useDivideRight="false" />
+    <kr.saintdev.hgdrawing.hgdrawing.HGPaintView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/canvas"
+            app:canvasAlpha="false"
+            app:commentTitle="My Title"
+            app:commentContent="My Content"
+            app:divideHorizon="true"
+            app:divideVertical="false"
+            app:colorToolEnable="false"
+            app:placeholder="안녕 하세요."
+            app:canvasWidth="-1"
+            app:canvasHeight="160"
+    />
 </FrameLayout>

@@ -1,36 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="HGPaint">
-        <attr name="title" format="reference|string" />
-        <attr name="placeholder" format="reference|string" />
+    <declare-styleable name="HGPaintView">
+        <attr name="commentTitle" format="string" />
+        <attr name="commentContent" format="string" />
+        <attr name="placeholder" format="string" />
+
+        <attr name="divideHorizon" format="boolean" />
+        <attr name="divideVertical" format="boolean" />
+        <attr name="canvasAlpha" format="boolean" />
+        <attr name="colorToolEnable" format="boolean" />
+
         <attr name="canvasWidth" format="integer" />
         <attr name="canvasHeight" format="integer" />
-
-        <attr name="useDivideLeft" format="reference|boolean" />
-        <attr name="useDivideRight" format="reference|boolean" />
-        <attr name="useDivideTop" format="reference|boolean" />
-        <attr name="useDivideBottom" format="reference|boolean" />
-
-        <attr name="commentTitle" format="reference|string" />
-        <attr name="commentContent" format="reference|string" />
-    </declare-styleable>
-
-    <declare-styleable name="HGPaintView">
-        <!-- Content -->
-        <attr name="comment_title" format="string"/>
-        <attr name="comment_content" format="string" />
-        <attr name="hint" format="string" />
-
-        <!-- Canvas -->
-        <attr name="canvas_width" format="integer" />
-        <attr name="canvas_height" format="integer" />
-        <attr name="canvas_alpha" format="integer" />
-
-        <!-- Divide line -->
-        <attr name="divide_left_right" format="boolean" />
-        <attr name="divide_top_bottom" format="boolean" />
-
-        <!-- Toolbar -->
-        <attr name="toolbar_color_enable" format="boolean" />
     </declare-styleable>
 </resources>
