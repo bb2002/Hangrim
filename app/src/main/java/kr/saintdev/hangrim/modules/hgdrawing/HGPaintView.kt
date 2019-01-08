@@ -36,6 +36,9 @@ class HGPaintView : RelativeLayout {
     private lateinit var actionbarUndoButton: ImageButton       // Undo
     private lateinit var actionbarRedoButton: ImageButton       // Redo
 
+    private lateinit var commentTitleView: TextView             // Comment title
+    private lateinit var commentContentView: TextView           // Comment content
+
     private var canvasView: HGSurfaceView? = null           // Canvas surface
     private var hgCanvasProperty = HGCanvasProperty()       // Canvas Property
 
@@ -52,8 +55,9 @@ class HGPaintView : RelativeLayout {
         // attr set
         if(attrs != null) {
             val attr = context.obtainStyledAttributes(attrs, R.styleable.HGPaintView)
-            this.rootView.findViewById<TextView>(R.id.hgpaint_comment_title).text = attr.getString(R.styleable.HGPaintView_commentTitle)
-            this.rootView.findViewById<TextView>(R.id.hgpaint_comment_content).text = attr.getString(R.styleable.HGPaintView_commentContent)
+            this.commentTitleView = this.rootView.findViewById(R.id.hgpaint_comment_title)
+            this.commentContentView = this.rootView.findViewById(R.id.hgpaint_comment_content)
+            setComment(attr.getString(R.styleable.HGPaintView_commentTitle) ?: "", attr.getString(R.styleable.HGPaintView_commentContent) ?: "")
 
             this.rootView.findViewById<ImageView>(R.id.hgpaint_divide_right).visibility =
                     if(attr.getBoolean(R.styleable.HGPaintView_divideVertical, false)) View.VISIBLE else View.GONE
@@ -192,4 +196,14 @@ class HGPaintView : RelativeLayout {
      * Export image file
      */
     fun exportImage(file: File) = canvasView?.exportDrawing(file)
+
+    /**
+     * @Date 01.08 2019
+     * Set comment
+     */
+    fun setComment(title: String, content: String) {
+        this.commentTitleView.text = title
+        this.commentContentView.text = content
+    }
+
 }

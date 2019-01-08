@@ -17,6 +17,7 @@
     <string name="common_error">An error occurred.</string>
     <string name="common_warn">저런!</string>
     <string name="common_file_err">File not found.</string>
+    <string name="common_loading">Loading...</string>
 
     <string name="shuffle_paint_title">Write Hangeul along the line!</string>
     <string name="shuffle_draw_picture_title">Draw a picture that reminds you of the word</string>

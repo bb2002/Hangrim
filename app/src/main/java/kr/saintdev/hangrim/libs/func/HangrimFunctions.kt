@@ -25,18 +25,14 @@ object HGFunctions {
     }
 
     // 임시파일의 저장 경로.
-    fun getTempFileLocation(filename: String, context: Context) =
-            File(context.cacheDir, filename)
+    fun getTempFileLocation(context: Context) =
+            File(context.cacheDir, System.currentTimeMillis().toString() + ".png")
 
     // 실제 파일의 저장 경로
     fun getSaveFileLocation(filename: String, context: Context) =
             File(context.filesDir, filename)
 
-    fun createTempFileName() =
-            System.currentTimeMillis().toString() + ".png"
-
     fun getSignaturePath(context: Context) : File {
-        Log.e("HAN", File(context.filesDir, "signature.png").absolutePath)
         return File(context.filesDir, "signature.png")
     }
 

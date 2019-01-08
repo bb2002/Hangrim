@@ -50,7 +50,14 @@ class ShareFragment : Fragment() {
                 null
             } else {
                 val createdBitmap = HGImage.attachShuffleAndDrawing(shuffleFile, drawingFile)
+                // Sign 이 있는지 확인한다.
+                val signPath = HGFunctions.getSignaturePath(rootActivity)
+                if(signPath.exists()) {
+                    // Sign 을 Attach 한다.
+                    HGImage.attachSignInDrawing(createdBitmap, rootActivity)
+                }
                 val saveFile = File(HGFunctions.getSaveFileLocation(fileName, rootActivity).absolutePath)
+
                 if(createdBitmap.save(saveFile)) {
                     saveFile
                 } else {

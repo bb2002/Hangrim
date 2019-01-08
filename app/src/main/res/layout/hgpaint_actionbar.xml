@@ -24,8 +24,8 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent">
             <ImageButton
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
                 android:id="@+id/hgpaint_actionbar_undo"
                 android:background="@null"
                 android:src="@drawable/ic_hgpaint_action_undo"
@@ -33,8 +33,8 @@
                 android:layout_marginEnd="8dp"/>
 
             <ImageButton
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
                 android:id="@+id/hgpaint_actionbar_redo"
                 android:background="@null"
                 android:src="@drawable/ic_hgpaint_action_redo"

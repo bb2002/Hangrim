@@ -8,13 +8,10 @@
             android:layout_height="match_parent"
             android:id="@+id/canvas"
             app:canvasAlpha="false"
-            app:commentTitle="My Title"
-            app:commentContent="My Content"
-            app:divideHorizon="true"
+            app:divideHorizon="false"
             app:divideVertical="false"
-            app:colorToolEnable="false"
-            app:placeholder="안녕 하세요."
+            app:colorToolEnable="true"
             app:canvasWidth="-1"
-            app:canvasHeight="160"
+            app:canvasHeight="-1"
     />
 </FrameLayout>

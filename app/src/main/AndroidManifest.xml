@@ -49,7 +49,8 @@
         <!-- Create Sign Activity -->
         <activity
                 android:name="kr.saintdev.hangrim.views.activities.drawing.CreateSignActivity"
-                android:screenOrientation="landscape" />
+                android:screenOrientation="landscape"
+                android:theme="@style/NoActionBarAppTheme"/>
 
         <!-- Preview Activitys -->
         <activity android:name=".views.activities.preview.DrawingPreviewActivity"

@@ -22,16 +22,11 @@ import kr.saintdev.hangrim.views.fragments.shuffle.ShuffleFragment
  * Hangrim Shuffle Activity.
  */
 class ShuffleActivity : AppCompatActivity() {
-    private lateinit var toolbar: Toolbar
     val fragmentTemp = mutableMapOf<String, Any?>()           // 프래그먼트의 임시 저장 공간
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_hangrim_shuffle)
-
-        // Toolbar setting
-        this.toolbar = findViewById(R.id.toolbar)
-        setSupportActionBar(this.toolbar)
 
         // 화면을 이동 한다.
         gotoForward()

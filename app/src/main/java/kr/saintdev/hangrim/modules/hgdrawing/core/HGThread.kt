@@ -21,7 +21,7 @@ class HGThread(val holder: SurfaceHolder, val surfaceView: HGSurfaceView) : Thre
                 if(canvas != null) {
                     synchronized(holder) {
                         // request draw call.
-                        canvas.drawARGB(if(surfaceView.property.isAlpha) 0 else 255, 255, 255, 255)
+                        canvas.drawARGB(255, 255, 255, 255)
                         drawCallPlaceholder(canvas)
                         drawCall(canvas)
                     }

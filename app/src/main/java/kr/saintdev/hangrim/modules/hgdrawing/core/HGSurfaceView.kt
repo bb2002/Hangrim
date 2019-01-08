@@ -93,7 +93,7 @@ class HGSurfaceView(context: Context, val property: HGCanvasProperty = HGCanvasP
         val canvas = Canvas(bitmap)
 
         // Draw White
-        canvas.drawARGB(255, 255, 255, 255)
+        canvas.drawARGB(if(property.isAlpha) 0 else 255, 255, 255, 255)
 
         // Draw User image
         for (i in 1 until points.size) {
@@ -110,7 +110,7 @@ class HGSurfaceView(context: Context, val property: HGCanvasProperty = HGCanvasP
         return try {
             // Create Bitmap file
             fos = FileOutputStream(filename)
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 80, fos)
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, fos)
             fos.close()
             filename
         } catch(ex: Exception) {

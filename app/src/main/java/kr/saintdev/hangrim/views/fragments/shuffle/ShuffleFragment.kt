@@ -15,29 +15,32 @@ import kr.saintdev.hangrim.modules.retrofit.HangrimService
 import kr.saintdev.hangrim.modules.retrofit.HangrimWord
 import kr.saintdev.hangrim.modules.retrofit.Retrofit
 import kr.saintdev.hangrim.views.activities.drawing.ShuffleActivity
+import kr.saintdev.hgdrawing.hgdrawing.HGPaintView
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class ShuffleFragment : Fragment() {
+class ShuffleFragment : Fragment(), View.OnClickListener {
     private lateinit var v: View
 
     private lateinit var rootActivity: ShuffleActivity
     private lateinit var progressBar: WP10ProgressBar
+    private lateinit var paintBoard: HGPaintView
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         this.v = inflater.inflate(R.layout.fragment_shuffle_word, container, false)
-//        this.paintBoard = this.v.findViewById(R.id.shuffle_paint)
-//        this.rootActivity = activity as ShuffleActivity
-//        this.progressBar = this.v.findViewById(R.id.progress)
-//
-//        callRandomWord()        // 랜덤으로 단어를 가져온다.
-//        this.paintBoard.setHGPaintToolbar(this.rootActivity)        // HGPaint Toolbar 를 적용 한다.
-//        this.paintBoard.setHGPaintToolListener(this)                // HGPaint Toolbar 의 Listener 를 적용 한다.
-//        this.rootActivity.setToolbarBackbutton(false)               // Backbutton 을 제거 한다.
-//
-//        // progress run
-//        this.progressBar.showProgressBar()
+        this.paintBoard = this.v.findViewById(R.id.canvas)
+        this.rootActivity = activity as ShuffleActivity
+        this.progressBar = this.v.findViewById(R.id.progress)
+
+        this.paintBoard.canvasStart()
+        callRandomWord()        // 랜덤으로 단어를 가져온다.
+
+        // progress run
+        this.progressBar.showProgressBar()
+
+        this.paintBoard.setBackwardListener(View.OnClickListener { this.rootActivity.gotoBackward() }, null)
+        this.paintBoard.setForwardListener(this, null)
 
         return this.v
     }
@@ -64,8 +67,8 @@ class ShuffleFragment : Fragment() {
                 progressBar.hideProgressBar()
 
                 if(response.isSuccessful && body != null) {
-//                    paintBoard.setPlaceHolderText(body.word_korean)           // Placeholder 을 그린다.
-//                    paintBoard.setComment(body.word_english, body.word_symbol)
+                    paintBoard.setPlaceHolderText(body.word_korean)           // Placeholder 을 그린다.
+                    paintBoard.setComment(body.word_english, body.word_symbol)
 
                     rootActivity.fragmentTemp["word-english"] = body.word_english
                     rootActivity.fragmentTemp["word-symbol"] = body.word_symbol
@@ -81,23 +84,15 @@ class ShuffleFragment : Fragment() {
      * @Date 12.28 2018
      * Backward / Forward 버튼 이벤트 처리
      */
-//    override fun onClick(tool: HGToolbarTool, hgPaint: HGPaint) {
-//        when(tool) {
-//            HGToolbarTool.FORWARD -> {
-//                // Bitmap 을 뽑아서 저장한다.
-//                val file = hgPaint.exportImage(HGFunctions.createTempFileName())
-//                this.rootActivity.fragmentTemp["shuffle-file"] = file
-//
-//                this.rootActivity.gotoForward()
-//            }
-//
-//            HGToolbarTool.BACKWARD -> {
-//                this.rootActivity.gotoBackward()
-//            }
-//        }
-//    }
+    override fun onClick(view: View) {
+        // Bitmap 을 뽑아서 저장한다.
+        val file = paintBoard.exportImage(HGFunctions.getTempFileLocation(context!!))
+        this.rootActivity.fragmentTemp["shuffle-file"] = file
+        this.rootActivity.gotoForward()
+    }
 
     override fun onStop() {
         super.onStop()
+        this.paintBoard.canvasStop()
     }
 }

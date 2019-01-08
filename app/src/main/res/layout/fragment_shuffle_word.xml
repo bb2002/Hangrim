@@ -8,15 +8,14 @@
             android:layout_height="match_parent"
             android:id="@+id/canvas"
             app:canvasAlpha="false"
-            app:commentTitle="My Title"
-            app:commentContent="My Content"
+            app:commentTitle="@string/common_loading"
+            app:commentContent="@string/common_loading"
             app:divideHorizon="true"
             app:divideVertical="false"
             app:colorToolEnable="false"
-            app:placeholder="안녕 하세요."
+            app:placeholder="@string/common_loading"
             app:canvasWidth="-1"
-            app:canvasHeight="160"
-    />
+            app:canvasHeight="160" />
 
     <ir.alirezabdn.wp7progress.WP10ProgressBar
         android:layout_width="wrap_content"

@@ -3,5 +3,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 xmlns:app="http://schemas.android.com/apk/res-auto">
-
+    <kr.saintdev.hgdrawing.hgdrawing.HGPaintView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/canvas"
+            app:canvasAlpha="true"
+            app:divideHorizon="false"
+            app:divideVertical="false"
+            app:colorToolEnable="false"
+            app:canvasWidth="-1"
+            app:canvasHeight="-1" />
 </FrameLayout>
