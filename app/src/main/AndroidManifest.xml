@@ -44,7 +44,8 @@
         <!-- Create Card Activity -->
         <activity
                 android:name="kr.saintdev.hangrim.views.activities.drawing.CreateCardActivity"
-                android:screenOrientation="landscape" />
+                android:screenOrientation="landscape"
+                android:theme="@style/NoActionBarAppTheme" />
 
         <!-- Create Sign Activity -->
         <activity

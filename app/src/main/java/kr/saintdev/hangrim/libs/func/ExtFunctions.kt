@@ -12,14 +12,6 @@ import java.io.File
 import java.io.FileOutputStream
 import java.lang.Exception
 
-
-fun Int.pxToDpi(context: Context) : Int {
-    return if(this == -1 || this == -2)
-        this
-    else
-        TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, this.toFloat(), context.resources.displayMetrics).toInt()
-}
-
 fun Int.str(context: Context) = context.resources.getString(this)
 
 

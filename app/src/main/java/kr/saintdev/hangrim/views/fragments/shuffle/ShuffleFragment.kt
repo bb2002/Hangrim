@@ -2,7 +2,6 @@ package kr.saintdev.hangrim.views.fragments.shuffle
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,7 +27,7 @@ class ShuffleFragment : Fragment(), View.OnClickListener {
     private lateinit var paintBoard: HGPaintView
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        this.v = inflater.inflate(R.layout.fragment_shuffle_word, container, false)
+        this.v = inflater.inflate(R.layout.fragment_drawing_word, container, false)
         this.paintBoard = this.v.findViewById(R.id.canvas)
         this.rootActivity = activity as ShuffleActivity
         this.progressBar = this.v.findViewById(R.id.progress)

@@ -9,6 +9,6 @@ import kr.saintdev.hangrim.R
 
 class EmptyFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_shuffle_loading, container, false)
+        return inflater.inflate(R.layout.fragment_drawing_load, container, false)
     }
 }

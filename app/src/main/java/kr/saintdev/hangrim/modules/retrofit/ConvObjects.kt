@@ -6,3 +6,10 @@ data class HangrimWord (
     val word_symbol: String,
     val prop_category: String,
     val prop_uuid: String )
+
+data class MyExpressWord (
+    val imagePath: String,
+    val uuid: String,
+    val called: String,
+    val prono: String
+)

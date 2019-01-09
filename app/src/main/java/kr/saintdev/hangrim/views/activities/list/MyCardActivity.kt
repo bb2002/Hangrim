@@ -18,6 +18,7 @@ import kr.saintdev.hangrim.R
 import kr.saintdev.hangrim.libs.func.HGFunctions
 import kr.saintdev.hangrim.libs.func.alert
 import kr.saintdev.hangrim.libs.func.str
+import kr.saintdev.hangrim.libs.sql.SQLManager
 import kr.saintdev.hangrim.modules.retrofit.HangrimService
 import kr.saintdev.hangrim.modules.retrofit.HangrimWord
 import kr.saintdev.hangrim.modules.retrofit.Retrofit
@@ -155,6 +156,7 @@ class MyCardActivity : AppCompatActivity() {
         override fun onClick(v: View) {
             if(v.id == R.id.mycard_cate_1) {
                 // 장치에서 자신의 표현을 따로 가져와 업데이트 한다.
+                val myExprs = SQLManager.getMyExpressWords(this@MyCardActivity)
             } else {
                 val category = when (v.id) {
                     R.id.mycard_cate_0 -> "Object"

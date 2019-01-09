@@ -32,16 +32,20 @@ object HGFunctions {
     fun getSaveFileLocation(filename: String, context: Context) =
             File(context.filesDir, filename)
 
-    fun getSignaturePath(context: Context) : File {
-        return File(context.filesDir, "signature.png")
-    }
+    // 사인 파일의 저장 경로
+    fun getSignaturePath(context: Context) =
+        File(context.filesDir, "signature.png")
+
+    // 내 표현 파일 저장 경로
+    fun getMyExpressPath(context: Context) =
+            File(context.filesDir, System.currentTimeMillis().toString() + ".png")
 
     /**
      * @Date 01.01 2019
      * Drawing data 가 존재하는지 확인 한다.
      */
     fun isExsitDrawingFile(hgWord: HangrimWord, context: Context) : File? {
-        val file = getSaveFileLocation(hgWord.prop_uuid + ".jpg", context)
+        val file = getSaveFileLocation(hgWord.prop_uuid + ".png", context)
         return if(file.exists()) {
             file
         } else {

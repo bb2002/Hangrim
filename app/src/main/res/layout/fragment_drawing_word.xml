@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
              xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -8,10 +8,16 @@
             android:layout_height="match_parent"
             android:id="@+id/canvas"
             app:canvasAlpha="false"
-            app:divideHorizon="false"
+            app:divideHorizon="true"
             app:divideVertical="false"
-            app:colorToolEnable="true"
+            app:colorToolEnable="false"
             app:canvasWidth="-1"
-            app:canvasHeight="-1"
-    />
-</FrameLayout>
+            app:canvasHeight="160" />
+
+    <ir.alirezabdn.wp7progress.WP10ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progress"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"/>
+</RelativeLayout>
