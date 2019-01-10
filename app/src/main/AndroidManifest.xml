@@ -33,7 +33,8 @@
         <!-- My Card Activity -->
         <activity
                 android:name="kr.saintdev.hangrim.views.activities.list.MyCardActivity"
-                android:screenOrientation="landscape" />
+                android:screenOrientation="landscape"
+                android:theme="@style/NoActionBarAppTheme"/>
 
         <!-- Shuffle Activity -->
         <activity

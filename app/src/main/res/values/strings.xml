@@ -31,4 +31,18 @@
     <string name="drawing_preview_nofile">파일이 저장되지 않은 것 같습니다.</string>
 
     <string name="sign_saveerr">사인을 저장 할 수 없습니다.</string>
+
+    <string name="hg_category_0">OBJECT</string>
+    <string name="hg_category_1">MY DRAW</string>
+    <string name="hg_category_2">TALK</string>
+    <string name="hg_category_3">KITCHEN</string>
+    <string name="hg_category_4">PEOPLE</string>
+    <string name="hg_category_5">TIME</string>
+    <string name="hg_category_6">NUMBER</string>
+    <string name="hg_category_7">BODY</string>
+    <string name="hg_category_8">PLACE</string>
+    <string name="hg_category_9">ANIMAL</string>
+    <string name="hg_category_10">ETC</string>
+
+    <string name="toolbar_mycard">MY HANGRIM CARD</string>
 </resources>

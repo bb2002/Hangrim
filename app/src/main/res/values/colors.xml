@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#f5f6fa</color>
+    <color name="colorPrimary">#F1F2F2</color>
     <color name="colorPrimaryDark">#2f3640</color>
     <color name="colorAccent">#c23616</color>
 
@@ -10,6 +10,8 @@
     <color name="canvasDivideLineColor">#2a2a2a</color>
     <color name="hgpaintToolkitColor">#2c3e50</color>
     <color name="hgpaint_toolbar">#F1F2F2</color>
+
+    <color name="toolbar_text_color">#58595B</color>
 
     <color name="hgpaintColor1">#303030</color>
     <color name="hgpaintColor2">#656565</color>

@@ -21,13 +21,15 @@ import kr.saintdev.hangrim.libs.func.str
 import kr.saintdev.hangrim.libs.sql.SQLManager
 import kr.saintdev.hangrim.modules.retrofit.HangrimService
 import kr.saintdev.hangrim.modules.retrofit.HangrimWord
+import kr.saintdev.hangrim.modules.retrofit.MyExpressWord
 import kr.saintdev.hangrim.modules.retrofit.Retrofit
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.File
 
 class MyCardActivity : AppCompatActivity() {
-    private lateinit var gridViewAdapter: GirdAdapter
+    private lateinit var gridViewAdapter: BaseAdapter
     private lateinit var categoryButtons: Array<View>
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,10 +40,10 @@ class MyCardActivity : AppCompatActivity() {
         requestWordFromServer("Object")
 
         // set listener
-//        my_card_grid.onItemClickListener =  AdapterView.OnItemClickListener {
-//            _, _, pos, id ->
-//
-//        }
+        my_card_grid.onItemClickListener =  AdapterView.OnItemClickListener {
+            _, _, pos, id ->
+            Toast.makeText(this, "$pos is click!", Toast.LENGTH_SHORT).show()
+        }
 
         this.categoryButtons = arrayOf(
             mycard_cate_0, mycard_cate_1, mycard_cate_2,
@@ -51,6 +53,12 @@ class MyCardActivity : AppCompatActivity() {
 
         val listener = OnNavClickListener()
         for(btn in this.categoryButtons) btn.setOnClickListener(listener)
+
+        setSupportActionBar(mycard_toolbar)
+        supportActionBar?.setDisplayShowCustomEnabled(true)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+
+        mycard_go_home.setOnClickListener { finish() }
     }
 
     /**
@@ -74,6 +82,16 @@ class MyCardActivity : AppCompatActivity() {
         } else {
             my_card_grid.visibility = View.VISIBLE
             this.gridViewAdapter = GirdAdapter(applicationContext, words)
+            my_card_grid.adapter = this.gridViewAdapter
+        }
+    }
+
+    private fun resetAdapterForExpress(words: List<MyExpressWord>) {
+        if(words.isEmpty()) {
+            my_card_grid.visibility = View.GONE
+        } else {
+            my_card_grid.visibility = View.VISIBLE
+            this.gridViewAdapter = MyExpressGridAdapter(applicationContext, words)
             my_card_grid.adapter = this.gridViewAdapter
         }
     }
@@ -135,8 +153,35 @@ class MyCardActivity : AppCompatActivity() {
             } else {
                 // 드로잉 하지 않은 그림 임.
                 titleView.text = word.word_english
-                imgView.setImageResource(R.drawable.ic_not_drawing)
+//                imgView.setImageResource(R.drawable.ic_cardmenu_not_draw)
             }
+
+            return v
+        }
+
+        override fun getItem(pos: Int) = words[pos]
+
+        override fun getItemId(p0: Int) = p0.toLong()
+
+        override fun getCount() = words.size
+    }
+
+    inner class MyExpressGridAdapter(val context: Context, val words: List<MyExpressWord>) : BaseAdapter() {
+        override fun getView(pos: Int, convertView: View?, root: ViewGroup?): View {
+            val v = if(convertView == null) {
+                val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+                inflater.inflate(R.layout.mycard_grid_item, root, false)
+            } else {
+                convertView
+            }
+
+            val word = words[pos]
+            val imgView = v.findViewById<ImageView>(R.id.mycard_grid_image)
+            val titleView = v.findViewById<TextView>(R.id.mycard_grid_title)
+            val drawingFile = File(context.filesDir, word.uuid)
+
+            imgView.setImageBitmap(BitmapFactory.decodeFile(drawingFile.absolutePath))
+            titleView.text = word.called
 
             return v
         }
@@ -157,6 +202,7 @@ class MyCardActivity : AppCompatActivity() {
             if(v.id == R.id.mycard_cate_1) {
                 // 장치에서 자신의 표현을 따로 가져와 업데이트 한다.
                 val myExprs = SQLManager.getMyExpressWords(this@MyCardActivity)
+                resetAdapterForExpress(myExprs.toList())
             } else {
                 val category = when (v.id) {
                     R.id.mycard_cate_0 -> "Object"
@@ -173,8 +219,9 @@ class MyCardActivity : AppCompatActivity() {
                 }
 
                 requestWordFromServer(category)
-                onNavClickUpdate(v)
             }
+
+            onNavClickUpdate(v)
         }
     }
 }

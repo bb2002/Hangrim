@@ -3,19 +3,46 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <android.support.v7.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="?android:attr/actionBarSize"
+            android:id="@+id/mycard_toolbar">
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/toolbar_title"
+                android:text="@string/toolbar_mycard"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:textSize="20sp"
+                android:textColor="@color/toolbar_text_color"
+                android:layout_gravity="center"/>
+        <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:id="@+id/mycard_go_home"
+                android:layout_gravity="end"
+                android:layout_marginEnd="16dp"
+                android:src="@drawable/ic_hgpaint_action_home"/>
+    </android.support.v7.widget.Toolbar>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="@drawable/toolbar_dropshadow"
+        android:layout_below="@id/mycard_toolbar"/>
+
     <!-- List -->
     <LinearLayout
          android:layout_width="match_parent"
          android:layout_height="match_parent"
-         xmlns:app="http://schemas.android.com/apk/res-auto"
          android:orientation="vertical"
-         android:background="#ffffff">
+        android:layout_below="@id/mycard_toolbar">
+
         <include
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/my_card_container"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_margin="4dp"
             layout="@layout/mycard_category_items" />
 
         <GridView
