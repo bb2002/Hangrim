@@ -35,7 +35,7 @@ class ShareFragment : Fragment() {
 
         // is resume fragment?
         val filename = this.rootActivity.fragmentTemp["word-uuid"] as String
-        val task = AttachImageTask("$filename.jpg")
+        val task = AttachImageTask("$filename.png")
         task.execute(this.rootActivity.fragmentTemp["shuffle-file"] as File, this.rootActivity.fragmentTemp["draw-file"] as File)
 
         return v

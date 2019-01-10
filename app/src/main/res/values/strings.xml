@@ -1,10 +1,7 @@
 <resources>
     <string name="app_name">Hangrim</string>
 
-    <string name="main_portal_mycards">내 카드로 이동</string>
     <string name="main_portal_createcard">카드를 만들기</string>
-    <string name="main_portal_createsign">싸인 하기</string>
-    <string name="main_portal_shuffle">따라쓰기 공부</string>
 
     <string name="hgpaint_reset_title">HEY!!</string>
     <string name="hgpaint_reset_content">Would you like to try again?</string>
@@ -12,15 +9,9 @@
     <string name="hgpaint_undo_error_content">Undo 를 실행할 수 없습니다.</string>
     <string name="hgpaint_redo_error_content">Redo 를 실행할 수 없습니다.</string>
 
-    <string name="common_yes">네</string>
-    <string name="common_no">아니오</string>
     <string name="common_error">An error occurred.</string>
-    <string name="common_warn">저런!</string>
     <string name="common_file_err">File not found.</string>
-    <string name="common_loading">Loading...</string>
 
-    <string name="shuffle_paint_title">Write Hangeul along the line!</string>
-    <string name="shuffle_draw_picture_title">Draw a picture that reminds you of the word</string>
     <string name="shuffle_call_word_error">단어를 가져올 수 없습니다.</string>
     <string name="shuffle_attach_failed">드로잉 데이터를 찾을 수 없습니다!</string>
     <string name="shuffle_loading">이미지를 생성하고 있습니다...</string>
@@ -33,7 +24,7 @@
     <string name="sign_saveerr">사인을 저장 할 수 없습니다.</string>
 
     <string name="hg_category_0">OBJECT</string>
-    <string name="hg_category_1">MY DRAW</string>
+    <string name="hg_category_1">MY OWN</string>
     <string name="hg_category_2">TALK</string>
     <string name="hg_category_3">KITCHEN</string>
     <string name="hg_category_4">PEOPLE</string>

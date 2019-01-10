@@ -1,10 +1,8 @@
 package kr.saintdev.hangrim.views.activities.list
 
 import android.content.Context
-import android.database.DataSetObserver
 import android.graphics.BitmapFactory
 import android.os.Bundle
-import android.os.Parcel
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
@@ -13,7 +11,6 @@ import android.view.ViewGroup
 import android.widget.*
 import kotlinx.android.synthetic.main.activity_my_card.*
 import kotlinx.android.synthetic.main.mycard_category_items.*
-import kotlinx.android.synthetic.main.mycard_category_items.view.*
 import kr.saintdev.hangrim.R
 import kr.saintdev.hangrim.libs.func.HGFunctions
 import kr.saintdev.hangrim.libs.func.alert
@@ -31,6 +28,7 @@ import java.io.File
 class MyCardActivity : AppCompatActivity() {
     private lateinit var gridViewAdapter: BaseAdapter
     private lateinit var categoryButtons: Array<View>
+    private lateinit var categoryButtonText: Array<TextView>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,6 +49,12 @@ class MyCardActivity : AppCompatActivity() {
             mycard_cate_6, mycard_cate_7, mycard_cate_8,
             mycard_cate_9, mycard_cate_10 )
 
+        this.categoryButtonText = arrayOf(
+            mycard_cate_0_title, mycard_cate_1_title, mycard_cate_2_title,
+            mycard_cate_3_title, mycard_cate_4_title, mycard_cate_5_title,
+            mycard_cate_6_title, mycard_cate_7_title, mycard_cate_8_title,
+            mycard_cate_9_title, mycard_cate_10_title )
+
         val listener = OnNavClickListener()
         for(btn in this.categoryButtons) btn.setOnClickListener(listener)
 
@@ -59,6 +63,9 @@ class MyCardActivity : AppCompatActivity() {
         supportActionBar?.setDisplayShowTitleEnabled(false)
 
         mycard_go_home.setOnClickListener { finish() }
+
+        // 기본값 선택
+        onNavClickUpdate(mycard_cate_0)
     }
 
     /**
@@ -101,8 +108,10 @@ class MyCardActivity : AppCompatActivity() {
      * Nav click update
      */
     private fun onNavClickUpdate(v: View) {
-        for(c in this.categoryButtons) c.background = null
-        v.background = ContextCompat.getDrawable(applicationContext, R.drawable.ic_stroke_box)
+        this.categoryButtonText.forEach { it.visibility = View.INVISIBLE }
+
+        for(i in 0 until this.categoryButtons.size)
+            if(v.id == this.categoryButtons[i].id) this.categoryButtonText[i].visibility = View.VISIBLE
     }
 
 
@@ -153,7 +162,7 @@ class MyCardActivity : AppCompatActivity() {
             } else {
                 // 드로잉 하지 않은 그림 임.
                 titleView.text = word.word_english
-//                imgView.setImageResource(R.drawable.ic_cardmenu_not_draw)
+                imgView.setImageResource(R.drawable.ic_cardmenu_not_draw)
             }
 
             return v

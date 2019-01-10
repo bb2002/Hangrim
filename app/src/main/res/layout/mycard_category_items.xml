@@ -10,7 +10,6 @@
         android:id="@+id/mycard_cate_0"
         android:orientation="vertical"
         android:layout_weight="1"
-        android:background="@drawable/ic_stroke_box"
         android:layout_margin="4dp">
         <ImageView
             android:layout_width="match_parent"
@@ -24,6 +23,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/mycard_cate_0_title"
             android:text="@string/hg_category_0"
+            android:visibility="invisible"
             android:textSize="11sp"
             android:textStyle="bold"
             android:gravity="center"/>
@@ -48,6 +48,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/mycard_cate_1_title"
             android:text="@string/hg_category_1"
+            android:visibility="invisible"
             android:textSize="11sp"
             android:textStyle="bold"
             android:gravity="center"/>
@@ -72,6 +73,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/mycard_cate_2_title"
             android:text="@string/hg_category_2"
+            android:visibility="invisible"
             android:textSize="11sp"
             android:textStyle="bold"
             android:gravity="center"/>
@@ -96,6 +98,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/mycard_cate_3_title"
             android:text="@string/hg_category_3"
+            android:visibility="invisible"
             android:textSize="11sp"
             android:textStyle="bold"
             android:gravity="center"/>
@@ -120,6 +123,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/mycard_cate_4_title"
             android:text="@string/hg_category_4"
+            android:visibility="invisible"
             android:textSize="11sp"
             android:textStyle="bold"
             android:gravity="center"/>
@@ -144,6 +148,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/mycard_cate_5_title"
             android:text="@string/hg_category_5"
+            android:visibility="invisible"
             android:textSize="11sp"
             android:textStyle="bold"
             android:gravity="center"/>
@@ -168,6 +173,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/mycard_cate_6_title"
             android:text="@string/hg_category_6"
+            android:visibility="invisible"
             android:textSize="11sp"
             android:textStyle="bold"
             android:gravity="center"/>
@@ -192,6 +198,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/mycard_cate_7_title"
             android:text="@string/hg_category_7"
+            android:visibility="invisible"
             android:textSize="11sp"
             android:textStyle="bold"
             android:gravity="center"/>
@@ -216,6 +223,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/mycard_cate_8_title"
             android:text="@string/hg_category_8"
+            android:visibility="invisible"
             android:textSize="11sp"
             android:textStyle="bold"
             android:gravity="center"/>
@@ -240,6 +248,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/mycard_cate_9_title"
             android:text="@string/hg_category_9"
+            android:visibility="invisible"
             android:textSize="11sp"
             android:textStyle="bold"
             android:gravity="center"/>
@@ -264,6 +273,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/mycard_cate_10_title"
             android:text="@string/hg_category_10"
+            android:visibility="invisible"
             android:textSize="11sp"
             android:textStyle="bold"
             android:gravity="center"/>
