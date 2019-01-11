@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_drawing_preview.*
+import kotlinx.android.synthetic.main.toolbar_default_close.*
 import kr.saintdev.hangrim.R
 import kr.saintdev.hangrim.libs.func.HGFunctions
 
@@ -29,5 +30,8 @@ class MySignaturePreview : AppCompatActivity() {
         } else {
             Toast.makeText(this, "사인이 존재하지 않습니다.", Toast.LENGTH_SHORT).show()
         }
+
+        // Set next button click listener
+        toolbar_default_close.setOnClickListener { finish() }
     }
 }

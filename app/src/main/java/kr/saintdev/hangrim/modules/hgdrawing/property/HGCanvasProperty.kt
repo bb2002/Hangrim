@@ -41,7 +41,7 @@ object DefaultPaint {
 }
 
 enum class PenSize(val size: Float) {
-    HG_THICK(11F),
-    HG_NORMAL(7F),
-    HG_THIN(4F)
+    HG_THICK(13F),
+    HG_NORMAL(9F),
+    HG_THIN(7F)
 }

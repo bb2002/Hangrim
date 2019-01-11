@@ -8,6 +8,7 @@ import android.text.SpannableStringBuilder
 import android.text.TextWatcher
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_drawing_preview.*
+import kotlinx.android.synthetic.main.toolbar_default_close.*
 import kr.saintdev.hangrim.R
 import kr.saintdev.hangrim.libs.func.alert
 import kr.saintdev.hangrim.libs.func.share
@@ -53,6 +54,9 @@ class MyExprViewActivity : AppCompatActivity(), TextWatcher {
         // set text watcher
         preview_title_editor.addTextChangedListener(this)
         preview_comment_editor.addTextChangedListener(this)
+
+        // Set next button click listener
+        toolbar_default_close.setOnClickListener { finish() }
     }
 
     override fun afterTextChanged(p0: Editable?) {

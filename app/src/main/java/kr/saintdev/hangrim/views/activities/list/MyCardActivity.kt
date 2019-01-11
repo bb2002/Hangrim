@@ -157,7 +157,11 @@ class MyCardActivity : AppCompatActivity() {
 
             if (drawingFile != null) {
                 // 드로잉한 그림 입니다.
-                imgView.setImageBitmap(BitmapFactory.decodeFile(drawingFile.absolutePath))
+                Thread {
+                    val bitmap = BitmapFactory.decodeFile(drawingFile.absolutePath)
+                    runOnUiThread { imgView.setImageBitmap(bitmap) }
+                }.start()
+
                 titleView.text = word.word_english
             } else {
                 // 드로잉 하지 않은 그림 임.

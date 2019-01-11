@@ -2,6 +2,7 @@ package kr.saintdev.hangrim.modules.hgdrawing.nav
 
 import android.app.Activity
 import android.content.Context
+import android.os.Vibrator
 import android.support.v7.app.AppCompatActivity
 import android.util.AttributeSet
 import android.view.Gravity
@@ -64,15 +65,21 @@ class HGNavigationBar : LinearLayout, View.OnClickListener {
         if(v.id == nowSelectedIdx) {
             this.hgPaintView.removeSubToolbarView()
             this.nowSelectedIdx = 0
+            resetUnSelected()
         } else {
             if (surface != null) {
                 when (v.id) {
                     R.id.hgpaint_toolbar_brush -> {
                         // 진동 포함 작업을 필요로 한다.
+                        val vService = context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+                        vService.vibrate(1000)
                     }
                     R.id.hgpaint_toolbar_thickness -> {
+                        resetUnSelected()
+
                         this.hgPaintView.addSubToolbarView(Gravity.END, HGPenThickSubBar(context, surface))
                         nowSelectedIdx = R.id.hgpaint_toolbar_thickness
+                        this.toolbarItem[1].setImageResource(R.drawable.ic_hgpaint_bursh_size_selected)
                     }
                     R.id.hgpaint_toolbar_reset -> {
                         openConfirm(R.string.hgpaint_reset_title, R.string.hgpaint_reset_content, context, iOSDialogClickListener {
@@ -81,11 +88,19 @@ class HGNavigationBar : LinearLayout, View.OnClickListener {
                         })
                     }
                     R.id.hgpaint_toolbar_color -> {
+                        resetUnSelected()
+
                         this.hgPaintView.addSubToolbarView(Gravity.BOTTOM, HGColorSubBar(context, surface, colorTextView))
                         nowSelectedIdx = R.id.hgpaint_toolbar_color
+                        this.toolbarItem[3].setImageResource(R.drawable.ic_hgpaint_color_selected)
                     }
                 }
             }
         }
+    }
+
+    private fun resetUnSelected() {
+        this.toolbarItem[1].setImageResource(R.drawable.ic_hgpaint_brush_size_none)
+        this.toolbarItem[3].setImageResource(R.drawable.ic_hgpaint_color)
     }
 }

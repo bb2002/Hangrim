@@ -121,11 +121,15 @@ class HGPaintView : RelativeLayout {
             this.actionbarUndoButton.setOnClickListener {
                 if(!surface.undoCanvas()) {
                     HGDialog.openAlert(R.string.hgpaint_unredo_error, R.string.hgpaint_undo_error_content, context)
+                } else {
+                    for (i in 0..2) surface.undoCanvas()
                 }
             }     // Dialog 를 손본다.
             this.actionbarRedoButton.setOnClickListener {
                 if(!surface.redoCanvas()) {
                     HGDialog.openAlert(R.string.hgpaint_unredo_error, R.string.hgpaint_redo_error_content, context)
+                } else {
+                    for (i in 0..2) surface.redoCanvas()
                 }
             }
         }

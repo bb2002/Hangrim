@@ -26,7 +26,7 @@ class WriteWordFragment : Fragment(), View.OnClickListener {
         this.progressBar = this.v.findViewById(R.id.progress)
 
         this.paintBoard.canvasStart()
-        this.paintBoard.setBackwardListener(View.OnClickListener { this.rootActivity.gotoBackward() }, null)
+        this.paintBoard.setBackwardListener(View.OnClickListener {if(!this.rootActivity.gotoBackward()) this.rootActivity.finish() }, null)
         this.paintBoard.setForwardListener(this, null)
 
         return this.v

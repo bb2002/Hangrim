@@ -26,6 +26,7 @@ class CreateSignActivity : AppCompatActivity(), View.OnClickListener {
             Toast.makeText(this, R.string.sign_saveerr, Toast.LENGTH_SHORT).show()
         } else {
             startActivity(Intent(this@CreateSignActivity, MySignaturePreview::class.java))
+            finish()
         }
     }
 

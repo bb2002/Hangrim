@@ -22,7 +22,7 @@ class DrawPictureFragment : Fragment(), View.OnClickListener {
 
         this.paintBoard.canvasStart()
 
-        this.paintBoard.setBackwardListener(View.OnClickListener { this.rootActivity.gotoBackward() }, null)
+        this.paintBoard.setBackwardListener(View.OnClickListener { if(!this.rootActivity.gotoBackward()) this.rootActivity.finish() }, null)
         this.paintBoard.setForwardListener(this, R.drawable.ic_hgpaint_action_download)
 
         this.rootActivity.setToolbarBackbutton(false)

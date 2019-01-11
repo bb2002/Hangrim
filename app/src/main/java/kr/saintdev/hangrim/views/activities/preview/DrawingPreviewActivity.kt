@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_drawing_preview.*
+import kotlinx.android.synthetic.main.toolbar_default_close.*
 import kr.saintdev.hangrim.R
 import kr.saintdev.hangrim.libs.func.ActivityFunctions
 import kr.saintdev.hangrim.libs.func.share
@@ -47,6 +48,9 @@ class DrawingPreviewActivity : AppCompatActivity() {
                 Toast.makeText(applicationContext, R.string.common_file_err, Toast.LENGTH_SHORT).show()
             }
         }
+
+        // Set next button click listener
+        toolbar_default_close.setOnClickListener { finish() }
     }
 
     override fun onStart() {

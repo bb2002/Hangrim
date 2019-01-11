@@ -56,11 +56,14 @@
 
         <!-- Preview Activitys -->
         <activity android:name=".views.activities.preview.DrawingPreviewActivity"
-                  android:screenOrientation="landscape" />
+                  android:screenOrientation="landscape"
+                  android:theme="@style/NoActionBarAppTheme"/>
         <activity android:name=".views.activities.preview.MyExprViewActivity"
-                  android:screenOrientation="landscape" />
+                  android:screenOrientation="landscape"
+                  android:theme="@style/NoActionBarAppTheme"/>
         <activity android:name=".views.activities.preview.MySignaturePreview"
-                  android:screenOrientation="landscape" />
+                  android:screenOrientation="landscape"
+                  android:theme="@style/NoActionBarAppTheme"/>
 
         <!-- Share provider -->
         <provider
