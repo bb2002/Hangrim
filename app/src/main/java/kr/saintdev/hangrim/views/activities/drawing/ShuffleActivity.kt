@@ -28,9 +28,17 @@ class ShuffleActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_hangrim_shuffle)
 
+        if(intent.getStringExtra("word-uuid") != null) {
+            // preload setting
+            fragmentTemp["word-english"] = intent.getStringExtra("word-english")
+            fragmentTemp["word-korean"] = intent.getStringExtra("word-korean")
+            fragmentTemp["word-uuid"] = intent.getStringExtra("word-uuid")
+            fragmentTemp["word-symbol"] = intent.getStringExtra("word-symbol")
+            fragmentTemp["word-preload"] = true
+        }
+
         // 화면을 이동 한다.
         gotoForward()
-
     }
 
 

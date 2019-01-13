@@ -13,7 +13,9 @@ import kr.saintdev.hangrim.R
 import kr.saintdev.hangrim.libs.func.HGFunctions
 import kr.saintdev.hangrim.libs.func.alert
 import kr.saintdev.hangrim.libs.func.save
+import kr.saintdev.hangrim.libs.sql.SQLManager
 import kr.saintdev.hangrim.modules.hgimage.HGImage
+import kr.saintdev.hangrim.modules.retrofit.HangrimWord
 import kr.saintdev.hangrim.views.activities.drawing.ShuffleActivity
 import kr.saintdev.hangrim.views.activities.preview.DrawingPreviewActivity
 import java.io.File
@@ -78,6 +80,9 @@ class ShareFragment : Fragment() {
                     rootActivity.finish()
                 }) 
             } else {
+                // DB 에 기록을 남긴다.
+                SQLManager.addShuffleCompleteWord(rootActivity.fragmentTemp["word-uuid"] as String, context!!)
+
                 // 저장 성공.
                 val intent = Intent(rootActivity, DrawingPreviewActivity::class.java)
                 intent.putExtra("image", result.absolutePath)

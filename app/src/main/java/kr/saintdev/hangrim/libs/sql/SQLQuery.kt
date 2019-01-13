@@ -10,6 +10,7 @@ object SQLQuery {
             "prop_uuid TEXT)"
 
     const val READ_SHUFFLE_LOG = "SELECT * FROM hg_shuffle_log"
+    const val INSERT_SHUFFLE_LOG = "INSERT INTO hg_shuffle_log (word_korean, word_english, word_symbol, prop_category, prop_uuid) VALUES(?,?,?,?,?)"
 
     const val MY_EXPR_LOG = "CREATE TABLE hg_myexpr_log (" +
             "_id INTEGER PRIMARY KEY AUTOINCREMENT," +

@@ -2,6 +2,7 @@ package kr.saintdev.hangrim.views.fragments.shuffle
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,10 +34,15 @@ class ShuffleFragment : Fragment(), View.OnClickListener {
         this.progressBar = this.v.findViewById(R.id.progress)
 
         this.paintBoard.canvasStart()
-        callRandomWord()        // 랜덤으로 단어를 가져온다.
 
-        // progress run
-        this.progressBar.showProgressBar()
+        if(rootActivity.fragmentTemp["word-preload"] != null) {
+            paintBoard.setPlaceHolderText(rootActivity.fragmentTemp["word-korean"] as String)           // Placeholder 을 그린다.
+            paintBoard.setComment(
+                rootActivity.fragmentTemp["word-english"] as String,
+                rootActivity.fragmentTemp["word-symbol"] as String)
+        } else {
+            callRandomWord()        // 랜덤으로 단어를 가져온다.
+        }
 
         this.paintBoard.setBackwardListener(View.OnClickListener {
             if(!this.rootActivity.gotoBackward()) this.rootActivity.finish()
@@ -52,6 +58,7 @@ class ShuffleFragment : Fragment(), View.OnClickListener {
      * 새로운 단어를 렌덤으로 받아 온다.
      */
     private fun callRandomWord() {
+        this.progressBar.showProgressBar()
         val exceptID = HGFunctions.getShuffledWordsUUID(activity!!)       // 예외 목록
 
         val service = Retrofit.getRetrofit().create(HangrimService::class.java)

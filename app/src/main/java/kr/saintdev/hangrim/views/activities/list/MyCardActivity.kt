@@ -1,11 +1,15 @@
 package kr.saintdev.hangrim.views.activities.list
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
@@ -20,28 +24,28 @@ import kr.saintdev.hangrim.modules.retrofit.HangrimService
 import kr.saintdev.hangrim.modules.retrofit.HangrimWord
 import kr.saintdev.hangrim.modules.retrofit.MyExpressWord
 import kr.saintdev.hangrim.modules.retrofit.Retrofit
+import kr.saintdev.hangrim.views.activities.drawing.ShuffleActivity
+import kr.saintdev.hangrim.views.activities.preview.MyExprViewActivity
+import kr.saintdev.hangrim.views.adapter.HangrimWordAdapter
+import kr.saintdev.hangrim.views.adapter.MyExpressAdapter
+import kr.saintdev.hangrim.views.adapter.OnCardClickListener
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.io.File
 
-class MyCardActivity : AppCompatActivity() {
-    private lateinit var gridViewAdapter: BaseAdapter
+class MyCardActivity : AppCompatActivity(), OnCardClickListener {
     private lateinit var categoryButtons: Array<View>
     private lateinit var categoryButtonText: Array<TextView>
+
+    private lateinit var hangrimAdapter: HangrimWordAdapter
+    private lateinit var myExpressAdapter: MyExpressAdapter
+    private var selectedAdapter = 0
+    private var selectedCategory = "Object"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_card)
-
-        // 서버로 부터 해당 카테고리의 단어를 가져온다.
-        requestWordFromServer("Object")
-
-        // set listener
-        my_card_grid.onItemClickListener =  AdapterView.OnItemClickListener {
-            _, _, pos, id ->
-            Toast.makeText(this, "$pos is click!", Toast.LENGTH_SHORT).show()
-        }
 
         this.categoryButtons = arrayOf(
             mycard_cate_0, mycard_cate_1, mycard_cate_2,
@@ -61,11 +65,54 @@ class MyCardActivity : AppCompatActivity() {
         setSupportActionBar(mycard_toolbar)
         supportActionBar?.setDisplayShowCustomEnabled(true)
         supportActionBar?.setDisplayShowTitleEnabled(false)
-
         mycard_go_home.setOnClickListener { finish() }
+
+        // Set recycle grid view
+        my_card_grid.setHasFixedSize(true)
+        this.hangrimAdapter = HangrimWordAdapter(listOf(), this)
+        this.myExpressAdapter = MyExpressAdapter(listOf(), this)
 
         // 기본값 선택
         onNavClickUpdate(mycard_cate_0)
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        if (this.selectedCategory == "CustomCard") {
+            // 장치에서 자신의 표현을 따로 가져와 업데이트 한다.
+            val myExprs = SQLManager.getMyExpressWords(this@MyCardActivity)
+            resetAdapterForExpress(myExprs.toList())
+        } else {
+            requestWordFromServer(this.selectedCategory!!)
+        }
+    }
+
+    /**
+     * @Date 01.13 2019
+     * CardView Click listener
+     */
+    override fun onClick(view: View, pos: Int) {
+        if(this.selectedAdapter == 0) {
+            // On Server
+            val item = this.hangrimAdapter.dataset[pos]
+            val intent = Intent(this, ShuffleActivity::class.java)
+            intent.putExtra("word-english", item.word_english)
+            intent.putExtra("word-korean", item.word_korean)
+            intent.putExtra("word-uuid", item.prop_uuid)
+            intent.putExtra("word-symbol", item.word_symbol)
+            startActivity(intent)
+        } else {
+            // On Express
+            val item = this.myExpressAdapter.dataset[pos]
+            val intent = Intent(this, MyExprViewActivity::class.java)
+            intent.putExtra("image", item.imagePath)
+            startActivity(intent)
+        }
+    }
+
+    override fun onLongClick(view: View, pos: Int) {
+        Toast.makeText(this, "$pos long click!", Toast.LENGTH_SHORT).show()
     }
 
     /**
@@ -84,22 +131,26 @@ class MyCardActivity : AppCompatActivity() {
      * Reset Adapter
      */
     private fun resetAdapter(words: List<HangrimWord>) {
+        this.selectedAdapter = 0
+
         if(words.isEmpty()) {
             my_card_grid.visibility = View.GONE
         } else {
             my_card_grid.visibility = View.VISIBLE
-            this.gridViewAdapter = GirdAdapter(applicationContext, words)
-            my_card_grid.adapter = this.gridViewAdapter
+            my_card_grid.adapter = this.hangrimAdapter
+            this.hangrimAdapter.dataset = words
         }
     }
 
     private fun resetAdapterForExpress(words: List<MyExpressWord>) {
+        this.selectedAdapter = 1
+
         if(words.isEmpty()) {
             my_card_grid.visibility = View.GONE
         } else {
             my_card_grid.visibility = View.VISIBLE
-            this.gridViewAdapter = MyExpressGridAdapter(applicationContext, words)
-            my_card_grid.adapter = this.gridViewAdapter
+            my_card_grid.adapter = this.myExpressAdapter
+            this.myExpressAdapter.dataset = words
         }
     }
 
@@ -113,8 +164,6 @@ class MyCardActivity : AppCompatActivity() {
         for(i in 0 until this.categoryButtons.size)
             if(v.id == this.categoryButtons[i].id) this.categoryButtonText[i].visibility = View.VISIBLE
     }
-
-
 
     /**
      * @Date 01.01 2019
@@ -140,72 +189,6 @@ class MyCardActivity : AppCompatActivity() {
             }
         }
     }
-
-    inner class GirdAdapter(val context: Context, val words: List<HangrimWord>) : BaseAdapter() {
-        override fun getView(pos: Int, convertView: View?, root: ViewGroup?): View {
-            val v = if(convertView == null) {
-                val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-                inflater.inflate(R.layout.mycard_grid_item, root, false)
-            } else {
-                convertView
-            }
-
-            val word = words[pos]
-            val imgView = v.findViewById<ImageView>(R.id.mycard_grid_image)
-            val titleView = v.findViewById<TextView>(R.id.mycard_grid_title)
-            val drawingFile = HGFunctions.isExsitDrawingFile(word, context)
-
-            if (drawingFile != null) {
-                // 드로잉한 그림 입니다.
-                Thread {
-                    val bitmap = BitmapFactory.decodeFile(drawingFile.absolutePath)
-                    runOnUiThread { imgView.setImageBitmap(bitmap) }
-                }.start()
-
-                titleView.text = word.word_english
-            } else {
-                // 드로잉 하지 않은 그림 임.
-                titleView.text = word.word_english
-                imgView.setImageResource(R.drawable.ic_cardmenu_not_draw)
-            }
-
-            return v
-        }
-
-        override fun getItem(pos: Int) = words[pos]
-
-        override fun getItemId(p0: Int) = p0.toLong()
-
-        override fun getCount() = words.size
-    }
-
-    inner class MyExpressGridAdapter(val context: Context, val words: List<MyExpressWord>) : BaseAdapter() {
-        override fun getView(pos: Int, convertView: View?, root: ViewGroup?): View {
-            val v = if(convertView == null) {
-                val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-                inflater.inflate(R.layout.mycard_grid_item, root, false)
-            } else {
-                convertView
-            }
-
-            val word = words[pos]
-            val imgView = v.findViewById<ImageView>(R.id.mycard_grid_image)
-            val titleView = v.findViewById<TextView>(R.id.mycard_grid_title)
-            val drawingFile = File(context.filesDir, word.uuid)
-
-            imgView.setImageBitmap(BitmapFactory.decodeFile(drawingFile.absolutePath))
-            titleView.text = word.called
-
-            return v
-        }
-
-        override fun getItem(pos: Int) = words[pos]
-
-        override fun getItemId(p0: Int) = p0.toLong()
-
-        override fun getCount() = words.size
-    }
-
     /**
      * @Date 01.02 2019
      * OnNavMenuClickListen
@@ -216,6 +199,7 @@ class MyCardActivity : AppCompatActivity() {
                 // 장치에서 자신의 표현을 따로 가져와 업데이트 한다.
                 val myExprs = SQLManager.getMyExpressWords(this@MyCardActivity)
                 resetAdapterForExpress(myExprs.toList())
+                selectedCategory = "CustomCard"
             } else {
                 val category = when (v.id) {
                     R.id.mycard_cate_0 -> "Object"
@@ -232,6 +216,7 @@ class MyCardActivity : AppCompatActivity() {
                 }
 
                 requestWordFromServer(category)
+                selectedCategory = category     // 현재 선택된 카테고리 업데이트
             }
 
             onNavClickUpdate(v)

@@ -13,3 +13,7 @@ data class MyExpressWord (
     val called: String,
     val prono: String
 )
+
+data class VerifyReamin(
+    val is_remain: Boolean
+)

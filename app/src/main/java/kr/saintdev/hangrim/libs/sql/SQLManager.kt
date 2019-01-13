@@ -27,6 +27,17 @@ object SQLManager {
     }
 
     /**
+     * @Date 01.13 2019
+     * DB 에 따라쓰기를 마친 단어를 추가한다.
+     */
+    fun addShuffleCompleteWord(uuid: String, context: Context) {
+        if(dbPool == null) open(context)
+        val wr = dbPool!!.writableDatabase
+
+        wr.execSQL(SQLQuery.INSERT_SHUFFLE_LOG, arrayOf("","","","", uuid))
+    }
+
+    /**
      * @Date 01.09 2019
      * DB 에서 내 표현을 가져온다.
      */

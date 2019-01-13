@@ -34,17 +34,23 @@ object HGImage {
     fun attachSignInDrawing(drawing: Bitmap, context: Context) : Bitmap {
         val canvas = Canvas(drawing)
         val signBitmap = BitmapFactory.decodeFile(HGFunctions.getSignaturePath(context).absolutePath)
-
         val resizeWidth = 400F
-        val aspectRatio = signBitmap.height.toDouble() / signBitmap.width.toDouble()
-        val resizeHeight = resizeWidth * aspectRatio
-
-        val signResizedBitmap = Bitmap.createScaledBitmap(signBitmap, resizeWidth.toInt(), resizeHeight.toInt(), false)
+        val signResizedBitmap = resizeImageCustom(resizeWidth.toInt(), signBitmap)
 
         // Attach canvas
         canvas.drawBitmap(signResizedBitmap, drawing.width - resizeWidth, (drawing.height - signResizedBitmap.height).toFloat(), Paint())
         canvas.save()
 
         return drawing
+    }
+
+    /**
+     * @Date 01.13 2019
+     * Resize sign
+     */
+    fun resizeImageCustom(width: Int, bitmap: Bitmap) : Bitmap {
+        val aspect = bitmap.height.toDouble() / bitmap.width.toDouble()
+        val reHeight = width * aspect
+        return Bitmap.createScaledBitmap(bitmap, width, reHeight.toInt(), false)
     }
 }

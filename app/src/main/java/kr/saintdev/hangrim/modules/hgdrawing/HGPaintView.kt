@@ -179,7 +179,9 @@ class HGPaintView : RelativeLayout {
      */
     fun setPlaceHolderText(text: String) {
         getSurfaceView()?.setPlaceHolder(text)
+        hgCanvasProperty.placeholderText = text
     }
+
 
     fun setBackwardListener(listener: View.OnClickListener, icon: Int?) {
         this.actionbarBackwardButton.setOnClickListener(listener)

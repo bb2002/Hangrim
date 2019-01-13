@@ -1,5 +1,6 @@
 package kr.saintdev.hangrim.modules.retrofit
 
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -16,6 +17,13 @@ interface HangrimService {
      */
     @GET("words/all/{category}")
     fun requestAllWords(@Path("category") category: String) : Call<List<HangrimWord>>
+
+    /**
+     * @Date 01.13 2019
+     * Request verify remain word
+     */
+    @GET("verify/remain/{except}")
+    fun isRemainWord(@Path("except") exceptArr: String) : Call<VerifyReamin>
 }
 
 object Retrofit {

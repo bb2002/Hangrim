@@ -36,4 +36,10 @@
     <string name="hg_category_10">ETC</string>
 
     <string name="toolbar_mycard">MY HANGRIM CARD</string>
+    <string name="main_portal_myhgcard">MY HANGRIM CARD</string>
+    <string name="main_portal_createhg">CREATE HANGRIM</string>
+    <string name="main_portal_mysign">MY SIGNATURE</string>
+    <string name="main_portal_err">남은 단어를 확인 할 수 없습니다..</string>
+    <string name="main_portal_no_remain">Congratulations!</string>
+    <string name="main_portal_no_remain_ctx">Mastered all of our basic words!!\nHow about your own HANGRIM now?</string>
 </resources>
