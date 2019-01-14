@@ -37,4 +37,5 @@ dependencies {
     implementation "com.android.support:design:27.1.1"
     implementation 'com.android.support:cardview-v7:27.1.1'
     implementation 'com.gdacciaro:iosdialog:1.0.3'
+    implementation files("libs/CaulySDK-3.4.22.jar")
 }

@@ -78,14 +78,16 @@
                 android:layout_centerHorizontal="true"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:layout_marginTop="4dp"/>
+                android:layout_marginTop="4dp"
+                android:textColor="@color/hgpaint_color_comment"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/hgpaint_comment_content"
                 android:layout_below="@id/hgpaint_comment_title"
                 android:layout_centerHorizontal="true"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:textColor="@color/hgpaint_color_comment"/>
         </RelativeLayout>
 
 

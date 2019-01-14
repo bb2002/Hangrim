@@ -4,13 +4,21 @@
         <attr name="commentTitle" format="string" />
         <attr name="commentContent" format="string" />
         <attr name="placeholder" format="string" />
-
         <attr name="divideHorizon" format="boolean" />
         <attr name="divideVertical" format="boolean" />
         <attr name="canvasAlpha" format="boolean" />
         <attr name="colorToolEnable" format="boolean" />
-
         <attr name="canvasWidth" format="integer" />
         <attr name="canvasHeight" format="integer" />
+    </declare-styleable>
+
+    <declare-styleable name="com.cauly.android.ad.AdView">
+        <attr name="appcode" format="string" />
+        <attr name="effect" format="string" />
+        <attr name="dynamicReloadInterval" format="boolean" />
+        <attr name="reloadInterval" format="integer" />
+        <attr name="threadPriority" format="integer" />
+        <attr name="bannerHeight" format="string" />
+        <attr name="enableDefaultBannerAd" format="boolean" />
     </declare-styleable>
 </resources>

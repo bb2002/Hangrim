@@ -1,10 +1,15 @@
 package kr.saintdev.hangrim.libs.func
 
+import android.Manifest
+import android.app.Activity
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.net.Uri
+import android.support.v4.app.ActivityCompat
+import android.support.v4.content.ContextCompat
 import android.support.v4.content.FileProvider
 import android.support.v7.app.AlertDialog
 import android.util.TypedValue
@@ -21,19 +26,22 @@ fun Int.str(context: Context) = context.resources.getString(this)
  */
 fun String.alert(msg: String,
                  context: Context,
-                 listener: DialogInterface.OnClickListener = DialogInterface.OnClickListener{dialogInterface, _ ->  dialogInterface.dismiss() }) {
+                 postiveListener: DialogInterface.OnClickListener = DialogInterface.OnClickListener{dialogInterface, _ ->  dialogInterface.dismiss() },
+                 nagativeListener: DialogInterface.OnClickListener = DialogInterface.OnClickListener{dialogInterface, _ ->  dialogInterface.dismiss() }) {
     val builder = AlertDialog.Builder(context)
     builder.setTitle(this)
     builder.setMessage(msg)
-    builder.setPositiveButton("Yes", listener)
+    builder.setPositiveButton("Yes", postiveListener)
+    builder.setNegativeButton("No", nagativeListener)
     builder.show()
 }
 
 fun Int.alert(msg: Int,
               context: Context,
-              listener: DialogInterface.OnClickListener = DialogInterface.OnClickListener{dialogInterface, _ ->  dialogInterface.dismiss() }) {
+              postiveListener: DialogInterface.OnClickListener = DialogInterface.OnClickListener{dialogInterface, _ ->  dialogInterface.dismiss() },
+              nagativeListener: DialogInterface.OnClickListener = DialogInterface.OnClickListener{dialogInterface, _ ->  dialogInterface.dismiss() }) {
     val res = context.resources
-    res.getString(this).alert(res.getString(msg), context, listener)
+    res.getString(this).alert(res.getString(msg), context, postiveListener, nagativeListener)
 }
 
 fun Bitmap.save(path: File) : Boolean {
@@ -57,4 +65,17 @@ fun File.share(context: Context) {
     intent.putExtra(Intent.EXTRA_STREAM, targetImage)
     intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
     context.startActivity(Intent.createChooser(intent, "Select!"))
+}
+
+object Permission {
+    fun isGratedPermission(context: Context) : Boolean {
+        val perm = ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        return perm != PackageManager.PERMISSION_DENIED
+    }
+
+    fun requestPermission(context: Activity) {
+        if(!isGratedPermission(context)) {
+            ActivityCompat.requestPermissions(context, arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), 0x1)
+        }
+    }
 }

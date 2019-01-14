@@ -10,6 +10,7 @@ import kotlinx.android.synthetic.main.toolbar_default_close.*
 import kr.saintdev.hangrim.R
 import kr.saintdev.hangrim.libs.func.ActivityFunctions
 import kr.saintdev.hangrim.libs.func.share
+import kr.saintdev.hangrim.libs.func.str
 import java.io.File
 
 /**
@@ -51,6 +52,8 @@ class DrawingPreviewActivity : AppCompatActivity() {
 
         // Set next button click listener
         toolbar_default_close.setOnClickListener { finish() }
+
+        preview_content.text = R.string.preview_message_shuffle.str(this)
     }
 
     override fun onStart() {

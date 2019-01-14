@@ -9,15 +9,16 @@ import kotlinx.android.synthetic.main.activity_drawing_preview.*
 import kotlinx.android.synthetic.main.toolbar_default_close.*
 import kr.saintdev.hangrim.R
 import kr.saintdev.hangrim.libs.func.HGFunctions
+import kr.saintdev.hangrim.libs.func.str
 
 class MySignaturePreview : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_drawing_preview)
 
-        preview_title_editor.visibility = View.INVISIBLE
-        preview_share_image.visibility = View.INVISIBLE
-        preview_comment_editor.visibility = View.INVISIBLE
+        preview_title_editor.visibility = View.GONE
+        preview_share_image.visibility = View.GONE
+        preview_comment_editor.visibility = View.GONE
 
         val signFile = HGFunctions.getSignaturePath(this)
 
@@ -28,10 +29,12 @@ class MySignaturePreview : AppCompatActivity() {
                 )
             )
         } else {
-            Toast.makeText(this, "사인이 존재하지 않습니다.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, R.string.sign_404.str(this), Toast.LENGTH_SHORT).show()
         }
 
         // Set next button click listener
+        toolbar_default_close.setImageResource(R.drawable.ic_hgpaint_action_home)
         toolbar_default_close.setOnClickListener { finish() }
+        preview_content.text = R.string.preview_message_sign.str(this)
     }
 }

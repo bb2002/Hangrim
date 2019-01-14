@@ -11,6 +11,7 @@ object SQLQuery {
 
     const val READ_SHUFFLE_LOG = "SELECT * FROM hg_shuffle_log"
     const val INSERT_SHUFFLE_LOG = "INSERT INTO hg_shuffle_log (word_korean, word_english, word_symbol, prop_category, prop_uuid) VALUES(?,?,?,?,?)"
+    const val DELETE_SHUFFLE_LOG = "DELETE FROM hg_shuffle_log WHERE prop_uuid = ?"
 
     const val MY_EXPR_LOG = "CREATE TABLE hg_myexpr_log (" +
             "_id INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -23,4 +24,5 @@ object SQLQuery {
     const val READ_MY_EXPRESS_LOG = "SELECT * FROM hg_myexpr_log WHERE expr_uuid = ?"
     const val WRITE_MY_EXPRESS_LOG = "INSERT INTO hg_myexpr_log (image_path, expr_uuid, expr_called, expr_prono) VALUES(?,?,?,?)"
     const val UPDATE_MY_EXPRESS_LOG = "UPDATE hg_myexpr_log SET expr_called = ?, expr_prono = ? WHERE expr_uuid = ?"
+    const val DELETE_MY_EXPRESS_LOG = "DELETE FROM hg_myexpr_log WHERE expr_uuid = ?"
 }

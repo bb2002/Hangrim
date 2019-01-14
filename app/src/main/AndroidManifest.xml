@@ -34,7 +34,8 @@
         <activity
                 android:name="kr.saintdev.hangrim.views.activities.list.MyCardActivity"
                 android:screenOrientation="landscape"
-                android:theme="@style/NoActionBarAppTheme"/>
+                android:theme="@style/NoActionBarAppTheme"
+                android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
 
         <!-- Shuffle Activity -->
         <activity

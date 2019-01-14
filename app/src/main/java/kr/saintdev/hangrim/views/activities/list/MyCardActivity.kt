@@ -1,6 +1,7 @@
 package kr.saintdev.hangrim.views.activities.list
 
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.BitmapFactory
 import android.os.Bundle
@@ -25,6 +26,7 @@ import kr.saintdev.hangrim.modules.retrofit.HangrimWord
 import kr.saintdev.hangrim.modules.retrofit.MyExpressWord
 import kr.saintdev.hangrim.modules.retrofit.Retrofit
 import kr.saintdev.hangrim.views.activities.drawing.ShuffleActivity
+import kr.saintdev.hangrim.views.activities.preview.DrawingPreviewActivity
 import kr.saintdev.hangrim.views.activities.preview.MyExprViewActivity
 import kr.saintdev.hangrim.views.adapter.HangrimWordAdapter
 import kr.saintdev.hangrim.views.adapter.MyExpressAdapter
@@ -78,7 +80,10 @@ class MyCardActivity : AppCompatActivity(), OnCardClickListener {
 
     override fun onResume() {
         super.onResume()
+        refreshItem()
+    }
 
+    private fun refreshItem() {
         if (this.selectedCategory == "CustomCard") {
             // 장치에서 자신의 표현을 따로 가져와 업데이트 한다.
             val myExprs = SQLManager.getMyExpressWords(this@MyCardActivity)
@@ -96,12 +101,22 @@ class MyCardActivity : AppCompatActivity(), OnCardClickListener {
         if(this.selectedAdapter == 0) {
             // On Server
             val item = this.hangrimAdapter.dataset[pos]
-            val intent = Intent(this, ShuffleActivity::class.java)
-            intent.putExtra("word-english", item.word_english)
-            intent.putExtra("word-korean", item.word_korean)
-            intent.putExtra("word-uuid", item.prop_uuid)
-            intent.putExtra("word-symbol", item.word_symbol)
-            startActivity(intent)
+            val file = HGFunctions.getSaveFileLocation("${item.prop_uuid}.png", this)
+
+            if(file.exists()) {
+                val intent = Intent(this, DrawingPreviewActivity::class.java)
+                intent.putExtra("image", file.absolutePath)
+                intent.putExtra("word-english", item.word_english)
+                intent.putExtra("word-symbol", item.word_symbol)
+                startActivity(intent)
+            } else {
+                val intent = Intent(this, ShuffleActivity::class.java)
+                intent.putExtra("word-english", item.word_english)
+                intent.putExtra("word-korean", item.word_korean)
+                intent.putExtra("word-uuid", item.prop_uuid)
+                intent.putExtra("word-symbol", item.word_symbol)
+                startActivity(intent)
+            }
         } else {
             // On Express
             val item = this.myExpressAdapter.dataset[pos]
@@ -112,7 +127,31 @@ class MyCardActivity : AppCompatActivity(), OnCardClickListener {
     }
 
     override fun onLongClick(view: View, pos: Int) {
-        Toast.makeText(this, "$pos long click!", Toast.LENGTH_SHORT).show()
+        if(selectedCategory == "CustomCard") {
+            val item = myExpressAdapter.dataset[pos]
+
+            R.string.my_cards_remove.alert(R.string.my_cards_remove_content,this,
+                DialogInterface.OnClickListener { dialog, _ ->
+                    SQLManager.removeMyExpressWord(item.uuid, this)
+                    dialog.dismiss()
+                    refreshItem()
+                })
+        } else {
+            val item = hangrimAdapter.dataset[pos]
+
+            if(HGFunctions.getSaveFileLocation("${item.prop_uuid}.png", this).exists()) {
+                R.string.my_cards_remove.alert(
+                    R.string.my_cards_remove_content,
+                    this,
+                    DialogInterface.OnClickListener { dialog, _ ->
+                        SQLManager.removeShuffleWord(item.prop_uuid, this)
+                        dialog.dismiss()
+
+                        refreshItem()
+                    })
+            }
+        }
+
     }
 
     /**

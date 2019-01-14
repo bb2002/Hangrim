@@ -1,8 +1,10 @@
 package kr.saintdev.hangrim.libs.sql
 
 import android.content.Context
+import kr.saintdev.hangrim.libs.func.HGFunctions
 import kr.saintdev.hangrim.modules.retrofit.HangrimWord
 import kr.saintdev.hangrim.modules.retrofit.MyExpressWord
+import java.io.File
 
 object SQLManager {
     var dbPool: DBHelper? = null
@@ -35,6 +37,32 @@ object SQLManager {
         val wr = dbPool!!.writableDatabase
 
         wr.execSQL(SQLQuery.INSERT_SHUFFLE_LOG, arrayOf("","","","", uuid))
+    }
+
+    /**
+     * @Date 01.14 2019
+     * DB 에 따라쓰기를 마친 단어를 제거
+     */
+    fun removeShuffleWord(uuid: String, context: Context) {
+        val file = HGFunctions.getSaveFileLocation("$uuid.png", context)
+        if(file.delete()) {
+            if(dbPool == null) open(context)
+            val wr = dbPool!!.writableDatabase
+            wr.execSQL(SQLQuery.DELETE_SHUFFLE_LOG, arrayOf(uuid))
+        }
+    }
+
+    /**
+     * @Date 01.14 2019
+     * DB 에 자신의 카드를 제거한다.
+     */
+    fun removeMyExpressWord(uuid: String, context: Context) {
+        val file = HGFunctions.getSaveFileLocation(uuid, context)
+        if(file.delete()) {
+            if(dbPool == null) open(context)
+            val wr = dbPool!!.writableDatabase
+            wr.execSQL(SQLQuery.DELETE_MY_EXPRESS_LOG, arrayOf(uuid))
+        }
     }
 
     /**

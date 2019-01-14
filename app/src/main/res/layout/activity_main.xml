@@ -108,13 +108,18 @@
                 android:layout_margin="4dp"/>
     </LinearLayout>
 
-    <View
-        android:layout_width="350dp"
-        android:layout_height="60dp"
-        android:id="@+id/ads"
-        android:background="#D1D2D4"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
 
+    <com.fsn.cauly.CaulyAdView
+            xmlns:app="http://schemas.android.com/apk/res/kr.saintdev.hangrim"
+            android:id="@+id/ads"
+            android:layout_width="380dp"
+            android:layout_height="wrap_content"
+            app:appcode="CAULY"
+            app:effect="None"
+            app:dynamicReloadInterval="true"
+            app:reloadInterval="20"
+            app:bannerHeight="Fixed_50"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"/>
 </android.support.constraint.ConstraintLayout>

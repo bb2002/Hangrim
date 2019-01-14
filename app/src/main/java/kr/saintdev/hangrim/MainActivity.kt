@@ -1,12 +1,16 @@
 package kr.saintdev.hangrim
 
+import android.content.DialogInterface
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import org.json.JSONObject
 import kotlinx.android.synthetic.main.activity_main.*
 import kr.saintdev.hangrim.libs.func.HGFunctions
+import kr.saintdev.hangrim.libs.func.Permission.requestPermission
 import kr.saintdev.hangrim.libs.func.alert
 import kr.saintdev.hangrim.modules.retrofit.HangrimService
 import kr.saintdev.hangrim.modules.retrofit.Retrofit
@@ -29,6 +33,25 @@ class MainActivity : AppCompatActivity() {
         main_portal_createcard.setOnClickListener(portalButtonListener)
         main_portal_createsign.setOnClickListener(portalButtonListener)
         main_portal_shuffle.setOnClickListener(portalButtonListener)
+
+        requestPermission(this)
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if(requestCode == 0x1 && grantResults[0] == PackageManager.PERMISSION_DENIED) {
+            // 권한이 승인됨
+            R.string.common_error.alert(R.string.main_permission_grant_failed, this,
+                DialogInterface.OnClickListener { dia, _ ->
+                    dia.dismiss()
+                    requestPermission(this)
+                },
+                DialogInterface.OnClickListener { dia, _ ->
+                    dia.dismiss()
+                    Toast.makeText(this, R.string.main_permission_grant_err, Toast.LENGTH_SHORT).show()
+                }
+            )
+        }
     }
 
     private var portalButtonListener = View.OnClickListener {

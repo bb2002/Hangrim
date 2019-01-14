@@ -10,7 +10,7 @@
             app:canvasAlpha="true"
             app:divideHorizon="false"
             app:divideVertical="false"
-            app:colorToolEnable="false"
+            app:colorToolEnable="true"
             app:canvasWidth="-1"
             app:canvasHeight="-1" />
 </FrameLayout>

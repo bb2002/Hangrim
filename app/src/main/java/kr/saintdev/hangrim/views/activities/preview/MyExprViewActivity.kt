@@ -12,6 +12,7 @@ import kotlinx.android.synthetic.main.toolbar_default_close.*
 import kr.saintdev.hangrim.R
 import kr.saintdev.hangrim.libs.func.alert
 import kr.saintdev.hangrim.libs.func.share
+import kr.saintdev.hangrim.libs.func.str
 import kr.saintdev.hangrim.libs.sql.SQLManager
 import kr.saintdev.hangrim.modules.retrofit.MyExpressWord
 import java.io.File
@@ -57,6 +58,8 @@ class MyExprViewActivity : AppCompatActivity(), TextWatcher {
 
         // Set next button click listener
         toolbar_default_close.setOnClickListener { finish() }
+
+        preview_content.text = R.string.preview_message_shuffle.str(this)
     }
 
     override fun afterTextChanged(p0: Editable?) {

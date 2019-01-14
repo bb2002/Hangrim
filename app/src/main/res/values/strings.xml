@@ -1,7 +1,10 @@
 <resources>
     <string name="app_name">Hangrim</string>
+    <string name="app_name_upper">HANGRIM</string>
 
     <string name="main_portal_createcard">카드를 만들기</string>
+    <string name="main_permission_grant_failed">파일을 저장하기 위해 접근 권한을 허용해주세요!</string>
+    <string name="main_permission_grant_err">대부분 기능이 작동하지 않을 것 입니다.</string>
 
     <string name="hgpaint_reset_title">HEY!!</string>
     <string name="hgpaint_reset_content">Would you like to try again?</string>
@@ -22,6 +25,7 @@
     <string name="drawing_preview_nofile">파일이 저장되지 않은 것 같습니다.</string>
 
     <string name="sign_saveerr">사인을 저장 할 수 없습니다.</string>
+    <string name="sign_404">Sign is not found</string>
 
     <string name="hg_category_0">OBJECT</string>
     <string name="hg_category_1">MY OWN</string>
@@ -42,4 +46,12 @@
     <string name="main_portal_err">남은 단어를 확인 할 수 없습니다..</string>
     <string name="main_portal_no_remain">Congratulations!</string>
     <string name="main_portal_no_remain_ctx">Mastered all of our basic words!!\nHow about your own HANGRIM now?</string>
+
+    <string name="my_cards_remove">정말??</string>
+    <string name="my_cards_remove_content">지우면 진짜 지워집니다.\n지우시겠어요?</string>
+
+    <string name="preview_message_shuffle">You have gaind a new HanGrim.\nShare the card with your friends!</string>
+    <string name="preview_message_sign">Congratulation!!\nYou have made your own signature.</string>
+
+    <string name="cauly_key">CAULY</string>
 </resources>

@@ -9,6 +9,9 @@
 
     <color name="toolbar_text_color">#58595B</color>
     <color name="main_portal_background">#FAFBFB</color>
+    <color name="preview_text_color">#58595B</color>
+
+    <color name="hgpaint_color_comment">#58595B</color>
 
     <color name="hgpaintColor1">#303030</color>
     <color name="hgpaintColor2">#656565</color>
