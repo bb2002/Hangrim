@@ -6,16 +6,17 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import ir.alirezabdn.wp7progress.WP10ProgressBar
 import kr.saintdev.hangrim.R
 import kr.saintdev.hangrim.libs.func.HGFunctions
 import kr.saintdev.hangrim.libs.func.alert
 import kr.saintdev.hangrim.libs.func.str
+import kr.saintdev.hangrim.modules.hgdrawing.HGPaintView
 import kr.saintdev.hangrim.modules.retrofit.HangrimService
 import kr.saintdev.hangrim.modules.retrofit.HangrimWord
 import kr.saintdev.hangrim.modules.retrofit.Retrofit
 import kr.saintdev.hangrim.views.activities.drawing.ShuffleActivity
-import kr.saintdev.hgdrawing.hgdrawing.HGPaintView
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -32,17 +33,7 @@ class ShuffleFragment : Fragment(), View.OnClickListener {
         this.paintBoard = this.v.findViewById(R.id.canvas)
         this.rootActivity = activity as ShuffleActivity
         this.progressBar = this.v.findViewById(R.id.progress)
-
-        this.paintBoard.canvasStart()
-
-        if(rootActivity.fragmentTemp["word-preload"] != null) {
-            paintBoard.setPlaceHolderText(rootActivity.fragmentTemp["word-korean"] as String)           // Placeholder 을 그린다.
-            paintBoard.setComment(
-                rootActivity.fragmentTemp["word-english"] as String,
-                rootActivity.fragmentTemp["word-symbol"] as String)
-        } else {
-            callRandomWord()        // 랜덤으로 단어를 가져온다.
-        }
+        this.paintBoard.onCreate()
 
         this.paintBoard.setBackwardListener(View.OnClickListener {
             if(!this.rootActivity.gotoBackward()) this.rootActivity.finish()
@@ -51,7 +42,6 @@ class ShuffleFragment : Fragment(), View.OnClickListener {
 
         return this.v
     }
-
 
     /**
      * 12.26 2018
@@ -76,11 +66,14 @@ class ShuffleFragment : Fragment(), View.OnClickListener {
 
                 if(response.isSuccessful && body != null) {
                     paintBoard.setPlaceHolderText(body.word_korean)           // Placeholder 을 그린다.
-                    paintBoard.setComment(body.word_english, body.word_symbol)
+                    paintBoard.setCommentMessage(body.word_english, body.word_symbol)
 
                     rootActivity.fragmentTemp["word-english"] = body.word_english
                     rootActivity.fragmentTemp["word-symbol"] = body.word_symbol
                     rootActivity.fragmentTemp["word-uuid"] = body.prop_uuid
+
+                    // Toast 를 열어 작성을 시작을 요청 한다.
+                    Toast.makeText(context, R.string.ent_pag_dialog_2p, Toast.LENGTH_SHORT).show()
                 } else {
                     onFailure(null, null)
                 }
@@ -99,8 +92,22 @@ class ShuffleFragment : Fragment(), View.OnClickListener {
         this.rootActivity.gotoForward()
     }
 
-    override fun onStop() {
-        super.onStop()
-        this.paintBoard.canvasStop()
+    override fun onResume() {
+        super.onResume()
+        this.paintBoard.onResume()
+
+        if(rootActivity.fragmentTemp["word-preload"] != null) {
+            paintBoard.setPlaceHolderText(rootActivity.fragmentTemp["word-korean"] as String)           // Placeholder 을 그린다.
+            paintBoard.setCommentMessage(
+                rootActivity.fragmentTemp["word-english"] as String,
+                rootActivity.fragmentTemp["word-symbol"] as String)
+        } else {
+            callRandomWord()        // 랜덤으로 단어를 가져온다.
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        this.paintBoard.onDestroy()
     }
 }

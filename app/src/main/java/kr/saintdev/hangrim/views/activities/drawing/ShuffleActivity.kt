@@ -48,14 +48,14 @@ class ShuffleActivity : AppCompatActivity() {
      * 프레그먼트를 뒤로 이동
      */
     fun gotoBackward() : Boolean {
-         return if (idx < 0) {
+         return if (idx > 0) {
              val trans = supportFragmentManager.beginTransaction()
 
              // 이전 프레그먼트 제거
              if(this.nowFragment != null) trans.remove(this.nowFragment)
 
              // 새 프레그먼트 생성
-             nowFragment = createFragment(--idx)
+             nowFragment = createFragment(idx--)
              trans.replace(R.id.hg_shuffle_main, nowFragment)
              trans.commit()
              true

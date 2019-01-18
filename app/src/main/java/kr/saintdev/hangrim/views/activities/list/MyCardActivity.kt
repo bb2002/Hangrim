@@ -250,7 +250,7 @@ class MyCardActivity : AppCompatActivity(), OnCardClickListener {
                     R.id.mycard_cate_7 -> "Body"
                     R.id.mycard_cate_8 -> "place"
                     R.id.mycard_cate_9 -> "Animal"
-                    R.id.mycard_cate_10 -> "Etc"
+                    R.id.mycard_cate_10 -> "ETC."
                     else -> "Any"
                 }
 

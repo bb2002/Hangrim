@@ -8,6 +8,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.net.Uri
+import android.os.Vibrator
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.support.v4.content.FileProvider
@@ -66,6 +67,8 @@ fun File.share(context: Context) {
     intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
     context.startActivity(Intent.createChooser(intent, "Select!"))
 }
+
+fun Int.vibration(context: Context)  = (context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator).vibrate(this.toLong())
 
 object Permission {
     fun isGratedPermission(context: Context) : Boolean {

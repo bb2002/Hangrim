@@ -6,14 +6,6 @@ import android.graphics.Paint
 import android.graphics.Typeface
 import kr.saintdev.hangrim.modules.hgdrawing.libs.HGConvert
 
-data class HGCanvasProperty(
-    var isAlpha: Boolean = false,        // 배경에 투명을 사용하는가.
-    var useColorTool: Boolean = true,     // Color selector 를 사용 하는가?
-    var canvasWidth: Int = 0,       // Canvas width
-    var canvasHeight: Int = 0,       // Canvas height
-    var placeholderText: String = ""    // Placeholder
-)
-
 object DefaultPaint {
     fun getPlaceHolderTextSize(context: Context) =
             HGConvert.pxToDpi(100, context)
@@ -38,6 +30,14 @@ object DefaultPaint {
         paint.style = Paint.Style.FILL
         return paint
     }
+}
+
+object EtcProperty {
+    const val UNDO_SIZE = 8
+    const val REDO_SIZE = 8
+    const val VIBRATION_SIZE = 1000
+
+    const val PEN_BUTTON_VIBRATION_SIZE = 1000
 }
 
 enum class PenSize(val size: Float) {

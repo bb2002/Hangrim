@@ -5,10 +5,11 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import kr.saintdev.hangrim.R
 import kr.saintdev.hangrim.libs.func.HGFunctions
+import kr.saintdev.hangrim.modules.hgdrawing.HGPaintView
 import kr.saintdev.hangrim.views.activities.drawing.ShuffleActivity
-import kr.saintdev.hgdrawing.hgdrawing.HGPaintView
 
 class DrawPictureFragment : Fragment(), View.OnClickListener {
     private lateinit var v: View
@@ -19,16 +20,18 @@ class DrawPictureFragment : Fragment(), View.OnClickListener {
         this.v = inflater.inflate(R.layout.fragment_drawing_pic, container, false)
         this.paintBoard = this.v.findViewById(R.id.canvas)
         this.rootActivity = activity as ShuffleActivity
-
-        this.paintBoard.canvasStart()
-
+        this.paintBoard.onCreate()
         this.paintBoard.setBackwardListener(View.OnClickListener { if(!this.rootActivity.gotoBackward()) this.rootActivity.finish() }, null)
         this.paintBoard.setForwardListener(this, R.drawable.ic_hgpaint_action_download)
 
         this.rootActivity.setToolbarBackbutton(false)
-
-
+        Toast.makeText(context, R.string.ent_pag_dialog_3p, Toast.LENGTH_SHORT).show()
         return this.v
+    }
+
+    override fun onResume() {
+        super.onResume()
+        this.paintBoard.onResume()
     }
 
     /**
@@ -42,8 +45,8 @@ class DrawPictureFragment : Fragment(), View.OnClickListener {
         this.rootActivity.gotoForward()
     }
 
-    override fun onStop() {
-        super.onStop()
-        this.paintBoard.canvasStop()
+    override fun onDestroy() {
+        super.onDestroy()
+        this.paintBoard.onDestroy()
     }
 }

@@ -86,7 +86,7 @@ class HGColorSubBar : LinearLayout, View.OnClickListener {
         onSelected(colorButtons[surfaceView.selectedColorIndex])
 
         // Color off
-        if(!surfaceView.property.useColorTool) {
+        if(!surfaceView.useColorPaint) {
             this.rootView.findViewById<View>(R.id.hgpaint_sub_toolbar_yescolor).visibility = View.GONE
         }
 

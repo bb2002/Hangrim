@@ -11,10 +11,12 @@ import android.view.View
 import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.TextView
-import kr.saintdev.hgdrawing.hgdrawing.HGPaintView
 import com.gdacciaro.iOSDialog.iOSDialogClickListener
 import kr.saintdev.hangrim.R
+import kr.saintdev.hangrim.libs.func.vibration
+import kr.saintdev.hangrim.modules.hgdrawing.HGPaintView
 import kr.saintdev.hangrim.modules.hgdrawing.libs.HGDialog.openConfirm
+import kr.saintdev.hangrim.modules.hgdrawing.property.EtcProperty
 
 
 class HGNavigationBar : LinearLayout, View.OnClickListener {
@@ -67,33 +69,32 @@ class HGNavigationBar : LinearLayout, View.OnClickListener {
             this.nowSelectedIdx = 0
             resetUnSelected()
         } else {
-            if (surface != null) {
-                when (v.id) {
-                    R.id.hgpaint_toolbar_brush -> {
-                        // 진동 포함 작업을 필요로 한다.
-                        val vService = context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
-                        vService.vibrate(1000)
-                    }
-                    R.id.hgpaint_toolbar_thickness -> {
-                        resetUnSelected()
+            when (v.id) {
+                R.id.hgpaint_toolbar_brush -> {
+                    EtcProperty.PEN_BUTTON_VIBRATION_SIZE.vibration(context)
+                }
 
-                        this.hgPaintView.addSubToolbarView(Gravity.END, HGPenThickSubBar(context, surface))
-                        nowSelectedIdx = R.id.hgpaint_toolbar_thickness
-                        this.toolbarItem[1].setImageResource(R.drawable.ic_hgpaint_bursh_size_selected)
-                    }
-                    R.id.hgpaint_toolbar_reset -> {
-                        openConfirm(R.string.hgpaint_reset_title, R.string.hgpaint_reset_content, context, iOSDialogClickListener {
-                            surface.clearCanvas()       // Clear canvas
-                            it.dismiss()
-                        })
-                    }
-                    R.id.hgpaint_toolbar_color -> {
-                        resetUnSelected()
+                R.id.hgpaint_toolbar_thickness -> {
+                    resetUnSelected()
 
-                        this.hgPaintView.addSubToolbarView(Gravity.BOTTOM, HGColorSubBar(context, surface, colorTextView))
-                        nowSelectedIdx = R.id.hgpaint_toolbar_color
-                        this.toolbarItem[3].setImageResource(R.drawable.ic_hgpaint_color_selected)
-                    }
+                    this.hgPaintView.addSubToolbarView(Gravity.END, HGPenThickSubBar(context, surface))
+                    nowSelectedIdx = R.id.hgpaint_toolbar_thickness
+                    this.toolbarItem[1].setImageResource(R.drawable.ic_hgpaint_bursh_size_selected)
+                }
+
+                R.id.hgpaint_toolbar_reset -> {
+                    openConfirm(R.string.hgpaint_reset_title, R.string.hgpaint_reset_content, context, iOSDialogClickListener {
+                        surface.clearCanvas()       // Clear canvas
+                        it.dismiss()
+                    })
+                }
+
+                R.id.hgpaint_toolbar_color -> {
+                    resetUnSelected()
+
+                    this.hgPaintView.addSubToolbarView(Gravity.BOTTOM, HGColorSubBar(context, surface, colorTextView))
+                    nowSelectedIdx = R.id.hgpaint_toolbar_color
+                    this.toolbarItem[3].setImageResource(R.drawable.ic_hgpaint_color_selected)
                 }
             }
         }

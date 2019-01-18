@@ -2,43 +2,37 @@ package kr.saintdev.hangrim.modules.hgdrawing.core
 
 import android.content.Context
 import android.graphics.*
+import android.util.Log
 import android.view.MotionEvent
-import android.view.SurfaceHolder
-import android.view.SurfaceView
+import android.view.View
 import kr.saintdev.hangrim.modules.hgdrawing.libs.HGPoint
 import kr.saintdev.hangrim.modules.hgdrawing.property.DefaultPaint
-import kr.saintdev.hangrim.modules.hgdrawing.property.HGCanvasProperty
+import kr.saintdev.hangrim.modules.hgimage.HGImage
 import java.io.File
 import java.io.FileOutputStream
 import java.lang.Exception
+import java.util.*
 
-class HGSurfaceView(context: Context, val property: HGCanvasProperty = HGCanvasProperty()) : SurfaceView(context), SurfaceHolder.Callback {
-    private lateinit var thread: HGThread
-
+class HGSurfaceView(context: Context, val isAlpha: Boolean = false, val useColorPaint: Boolean = false) : View(context) {
     private var placeHolderText: String? = null             // Placeholder
     private var placeHolderX = 0F
     private var placeHolderY = 0F
     private var placeHolderPaint: Paint? = null
+
     val paint = DefaultPaint.getDefaultPaint()
     var selectedColorIndex = 0
+    private val pointArray = ArrayList<HGPoint>()
 
-    init {
-        holder.addCallback(this)
-    }
 
-    override fun surfaceCreated(holder: SurfaceHolder?) {
-        if(holder != null) {
-            // Init canvas THREAD.
-            this.thread = HGThread(holder, this)
-            this.thread.start()
+    override fun onDraw(canvas: Canvas?) {
+        super.onDraw(canvas)
+
+        if(canvas != null) {
+            // request draw call.
+            canvas.drawARGB(255, 255, 255, 255)
+            drawCallPlaceholder(canvas)
+            drawCall(canvas)
         }
-    }
-
-    override fun surfaceChanged(holder: SurfaceHolder?, format: Int, width: Int, height: Int) {
-    }
-
-    override fun surfaceDestroyed(holder: SurfaceHolder?) {
-        surfaceStop()
     }
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
@@ -54,53 +48,110 @@ class HGSurfaceView(context: Context, val property: HGCanvasProperty = HGCanvasP
                 null
         }
 
-        if(point != null) this.thread.addDrawCallPoint(point)
+        if(point != null) pointArray.add(point)
+        invalidate()
         return true
+    }
+
+    private val path = Path()
+    private fun drawCall(canvas: Canvas) {
+        for(i in 1 until pointArray.size) {
+            val p = this.pointArray[i]
+            if(!p.isDraw || p.isUndo) continue
+
+            path.moveTo(pointArray[i - 1].x, pointArray[i - 1].y)
+            path.lineTo(p.x, p.y)
+            canvas.drawPath(path, p.paint)
+            path.reset()
+        }
+    }
+
+    private fun drawCallPlaceholder(canvas: Canvas) {
+        if(placeHolderText != null && placeHolderPaint != null)
+            canvas.drawText(placeHolderText, placeHolderX, placeHolderY, placeHolderPaint)
+    }
+
+    /**
+     * @Date 12.28 2018
+     * Undo Point
+     */
+    fun undoPoint() : Boolean {
+        if(pointArray.isEmpty()) return false
+
+        for(i in pointArray.size-1 downTo 0) {
+            val p = pointArray[i]
+            if(p.isDraw && !p.isUndo) {
+                // Undo 처리 한다.
+                p.isUndo = true
+
+                invalidate()
+                return true
+            }
+        }
+
+        return false
+    }
+
+    /**
+     * @Date 12.28 2018
+     * Redo point
+     */
+    fun redoPoint() : Boolean {
+        if(pointArray.isEmpty()) return false
+
+        for(i in 0 until pointArray.size) {
+            val p = pointArray[i]
+            if(p.isDraw && p.isUndo) {
+                // Redo 처리 한다.
+                p.isUndo = false
+                invalidate()
+
+                return true
+            }
+        }
+
+        return false
     }
 
     /**
      * @Date 01.05 2019
      * HGSurfaceView settings
      */
+
     fun setPlaceHolder(text: String) {
         this.placeHolderPaint = DefaultPaint.getPlaceHolderPaint(DefaultPaint.getPlaceHolderTextSize(context).toFloat())
         val rect = Rect()
+
         this.placeHolderPaint?.getTextBounds(text, 0, text.length, rect)
-
-
         this.placeHolderX = (width / 2 - rect.width() / 2).toFloat()
         this.placeHolderY = (height / 2 + rect.height() / 2).toFloat()
         this.placeHolderText = text
+
+        invalidate()
     }
 
-    fun getPlaceHolderText() = this.placeHolderText
+    override fun onWindowFocusChanged(hasWindowFocus: Boolean) {
+        super.onWindowFocusChanged(hasWindowFocus)
+        if(this.placeHolderText != null)
+            setPlaceHolder(this.placeHolderText!!)
+    }
 
-    fun getPlaceHolderX() = this.placeHolderX
-
-    fun getPlaceHolderY() = this.placeHolderY
-
-    fun getPlaceHolderPaint() = this.placeHolderPaint
-
-    fun clearCanvas() = this.thread.clearDrawCallPoint()
-
-    fun undoCanvas() = this.thread.undoPoint()
-    fun redoCanvas() = this.thread.redoPoint()
+    fun clearCanvas()           = pointArray.clear()
 
     fun exportDrawing(filename: File) : File? {
-        val points = this.thread.getDrawCallPoints()
         val drawPath = Path()
         val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
         val canvas = Canvas(bitmap)
 
         // Draw White
-        canvas.drawARGB(if(property.isAlpha) 0 else 255, 255, 255, 255)
+        canvas.drawARGB(if(this.isAlpha) 0 else 255, 255, 255, 255)
 
         // Draw User image
-        for (i in 1 until points.size) {
-            val p = points[i]
-            if (!p.isDraw) continue
+        for (i in 1 until pointArray.size) {
+            val p = pointArray[i]
+            if (!p.isDraw || p.isUndo) continue
 
-            drawPath.moveTo(points[i - 1].x, points[i - 1].y)
+            drawPath.moveTo(pointArray[i - 1].x, pointArray[i - 1].y)
             drawPath.lineTo(p.x, p.y)
             canvas.drawPath(drawPath, p.paint)
             drawPath.reset()
@@ -111,19 +162,17 @@ class HGSurfaceView(context: Context, val property: HGCanvasProperty = HGCanvasP
             // Create Bitmap file
             fos = FileOutputStream(filename)
             bitmap.compress(Bitmap.CompressFormat.PNG, 100, fos)
+            fos.flush()
+
+            // 01.18 2019 Resize and re save.
+            val bitmap = BitmapFactory.decodeFile(filename.absolutePath)
+            HGImage.resizeImageCustom(400, bitmap).compress(Bitmap.CompressFormat.PNG, 100, fos)
             fos.close()
+
             filename
         } catch(ex: Exception) {
             ex.printStackTrace()
             null
         }
-    }
-
-
-    fun surfaceStop() {
-        try {
-            this.thread.setRunning(false)
-            this.thread.interrupt()
-        } catch(ex: Exception){}
     }
 }

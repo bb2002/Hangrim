@@ -51,6 +51,7 @@ class ShareFragment : Fragment() {
             return if(shuffleFile == null || drawingFile == null || !shuffleFile.exists() || !drawingFile.exists()) {
                 null
             } else {
+
                 val createdBitmap = HGImage.attachShuffleAndDrawing(shuffleFile, drawingFile)
                 // Sign 이 있는지 확인한다.
                 val signPath = HGFunctions.getSignaturePath(rootActivity)
