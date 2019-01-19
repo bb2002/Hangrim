@@ -162,11 +162,6 @@ class HGSurfaceView(context: Context, val isAlpha: Boolean = false, val useColor
             // Create Bitmap file
             fos = FileOutputStream(filename)
             bitmap.compress(Bitmap.CompressFormat.PNG, 100, fos)
-            fos.flush()
-
-            // 01.18 2019 Resize and re save.
-            val bitmap = BitmapFactory.decodeFile(filename.absolutePath)
-            HGImage.resizeImageCustom(400, bitmap).compress(Bitmap.CompressFormat.PNG, 100, fos)
             fos.close()
 
             filename

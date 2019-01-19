@@ -43,7 +43,7 @@ object HGDialog {
                 .setBoldPositiveLabel(true)
                 .setCancelable(false)
                 .setPositiveListener("Yes", posListener)
-                .setNegativeListener("NO", navListener)
+                .setNegativeListener("No", navListener)
                 .build().show()
         } catch(ex: Exception) {
             ex.printStackTrace()

@@ -41,7 +41,7 @@ object EtcProperty {
 }
 
 enum class PenSize(val size: Float) {
-    HG_THICK(13F),
-    HG_NORMAL(9F),
+    HG_THICK(20F),
+    HG_NORMAL(15F),
     HG_THIN(7F)
 }

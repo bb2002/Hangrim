@@ -104,12 +104,12 @@ class HGPaintView : RelativeLayout {
 
         // Set OnClickListeners
         this.actionbarUndoButton.setOnClickListener {
-            if (this.canvasView.undoPoint())    EtcProperty.VIBRATION_SIZE.vibration(context)       // No points
-            else                                for (i in 0..EtcProperty.UNDO_SIZE) this.canvasView.undoPoint() // Yes points
+            if (this.canvasView.undoPoint())    for (i in 0..EtcProperty.UNDO_SIZE) this.canvasView.undoPoint() // Yes points
+            else                                EtcProperty.VIBRATION_SIZE.vibration(context)       // No points
         }
 
         this.actionbarRedoButton.setOnClickListener {
-            if (this.canvasView.redoPoint())    EtcProperty.VIBRATION_SIZE.vibration(context)       // No points
+            if (!this.canvasView.redoPoint())    EtcProperty.VIBRATION_SIZE.vibration(context)       // No points
             else                                for (i in 0..EtcProperty.REDO_SIZE) this.canvasView.undoPoint() // Yes points
         }
 

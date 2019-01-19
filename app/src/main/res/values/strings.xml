@@ -47,8 +47,8 @@
     <string name="main_portal_no_remain">Congratulations!</string>
     <string name="main_portal_no_remain_ctx">Mastered all of our basic words!!\nHow about your own HANGRIM now?</string>
 
-    <string name="my_cards_remove">정말??</string>
-    <string name="my_cards_remove_content">지우면 진짜 지워집니다.\n지우시겠어요?</string>
+    <string name="my_cards_remove">HEY!!!</string>
+    <string name="my_cards_remove_content">Are you sure to delete?</string>
 
     <string name="preview_message_shuffle">You have gaind a new HanGrim.\nShare the card with your friends!</string>
     <string name="preview_message_sign">Congratulation!!\nYou have made your own signature.</string>

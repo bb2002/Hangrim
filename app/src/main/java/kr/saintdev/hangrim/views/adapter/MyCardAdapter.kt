@@ -1,7 +1,12 @@
 package kr.saintdev.hangrim.views.adapter
 
 import android.content.Context
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.os.AsyncTask
+import android.os.Handler
+import android.os.Looper
+import android.os.Message
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
@@ -35,11 +40,12 @@ class HangrimWordAdapter(var dataset: List<HangrimWord>, val listener: OnCardCli
         val item = dataset[position]
         val drawingFile = HGFunctions.isExsitDrawingFile(item, context)
 
+        var handler: Handler? = null
+
         textView.text = item.word_english
         if(drawingFile != null && drawingFile.exists()) {
             // Image is draw
-            val bitmap = BitmapFactory.decodeFile(drawingFile.absolutePath)
-            imageView.setImageBitmap(HGImage.resizeImageCustom(400, bitmap))
+            LoadImageTask(imageView, context).execute(drawingFile)
         } else {
             imageView.setImageResource(R.drawable.ic_cardmenu_not_draw)
         }
@@ -50,6 +56,23 @@ class HangrimWordAdapter(var dataset: List<HangrimWord>, val listener: OnCardCli
             listener.onLongClick(it, position)
             true
         }
+    }
+}
+
+class LoadImageTask(val imgView: ImageView, val context: Context) : AsyncTask<File, Void, Bitmap>() {
+    override fun doInBackground(vararg p0: File?): Bitmap {
+        val file = p0[0]
+        if(file != null)
+            return HGImage.resizeImageCustom(400, BitmapFactory.decodeFile(file.absolutePath))
+        else
+            return BitmapFactory.decodeResource(context.resources, R.drawable.ic_cardmenu_not_draw)
+    }
+
+    override fun onPostExecute(result: Bitmap?) {
+        super.onPostExecute(result)
+
+        if(result != null)
+            imgView.setImageBitmap(result)
     }
 }
 
@@ -71,7 +94,7 @@ class MyExpressAdapter(var dataset: List<MyExpressWord>, val listener: OnCardCli
         val item = dataset[position]
 
         textView.text = item.called
-        imageView.setImageBitmap(HGImage.resizeImageCustom(400, BitmapFactory.decodeFile(item.imagePath)))
+        LoadImageTask(imageView, context).execute(File(item.imagePath))
 
         // setOnClickListener
         holder.view.setOnClickListener{ listener.onClick(it, position) }
