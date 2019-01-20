@@ -12,6 +12,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
+import android.view.View.*
 import android.view.ViewGroup
 import android.widget.*
 import kotlinx.android.synthetic.main.activity_my_card.*
@@ -37,178 +38,270 @@ import retrofit2.Response
 import java.io.File
 
 class MyCardActivity : AppCompatActivity(), OnCardClickListener {
-    private lateinit var categoryButtons: Array<View>
-    private lateinit var categoryButtonText: Array<TextView>
+    private lateinit var categoryButtons: Array<View>           // Category IMAGE VIEW
+    private lateinit var categoryButtonText: Array<TextView>    // Category TEXT VIEW
 
-    private lateinit var hangrimAdapter: HangrimWordAdapter
-    private lateinit var myExpressAdapter: MyExpressAdapter
-    private var selectedAdapter = 0
-    private var selectedCategory = "Object"
+    private lateinit var hangrimAdapter: HangrimWordAdapter     // Data Adapter [Server Data ONLY]
+    private lateinit var myExpressAdapter: MyExpressAdapter     // Data Adapter [MyExpress ONLY]
+    private var dataSetAdapter = CategoryItem.Source.SERVER     // Data Source
 
+    private var autoScrollIdx = -1                             // Auto scroll position
+    private var autoWordUUIDtoScrollIdx: String? = null        // When uuid -> scroll pos
+    private var selectedCategory = CategoryItem.ID.OBJECT      // Selected category
+
+    /**
+     * @Date 01.20 2019
+     * Override Activity functions
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_card)
 
+        initXMLResources()
+
+        // Set Auto scroll
+        this.autoScrollIdx = intent.getIntExtra("scroll", -1)
+        this.selectedCategory = CategoryItem.toCategoryID(intent.getStringExtra("category") ?: "Object")
+        val isUseWordUUID = intent.getStringExtra("uuid") ?: null
+        if(isUseWordUUID != null && this.autoScrollIdx == -1) {
+            // Auto scroll idx
+            this.autoWordUUIDtoScrollIdx = isUseWordUUID
+        }
+
+        // Set listener
+        setSupportActionBar(mycard_toolbar)
+        supportActionBar?.setDisplayShowCustomEnabled(true)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+        mycard_go_home.setOnClickListener { finish() }
+
+        // Set Grid view
+        my_card_grid.setHasFixedSize(true)
+        this.hangrimAdapter = HangrimWordAdapter(listOf(), this)
+        this.myExpressAdapter = MyExpressAdapter(listOf(), this)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        refreshDataSet()            // Refresh data set
+    }
+
+    override fun onClick(view: View, pos: Int) {
+        when(this.dataSetAdapter) {
+            CategoryItem.Source.SERVER -> {
+                // ON SERVER
+                val item = this.hangrimAdapter.dataset[pos]
+                val file = HGFunctions.getSaveFileLocation("${item.prop_uuid}.png", this)
+
+                if(file.exists()) {
+                    val intent = Intent(this, DrawingPreviewActivity::class.java)
+                    intent.putExtra("image", file.absolutePath)
+                    intent.putExtra("word-english", item.word_english)
+                    intent.putExtra("word-symbol", item.word_symbol)
+                    startActivity(intent)
+                } else {
+                    val intent = Intent(this, ShuffleActivity::class.java)
+                    intent.putExtra("word-english", item.word_english)
+                    intent.putExtra("word-korean", item.word_korean)
+                    intent.putExtra("word-uuid", item.prop_uuid)
+                    intent.putExtra("word-symbol", item.word_symbol)
+                    intent.putExtra("word-category", item.prop_category)
+                    startActivity(intent)
+
+                    finish()
+                }
+            }
+
+            CategoryItem.Source.DB -> {
+                // ON DB
+                val item = this.myExpressAdapter.dataset[pos]
+                val intent = Intent(this, MyExprViewActivity::class.java)
+                intent.putExtra("image", item.imagePath)
+                startActivity(intent)
+            }
+        }
+
+        this.autoScrollIdx = pos
+    }
+
+    override fun onLongClick(view: View, pos: Int) {
+        super.onLongClick(view, pos)
+
+        when(this.dataSetAdapter) {
+            CategoryItem.Source.SERVER -> {
+                val item = hangrimAdapter.dataset[pos]
+
+                if(HGFunctions.getSaveFileLocation("${item.prop_uuid}.png", this).exists()) {
+                    R.string.my_cards_remove.alert(
+                        R.string.my_cards_remove_content,
+                        this,
+                        DialogInterface.OnClickListener { dialog, _ ->
+                            SQLManager.removeShuffleWord(item.prop_uuid, this)
+                            dialog.dismiss()
+                            refreshDataSet()
+                        }
+                    )
+                }
+            }
+
+            CategoryItem.Source.DB -> {
+                val item = myExpressAdapter.dataset[pos]
+
+                R.string.my_cards_remove.alert(R.string.my_cards_remove_content,this,
+                    DialogInterface.OnClickListener { dialog, _ ->
+                        SQLManager.removeMyExpressWord(item.uuid, this)
+                        dialog.dismiss()
+                        refreshDataSet()
+                    }
+                )
+            }
+        }
+    }
+
+    /**
+     * @Date 01.20 2019
+     * INIT Inner functions
+     */
+    private fun initXMLResources() {
+        // INIT Category Buttons
         this.categoryButtons = arrayOf(
             mycard_cate_0, mycard_cate_1, mycard_cate_2,
             mycard_cate_3, mycard_cate_4, mycard_cate_5,
             mycard_cate_6, mycard_cate_7, mycard_cate_8,
             mycard_cate_9, mycard_cate_10 )
 
+        // INIT Category Button Text
         this.categoryButtonText = arrayOf(
             mycard_cate_0_title, mycard_cate_1_title, mycard_cate_2_title,
             mycard_cate_3_title, mycard_cate_4_title, mycard_cate_5_title,
             mycard_cate_6_title, mycard_cate_7_title, mycard_cate_8_title,
             mycard_cate_9_title, mycard_cate_10_title )
 
-        val listener = OnNavClickListener()
+        // Set Listener
+        val listener = OnCategoryClickListener()
         for(btn in this.categoryButtons) btn.setOnClickListener(listener)
-
-        setSupportActionBar(mycard_toolbar)
-        supportActionBar?.setDisplayShowCustomEnabled(true)
-        supportActionBar?.setDisplayShowTitleEnabled(false)
-        mycard_go_home.setOnClickListener { finish() }
-
-        // Set recycle grid view
-        my_card_grid.setHasFixedSize(true)
-        this.hangrimAdapter = HangrimWordAdapter(listOf(), this)
-        this.myExpressAdapter = MyExpressAdapter(listOf(), this)
-
-        // 기본값 선택
-        onNavClickUpdate(mycard_cate_0)
     }
 
-    override fun onResume() {
-        super.onResume()
-        refreshItem()
-    }
+    private fun setCategorySelection(category: CategoryItem.ID) {
+        if(category == CategoryItem.ID.MY_OWN) {
+            // Select MY Own
+            applyButtonView(CategoryItem.ID.MY_OWN)
+            val dataSet = SQLManager.getMyExpressWords(this@MyCardActivity)
+            applyDataGridView(CategoryItem.Source.DB, dbData = dataSet)
 
-    private fun refreshItem() {
-        if (this.selectedCategory == "CustomCard") {
-            // 장치에서 자신의 표현을 따로 가져와 업데이트 한다.
-            val myExprs = SQLManager.getMyExpressWords(this@MyCardActivity)
-            resetAdapterForExpress(myExprs.toList())
+            moveScrollToPosition()
         } else {
-            requestWordFromServer(this.selectedCategory!!)
+            // Select from server
+            requestWordFromServer(category)
         }
+
+        applyButtonView(category)           // Apply button view
+        this.selectedCategory = category
     }
 
-    /**
-     * @Date 01.13 2019
-     * CardView Click listener
-     */
-    override fun onClick(view: View, pos: Int) {
-        if(this.selectedAdapter == 0) {
-            // On Server
-            val item = this.hangrimAdapter.dataset[pos]
-            val file = HGFunctions.getSaveFileLocation("${item.prop_uuid}.png", this)
+    private fun applyButtonView(category: CategoryItem.ID) {
+        this.categoryButtonText.forEach { it.visibility = INVISIBLE }
+        this.categoryButtonText[category.id].visibility = VISIBLE
+    }
 
-            if(file.exists()) {
-                val intent = Intent(this, DrawingPreviewActivity::class.java)
-                intent.putExtra("image", file.absolutePath)
-                intent.putExtra("word-english", item.word_english)
-                intent.putExtra("word-symbol", item.word_symbol)
-                startActivity(intent)
-            } else {
-                val intent = Intent(this, ShuffleActivity::class.java)
-                intent.putExtra("word-english", item.word_english)
-                intent.putExtra("word-korean", item.word_korean)
-                intent.putExtra("word-uuid", item.prop_uuid)
-                intent.putExtra("word-symbol", item.word_symbol)
-                startActivity(intent)
+    private fun applyDataGridView(source: CategoryItem.Source,
+                                  serverData: List<HangrimWord> = listOf(), dbData: List<MyExpressWord> = listOf()) {
+        when(source) {
+            CategoryItem.Source.SERVER -> {
+                if(serverData.isEmpty()) {
+                    // Set Empty set.
+                    my_card_empty.visibility = VISIBLE
+                    my_card_grid.visibility = INVISIBLE
+                } else {
+                    // Apply data
+                    my_card_empty.visibility = GONE
+                    my_card_grid.visibility = VISIBLE
+                    this.hangrimAdapter = HangrimWordAdapter(serverData, this)
+                    my_card_grid.adapter = this.hangrimAdapter
+                }
+
+                this.dataSetAdapter = CategoryItem.Source.SERVER
             }
-        } else {
-            // On Express
-            val item = this.myExpressAdapter.dataset[pos]
-            val intent = Intent(this, MyExprViewActivity::class.java)
-            intent.putExtra("image", item.imagePath)
-            startActivity(intent)
-        }
-    }
 
-    override fun onLongClick(view: View, pos: Int) {
-        if(selectedCategory == "CustomCard") {
-            val item = myExpressAdapter.dataset[pos]
+            CategoryItem.Source.DB -> {
+                if(dbData.isEmpty()) {
+                    // Set Empty set.
+                    my_card_empty.visibility = VISIBLE
+                    my_card_grid.visibility = INVISIBLE
+                } else {
+                    // Apply data
+                    my_card_empty.visibility = GONE
+                    my_card_grid.visibility = VISIBLE
+                    this.myExpressAdapter = MyExpressAdapter(dbData, this)
+                    my_card_grid.adapter = this.myExpressAdapter
+                }
 
-            R.string.my_cards_remove.alert(R.string.my_cards_remove_content,this,
-                DialogInterface.OnClickListener { dialog, _ ->
-                    SQLManager.removeMyExpressWord(item.uuid, this)
-                    dialog.dismiss()
-                    refreshItem()
-                })
-        } else {
-            val item = hangrimAdapter.dataset[pos]
-
-            if(HGFunctions.getSaveFileLocation("${item.prop_uuid}.png", this).exists()) {
-                R.string.my_cards_remove.alert(
-                    R.string.my_cards_remove_content,
-                    this,
-                    DialogInterface.OnClickListener { dialog, _ ->
-                        SQLManager.removeShuffleWord(item.prop_uuid, this)
-                        dialog.dismiss()
-
-                        refreshItem()
-                    })
+                this.dataSetAdapter = CategoryItem.Source.DB
             }
         }
-
     }
 
-    /**
-     * @Date 01.01 2019
-     * Request from server.
-     */
-    private fun requestWordFromServer(category: String) {
+    private fun requestWordFromServer(category: CategoryItem.ID) {
         val service = Retrofit.getRetrofit().create(HangrimService::class.java)
-        val request = service.requestAllWords(category)
-        request.enqueue(ServerCallBack())
+        val request = service.requestAllWords(category.key)
+        request.enqueue(OnServerCallback())
         mycard_progress.showProgressBar()
     }
 
-    /**
-     * @Date 01.01 2019
-     * Reset Adapter
-     */
-    private fun resetAdapter(words: List<HangrimWord>) {
-        this.selectedAdapter = 0
+    private fun moveScrollToPosition() {
+        if(this.autoScrollIdx != -1) {
+            my_card_grid.scrollToPosition(this.autoScrollIdx)
+            this.autoScrollIdx = -1
+        } else if(this.autoWordUUIDtoScrollIdx != null) {
+            // Use late auto scroll
+            when(this.dataSetAdapter) {
+                CategoryItem.Source.SERVER -> {
+                    // Init auto scroll idx
+                    val dataSet = this.hangrimAdapter.dataset
+                    for(i in 0 until dataSet.size) {
+                        val data = dataSet[i]
+                        if(data.prop_uuid == this.autoWordUUIDtoScrollIdx)
+                            this.autoScrollIdx = i
+                    }
+                }
 
-        if(words.isEmpty()) {
-            my_card_grid.visibility = View.GONE
-        } else {
-            my_card_grid.visibility = View.VISIBLE
-            my_card_grid.adapter = this.hangrimAdapter
-            this.hangrimAdapter.dataset = words
+                CategoryItem.Source.DB -> {
+                    val dataSet = this.myExpressAdapter.dataset
+                    for(i in 0 until dataSet.size) {
+                        val data = dataSet[i]
+                        if(data.uuid == this.autoWordUUIDtoScrollIdx)
+                            this.autoScrollIdx = i
+                    }
+                }
+            }
+
+            this.autoWordUUIDtoScrollIdx = null
+            moveScrollToPosition()
         }
     }
 
-    private fun resetAdapterForExpress(words: List<MyExpressWord>) {
-        this.selectedAdapter = 1
+    private fun refreshDataSet() {
+        setCategorySelection(selectedCategory)
+    }
 
-        if(words.isEmpty()) {
-            my_card_grid.visibility = View.GONE
-        } else {
-            my_card_grid.visibility = View.VISIBLE
-            my_card_grid.adapter = this.myExpressAdapter
-            this.myExpressAdapter.dataset = words
+    /**
+     * @Date 01.20 2019
+     * Define inner class
+     */
+    inner class OnCategoryClickListener : View.OnClickListener {
+        override fun onClick(v: View) {
+            var idx = 0
+            for(i in 0 until categoryButtons.size) {
+                if(categoryButtons[i].id == v.id) {
+                    idx = i
+                    break
+                }
+            }
+            val category = CategoryItem.toCategoryID(idx)
+            setCategorySelection(category)
         }
     }
 
-    /**
-     * @Date 01.02 2019
-     * Nav click update
-     */
-    private fun onNavClickUpdate(v: View) {
-        this.categoryButtonText.forEach { it.visibility = View.INVISIBLE }
-
-        for(i in 0 until this.categoryButtons.size)
-            if(v.id == this.categoryButtons[i].id) this.categoryButtonText[i].visibility = View.VISIBLE
-    }
-
-    /**
-     * @Date 01.01 2019
-     * Callback from server.
-     */
-    inner class ServerCallBack : Callback<List<HangrimWord>> {
+    inner class OnServerCallback : Callback<List<HangrimWord>> {
         override fun onFailure(call: Call<List<HangrimWord>>?, t: Throwable?) {
             mycard_progress.hideProgressBar()
 
@@ -222,43 +315,12 @@ class MyCardActivity : AppCompatActivity(), OnCardClickListener {
             mycard_progress.hideProgressBar()
 
             if(body != null) {
-                resetAdapter(body)
+                applyDataGridView(CategoryItem.Source.SERVER, body)
             } else {
                 onFailure(null, null)
             }
-        }
-    }
-    /**
-     * @Date 01.02 2019
-     * OnNavMenuClickListen
-     */
-    inner class OnNavClickListener : View.OnClickListener {
-        override fun onClick(v: View) {
-            if(v.id == R.id.mycard_cate_1) {
-                // 장치에서 자신의 표현을 따로 가져와 업데이트 한다.
-                val myExprs = SQLManager.getMyExpressWords(this@MyCardActivity)
-                resetAdapterForExpress(myExprs.toList())
-                selectedCategory = "CustomCard"
-            } else {
-                val category = when (v.id) {
-                    R.id.mycard_cate_0 -> "Object"
-                    R.id.mycard_cate_2 -> "Expression"
-                    R.id.mycard_cate_3 -> "Kitchen"
-                    R.id.mycard_cate_4 -> "People"
-                    R.id.mycard_cate_5 -> "Time"
-                    R.id.mycard_cate_6 -> "Number"
-                    R.id.mycard_cate_7 -> "Body"
-                    R.id.mycard_cate_8 -> "place"
-                    R.id.mycard_cate_9 -> "Animal"
-                    R.id.mycard_cate_10 -> "ETC."
-                    else -> "Any"
-                }
 
-                requestWordFromServer(category)
-                selectedCategory = category     // 현재 선택된 카테고리 업데이트
-            }
-
-            onNavClickUpdate(v)
+            moveScrollToPosition()
         }
     }
 }

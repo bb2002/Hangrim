@@ -49,6 +49,7 @@
 
     <string name="my_cards_remove">HEY!!!</string>
     <string name="my_cards_remove_content">Are you sure to delete?</string>
+    <string name="my_card_empty">Empty set.</string>
 
     <string name="preview_message_shuffle">You have gaind a new HanGrim.\nShare the card with your friends!</string>
     <string name="preview_message_sign">Congratulation!!\nYou have made your own signature.</string>

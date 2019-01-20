@@ -1,5 +1,6 @@
 package kr.saintdev.hangrim.views.fragments.shuffle
 
+import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.util.Log
@@ -71,6 +72,8 @@ class ShuffleFragment : Fragment(), View.OnClickListener {
                     rootActivity.fragmentTemp["word-english"] = body.word_english
                     rootActivity.fragmentTemp["word-symbol"] = body.word_symbol
                     rootActivity.fragmentTemp["word-uuid"] = body.prop_uuid
+                    rootActivity.fragmentTemp["word-category"] = body.prop_category
+                    rootActivity.fragmentTemp["word-korean"] = body.word_korean
 
                     // Toast 를 열어 작성을 시작을 요청 한다.
                     Toast.makeText(context, R.string.ent_pag_dialog_2p, Toast.LENGTH_SHORT).show()
@@ -94,16 +97,18 @@ class ShuffleFragment : Fragment(), View.OnClickListener {
 
     override fun onResume() {
         super.onResume()
-        this.paintBoard.onResume()
 
         if(rootActivity.fragmentTemp["word-preload"] != null) {
             paintBoard.setPlaceHolderText(rootActivity.fragmentTemp["word-korean"] as String)           // Placeholder 을 그린다.
             paintBoard.setCommentMessage(
                 rootActivity.fragmentTemp["word-english"] as String,
                 rootActivity.fragmentTemp["word-symbol"] as String)
-        } else {
+        } else if(rootActivity.fragmentTemp["loaded"] == null) {
             callRandomWord()        // 랜덤으로 단어를 가져온다.
+            rootActivity.fragmentTemp["word-preload"] = true
         }
+
+        this.paintBoard.onResume()
     }
 
     override fun onDestroy() {

@@ -5,6 +5,7 @@ import android.graphics.*
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
+import android.view.ViewTreeObserver
 import kr.saintdev.hangrim.modules.hgdrawing.libs.HGPoint
 import kr.saintdev.hangrim.modules.hgdrawing.property.DefaultPaint
 import kr.saintdev.hangrim.modules.hgimage.HGImage
@@ -12,6 +13,9 @@ import java.io.File
 import java.io.FileOutputStream
 import java.lang.Exception
 import java.util.*
+import android.opengl.ETC1.getHeight
+
+
 
 class HGSurfaceView(context: Context, val isAlpha: Boolean = false, val useColorPaint: Boolean = false) : View(context) {
     private var placeHolderText: String? = null             // Placeholder
@@ -22,6 +26,8 @@ class HGSurfaceView(context: Context, val isAlpha: Boolean = false, val useColor
     val paint = DefaultPaint.getDefaultPaint()
     var selectedColorIndex = 0
     private val pointArray = ArrayList<HGPoint>()
+
+
 
 
     override fun onDraw(canvas: Canvas?) {
@@ -127,14 +133,25 @@ class HGSurfaceView(context: Context, val isAlpha: Boolean = false, val useColor
         this.placeHolderY = (height / 2 + rect.height() / 2).toFloat()
         this.placeHolderText = text
 
+        viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
+            override fun onGlobalLayout() {
+                viewTreeObserver.removeOnGlobalLayoutListener(this)
+
+                if(placeHolderText != null)
+                    setPlaceHolder(placeHolderText!!)
+            }
+        })
+
         invalidate()
     }
 
-    override fun onWindowFocusChanged(hasWindowFocus: Boolean) {
-        super.onWindowFocusChanged(hasWindowFocus)
-        if(this.placeHolderText != null)
-            setPlaceHolder(this.placeHolderText!!)
-    }
+//    override fun onWindowFocusChanged(hasWindowFocus: Boolean) {
+//        super.onWindowFocusChanged(hasWindowFocus)
+//        if(this.placeHolderText != null)
+//            setPlaceHolder(this.placeHolderText!!)
+//    }
+
+
 
     fun clearCanvas()           = pointArray.clear()
 

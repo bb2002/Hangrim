@@ -82,13 +82,16 @@ class ShareFragment : Fragment() {
                 }) 
             } else {
                 // DB 에 기록을 남긴다.
-                SQLManager.addShuffleCompleteWord(rootActivity.fragmentTemp["word-uuid"] as String, context!!)
+                val uuid = rootActivity.fragmentTemp["word-uuid"] as String
+                SQLManager.addShuffleCompleteWord(uuid, context!!)
 
                 // 저장 성공.
                 val intent = Intent(rootActivity, DrawingPreviewActivity::class.java)
                 intent.putExtra("image", result.absolutePath)
                 intent.putExtra("word-english", rootActivity.fragmentTemp["word-english"] as String)
                 intent.putExtra("word-symbol", rootActivity.fragmentTemp["word-symbol"] as String)
+                intent.putExtra("word-category", rootActivity.fragmentTemp["word-category"] as String)
+                intent.putExtra("word-uuid", uuid)
                 startActivity(intent)
                 rootActivity.finish()
             }

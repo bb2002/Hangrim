@@ -33,6 +33,7 @@ class ShuffleActivity : AppCompatActivity() {
             fragmentTemp["word-english"] = intent.getStringExtra("word-english")
             fragmentTemp["word-korean"] = intent.getStringExtra("word-korean")
             fragmentTemp["word-uuid"] = intent.getStringExtra("word-uuid")
+            fragmentTemp["word-category"] = intent.getStringExtra("word-category")
             fragmentTemp["word-symbol"] = intent.getStringExtra("word-symbol")
             fragmentTemp["word-preload"] = true
         }
@@ -42,7 +43,7 @@ class ShuffleActivity : AppCompatActivity() {
     }
 
 
-    var idx = 0
+    var idx = -1
     var nowFragment: Fragment? = null
     /**
      * 프레그먼트를 뒤로 이동
@@ -55,7 +56,7 @@ class ShuffleActivity : AppCompatActivity() {
              if(this.nowFragment != null) trans.remove(this.nowFragment)
 
              // 새 프레그먼트 생성
-             nowFragment = createFragment(idx--)
+             nowFragment = createFragment(--idx)
              trans.replace(R.id.hg_shuffle_main, nowFragment)
              trans.commit()
              true
@@ -73,7 +74,7 @@ class ShuffleActivity : AppCompatActivity() {
 
             // 이전 프레그먼트 제거
             if(this.nowFragment != null) trans.remove(this.nowFragment)
-            this.nowFragment = createFragment(idx++)        // 새 프레그먼트 생성
+            this.nowFragment = createFragment(++idx)        // 새 프레그먼트 생성
 
             trans.replace(R.id.hg_shuffle_main, this.nowFragment)
             trans.commit()

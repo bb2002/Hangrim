@@ -1,5 +1,6 @@
 package kr.saintdev.hangrim.views.activities.preview
 
+import android.content.Intent
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -11,6 +12,7 @@ import kr.saintdev.hangrim.R
 import kr.saintdev.hangrim.libs.func.ActivityFunctions
 import kr.saintdev.hangrim.libs.func.share
 import kr.saintdev.hangrim.libs.func.str
+import kr.saintdev.hangrim.views.activities.list.MyCardActivity
 import java.io.File
 
 /**
@@ -25,6 +27,8 @@ class DrawingPreviewActivity : AppCompatActivity() {
     private lateinit var imagePath: String
     private lateinit var wordEnglish: String
     private lateinit var wordSymbol: String
+    private var wordCategory: String? = null
+    private var wordUUID: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +42,8 @@ class DrawingPreviewActivity : AppCompatActivity() {
         this.imagePath = intent.getStringExtra("image")
         this.wordEnglish = intent.getStringExtra("word-english")
         this.wordSymbol = intent.getStringExtra("word-symbol")
+        this.wordCategory = intent.getStringExtra("word-category") ?: null
+        this.wordUUID = intent.getStringExtra("word-uuid") ?: null
 
         // set listener
         preview_share_image.setOnClickListener {
@@ -51,7 +57,16 @@ class DrawingPreviewActivity : AppCompatActivity() {
         }
 
         // Set next button click listener
-        toolbar_default_close.setOnClickListener { finish() }
+        toolbar_default_close.setOnClickListener {
+            if(this.wordCategory != null && this.wordUUID != null) {
+                val intent = Intent(applicationContext, MyCardActivity::class.java)
+                intent.putExtra("category", this.wordCategory)
+                intent.putExtra("uuid", this.wordUUID)
+                startActivity(intent)
+            }
+
+            finish()
+        }
 
         preview_content.text = R.string.preview_message_shuffle.str(this)
     }

@@ -1,5 +1,6 @@
 package kr.saintdev.hangrim.views.activities.preview
 
+import android.content.Intent
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -15,6 +16,8 @@ import kr.saintdev.hangrim.libs.func.share
 import kr.saintdev.hangrim.libs.func.str
 import kr.saintdev.hangrim.libs.sql.SQLManager
 import kr.saintdev.hangrim.modules.retrofit.MyExpressWord
+import kr.saintdev.hangrim.views.activities.list.CategoryItem
+import kr.saintdev.hangrim.views.activities.list.MyCardActivity
 import java.io.File
 
 /**
@@ -23,12 +26,15 @@ import java.io.File
  */
 class MyExprViewActivity : AppCompatActivity(), TextWatcher {
     private lateinit var imagePath: File
+    private var useMoveCurrentPosition = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_drawing_preview)
 
         this.imagePath = File(intent.getStringExtra("image"))
+        this.useMoveCurrentPosition = intent.getBooleanExtra("isMoveCurrentPosition", false)
+        val uuid = this.imagePath.name
 
         if(!imagePath.exists()) {
             // 파일이 없다.
@@ -38,7 +44,6 @@ class MyExprViewActivity : AppCompatActivity(), TextWatcher {
             preview_image.setImageBitmap(BitmapFactory.decodeFile(imagePath.absolutePath))
 
             // 해당 단어의 데이터 출력
-            val uuid = this.imagePath.name
             val word = SQLManager.selectMyExpressWord(this, uuid)
             if(word != null) {
                 preview_title_editor.text = SpannableStringBuilder(word.called)
@@ -57,7 +62,16 @@ class MyExprViewActivity : AppCompatActivity(), TextWatcher {
         preview_comment_editor.addTextChangedListener(this)
 
         // Set next button click listener
-        toolbar_default_close.setOnClickListener { finish() }
+        toolbar_default_close.setOnClickListener {
+            if(this.useMoveCurrentPosition) {
+                val intent = Intent(applicationContext, MyCardActivity::class.java)
+                intent.putExtra("category", CategoryItem.ID.MY_OWN.key)
+                intent.putExtra("uuid", uuid)
+                startActivity(intent)
+            }
+
+            finish()
+        }
 
         preview_content.text = R.string.preview_message_shuffle.str(this)
     }

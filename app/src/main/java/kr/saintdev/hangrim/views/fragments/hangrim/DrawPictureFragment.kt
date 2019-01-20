@@ -42,7 +42,7 @@ class DrawPictureFragment : Fragment(), View.OnClickListener {
 
     override fun onResume() {
         super.onResume()
-        this.onResume()
+        this.paintBoard.onResume()
     }
 
     override fun onDestroy() {

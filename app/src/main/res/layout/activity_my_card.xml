@@ -45,17 +45,6 @@
             android:layout_margin="4dp"
             layout="@layout/mycard_category_items" />
 
-        <!-- 01.13 2019 성능 문제로 @Deprecated
-        <GridView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/my_card_grid"
-            android:padding="8dp"
-            android:columnWidth="100dp"
-            android:numColumns="3"
-            android:verticalSpacing="10dp"
-            android:horizontalSpacing="10dp"
-            android:gravity="center"/> -->
         <android.support.v7.widget.RecyclerView
                 android:id="@+id/my_card_grid"
                 android:layout_width="wrap_content"
@@ -72,4 +61,13 @@
         android:id="@+id/mycard_progress"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/my_card_empty"
+            android:text="@string/my_card_empty"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+    />
 </RelativeLayout>

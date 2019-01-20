@@ -85,6 +85,7 @@ class ShareFragment : Fragment() {
                 // 저장 성공.
                 val intent = Intent(rootActivity, MyExprViewActivity::class.java)
                 intent.putExtra("image", result.absolutePath)
+                intent.putExtra("isMoveCurrentPosition", true)
                 startActivity(intent)
                 rootActivity.finish()
             }
