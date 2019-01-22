@@ -30,7 +30,7 @@
                 android:background="@null"
                 android:src="@drawable/ic_hgpaint_action_undo"
                 android:scaleType="centerInside"
-                android:layout_marginEnd="8dp"/>
+                android:layout_marginEnd="16dp"/>
 
             <ImageButton
                 android:layout_width="35dp"
@@ -39,7 +39,7 @@
                 android:background="@null"
                 android:src="@drawable/ic_hgpaint_action_redo"
                 android:scaleType="centerInside"
-                android:layout_marginStart="8dp"/>
+                android:layout_marginStart="16dp"/>
         </LinearLayout>
         <ImageButton
             android:layout_width="40dp"

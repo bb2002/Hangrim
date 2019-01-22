@@ -60,4 +60,6 @@
     <string name="ent_pag_dialog_3p">Draw a picture that reminds you of the word!</string>
     <string name="ent_pag_dialog_6p">Write Hangeul you have learned!</string>
     <string name="ent_pag_dialog_9p">Create your own signature!</string>
+
+    <string name="ent_splash_text">Ready for your HanGrim gift? 두근두근♡</string>
 </resources>

@@ -3,11 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="?android:attr/actionBarSize">
     <ImageButton
-        android:layout_width="35dp"
-        android:layout_height="35dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:id="@+id/toolbar_default_close"
         android:background="@null"
-        android:padding="4dp"
         android:src="@drawable/ic_hgpaint_action_next"
         android:scaleType="centerInside"
         android:layout_gravity="end"

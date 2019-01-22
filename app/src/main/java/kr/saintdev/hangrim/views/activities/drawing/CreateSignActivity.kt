@@ -21,7 +21,7 @@ class CreateSignActivity : AppCompatActivity(), View.OnClickListener {
 
         this.paintBoard.onCreate()
         this.paintBoard.setBackwardListener(View.OnClickListener { finish() }, null)
-        this.paintBoard.setForwardListener(this, null)
+        this.paintBoard.setForwardListener(this, R.drawable.ic_hgpaint_action_download)
 
         Toast.makeText(this, R.string.ent_pag_dialog_9p, Toast.LENGTH_SHORT).show()
     }
