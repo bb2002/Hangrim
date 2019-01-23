@@ -13,10 +13,15 @@ import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.support.v4.content.FileProvider
 import android.support.v7.app.AlertDialog
+import android.support.v7.app.AppCompatActivity
 import android.util.TypedValue
+import com.fsn.cauly.CaulyAdInfoBuilder
+import com.fsn.cauly.CaulyCloseAd
+import kr.saintdev.hangrim.R
 import java.io.File
 import java.io.FileOutputStream
 import java.lang.Exception
+import java.util.*
 
 fun Int.str(context: Context) = context.resources.getString(this)
 
@@ -69,6 +74,23 @@ fun File.share(context: Context) {
 }
 
 fun Int.vibration(context: Context)  = (context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator).vibrate(this.toLong())
+
+object Ads {
+    const val AD_OPEN_RD = 30
+    fun isOpenAds() = Random().nextInt(99) < AD_OPEN_RD
+
+    fun createAds(context: Context) : CaulyCloseAd {
+        val code = R.string.cauly_key.str(context)
+
+        val closeAdInfo = CaulyAdInfoBuilder(code)
+        val mCloseAd = CaulyCloseAd()
+        mCloseAd.disableBackKey()
+        mCloseAd.setAdInfo(closeAdInfo.build())
+        return mCloseAd
+    }
+
+    fun createADRandom(context: Context) = if(isOpenAds()) createAds(context) else null
+}
 
 object Permission {
     fun isGratedPermission(context: Context) : Boolean {

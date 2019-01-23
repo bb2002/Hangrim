@@ -1,9 +1,11 @@
 package kr.saintdev.hangrim.views.fragments.shuffle
 
+import android.content.ContentValues
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.AsyncTask
 import android.os.Bundle
+import android.provider.MediaStore
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -84,6 +86,17 @@ class ShareFragment : Fragment() {
                 // DB 에 기록을 남긴다.
                 val uuid = rootActivity.fragmentTemp["word-uuid"] as String
                 SQLManager.addShuffleCompleteWord(uuid, context!!)
+
+                // 01.23 2019 겔러리에 저장 한다.
+                val path = HGFunctions.getGalleryPath()
+                val imagePath = File(path, "${rootActivity.fragmentTemp["word-english"]}.png")
+                result?.copyTo(imagePath, true, 1024)
+
+                val values = ContentValues()
+                values.put(MediaStore.Images.Media.DATA, imagePath.absolutePath)
+                values.put(MediaStore.Images.Media.MIME_TYPE, "image/png")
+                context?.contentResolver?.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values)
+                // 01.23 2019 겔러리 저장 끝.
 
                 // 저장 성공.
                 val intent = Intent(rootActivity, DrawingPreviewActivity::class.java)

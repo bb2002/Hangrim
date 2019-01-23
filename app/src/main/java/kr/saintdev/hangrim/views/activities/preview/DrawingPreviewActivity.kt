@@ -6,10 +6,13 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.Toast
+import com.fsn.cauly.CaulyCloseAd
+import com.fsn.cauly.CaulyCloseAdListener
 import kotlinx.android.synthetic.main.activity_drawing_preview.*
 import kotlinx.android.synthetic.main.toolbar_default_close.*
 import kr.saintdev.hangrim.R
 import kr.saintdev.hangrim.libs.func.ActivityFunctions
+import kr.saintdev.hangrim.libs.func.Ads
 import kr.saintdev.hangrim.libs.func.share
 import kr.saintdev.hangrim.libs.func.str
 import kr.saintdev.hangrim.views.activities.list.MyCardActivity
@@ -29,6 +32,7 @@ class DrawingPreviewActivity : AppCompatActivity() {
     private lateinit var wordSymbol: String
     private var wordCategory: String? = null
     private var wordUUID: String? = null
+    private var caulyAD: CaulyCloseAd? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,6 +48,8 @@ class DrawingPreviewActivity : AppCompatActivity() {
         this.wordSymbol = intent.getStringExtra("word-symbol")
         this.wordCategory = intent.getStringExtra("word-category") ?: null
         this.wordUUID = intent.getStringExtra("word-uuid") ?: null
+
+        this.caulyAD = Ads.createAds(this)
 
         // set listener
         preview_share_image.setOnClickListener {
@@ -70,6 +76,12 @@ class DrawingPreviewActivity : AppCompatActivity() {
 
         preview_content.text = R.string.preview_message_shuffle.str(this)
     }
+
+    override fun onResume() {
+        super.onResume()
+        this.caulyAD?.resume(this)
+    }
+
 
     override fun onStart() {
         super.onStart()

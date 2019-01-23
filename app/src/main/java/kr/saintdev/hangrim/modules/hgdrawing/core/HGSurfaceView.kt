@@ -128,16 +128,16 @@ class HGSurfaceView(context: Context, val isAlpha: Boolean = false, val useColor
         this.placeHolderPaint = DefaultPaint.getPlaceHolderPaint(DefaultPaint.getPlaceHolderTextSize(context).toFloat())
         val rect = Rect()
 
-        val textArr = arrayListOf<Char>()
-        for(i in 0 until text.length) {
-            if(i != text.length - 1) {
-                textArr.add(text[i])
-                textArr.add(' ')
-            } else {
-                textArr.add(text[i])
-            }
-        }
-        val text = textArr.joinToString("", "", "")
+//        val textArr = arrayListOf<Char>()
+//        for(i in 0 until text.length) {
+//            if(i != text.length - 1) {
+//                textArr.add(text[i])
+//                textArr.add(' ')
+//            } else {
+//                textArr.add(text[i])
+//            }
+//        }
+//        val text = textArr.joinToString("", "", "")
 
         this.placeHolderPaint?.getTextBounds(text, 0, text.length, rect)
         this.placeHolderX = (width / 2 - rect.width() / 2).toFloat()
@@ -164,7 +164,10 @@ class HGSurfaceView(context: Context, val isAlpha: Boolean = false, val useColor
 
 
 
-    fun clearCanvas()           = pointArray.clear()
+    fun clearCanvas() {
+        pointArray.clear()
+        invalidate()
+    }
 
     fun exportDrawing(filename: File) : File? {
         val drawPath = Path()

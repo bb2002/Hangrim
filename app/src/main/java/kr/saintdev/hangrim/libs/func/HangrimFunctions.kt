@@ -40,6 +40,10 @@ object HGFunctions {
     fun getMyExpressPath(context: Context) =
             File(context.filesDir, System.currentTimeMillis().toString() + ".png")
 
+    // 겔러리 경로
+    fun getGalleryPath() =
+            File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).absolutePath + File.separator + "Hangrim" + File.separator)
+
     /**
      * @Date 01.01 2019
      * Drawing data 가 존재하는지 확인 한다.

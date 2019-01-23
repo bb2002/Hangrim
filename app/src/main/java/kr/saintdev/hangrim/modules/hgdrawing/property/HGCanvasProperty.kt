@@ -25,7 +25,7 @@ object DefaultPaint {
         val paint = getDefaultPaint()
         paint.color = Color.rgb(189, 195, 199)
         paint.textSize = size
-        paint.typeface = Typeface.DEFAULT
+        paint.typeface = Typeface.MONOSPACE
         paint.isAntiAlias = true
         paint.style = Paint.Style.FILL
         return paint

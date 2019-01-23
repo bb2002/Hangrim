@@ -106,8 +106,6 @@ class MyCardActivity : AppCompatActivity(), OnCardClickListener {
                     intent.putExtra("word-symbol", item.word_symbol)
                     intent.putExtra("word-category", item.prop_category)
                     startActivity(intent)
-
-                    finish()
                 }
             }
 

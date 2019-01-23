@@ -110,7 +110,7 @@ class HGPaintView : RelativeLayout {
 
         this.actionbarRedoButton.setOnClickListener {
             if (!this.canvasView.redoPoint())    EtcProperty.VIBRATION_SIZE.vibration(context)       // No points
-            else                                for (i in 0..EtcProperty.REDO_SIZE) this.canvasView.undoPoint() // Yes points
+            else                                for (i in 0..EtcProperty.REDO_SIZE) this.canvasView.redoPoint() // Yes points
         }
 
         addView(rootView)           // Add view
