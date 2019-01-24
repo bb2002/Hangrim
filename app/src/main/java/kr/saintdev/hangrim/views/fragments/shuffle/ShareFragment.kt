@@ -105,7 +105,11 @@ class ShareFragment : Fragment() {
                 intent.putExtra("word-symbol", rootActivity.fragmentTemp["word-symbol"] as String)
                 intent.putExtra("word-category", rootActivity.fragmentTemp["word-category"] as String)
                 intent.putExtra("word-uuid", uuid)
+                intent.putExtra("ad", true)         // 01.24 2019 광고 노출을 실행 함.
+                intent.putExtra("need-open",
+                    rootActivity.fragmentTemp["need-open"] as Boolean)  // 01.24 2019 5p 이동을 지원함.
                 startActivity(intent)
+
                 rootActivity.finish()
             }
         }

@@ -35,7 +35,9 @@ class HGPaintView : RelativeLayout {
     private lateinit var navBarBottom: FrameLayout          // Canvas sub toolbar bottom
 
     private lateinit var actionbarForwardButton: ImageButton    // Forward
+    private lateinit var actionbarForwardText: TextView         // Forward text 01.24 2019
     private lateinit var actionbarBackwardButton: ImageButton   // Backward
+    private lateinit var actionbarBackwardText: TextView         // Backward text 01.24 2019
     private lateinit var actionbarUndoButton: ImageButton       // Undo
     private lateinit var actionbarRedoButton: ImageButton       // Redo
 
@@ -86,7 +88,9 @@ class HGPaintView : RelativeLayout {
 
         // Find All Actionbar buttons
         this.actionbarForwardButton =   toolView.findViewById(R.id.hgpaint_actionbar_forward)
+        this.actionbarForwardText =     toolView.findViewById(R.id.hgpaint_actionbar_forward_t)
         this.actionbarBackwardButton =  toolView.findViewById(R.id.hgpaint_actionbar_back)
+        this.actionbarBackwardText =     toolView.findViewById(R.id.ic_hgpaint_action_back_t)
         this.actionbarUndoButton =      toolView.findViewById(R.id.hgpaint_actionbar_undo)
         this.actionbarRedoButton =      toolView.findViewById(R.id.hgpaint_actionbar_redo)
 
@@ -186,6 +190,7 @@ class HGPaintView : RelativeLayout {
 
     fun setBackwardListener(listener: View.OnClickListener, icon: Int?) {
         this.actionbarBackwardButton.setOnClickListener(listener)
+        this.actionbarBackwardText.setOnClickListener(listener)
         if(icon != null) {
             this.actionbarBackwardButton.setImageResource(icon)
         }
@@ -193,8 +198,10 @@ class HGPaintView : RelativeLayout {
 
     fun setForwardListener(listener: View.OnClickListener, icon: Int?) {
         this.actionbarForwardButton.setOnClickListener(listener)
+        this.actionbarForwardText.setOnClickListener(listener)
         if(icon != null) {
             this.actionbarForwardButton.setImageResource(icon)
+            this.actionbarForwardText.visibility = View.GONE
         }
     }
 

@@ -8,6 +8,8 @@ import android.view.View
 import android.widget.Toast
 import com.fsn.cauly.CaulyCloseAd
 import com.fsn.cauly.CaulyCloseAdListener
+import com.fsn.cauly.CaulyInterstitialAd
+import com.fsn.cauly.CaulyInterstitialAdListener
 import kotlinx.android.synthetic.main.activity_drawing_preview.*
 import kotlinx.android.synthetic.main.toolbar_default_close.*
 import kr.saintdev.hangrim.R
@@ -26,13 +28,14 @@ import java.io.File
  * intent["word-symbol"] = word.symbol
  */
 
-class DrawingPreviewActivity : AppCompatActivity() {
+class DrawingPreviewActivity : AppCompatActivity(), CaulyInterstitialAdListener {
     private lateinit var imagePath: String
     private lateinit var wordEnglish: String
     private lateinit var wordSymbol: String
     private var wordCategory: String? = null
     private var wordUUID: String? = null
-    private var caulyAD: CaulyCloseAd? = null
+    private var caulyAD: CaulyInterstitialAd? = null
+    private var moveNextWindow = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,8 +51,13 @@ class DrawingPreviewActivity : AppCompatActivity() {
         this.wordSymbol = intent.getStringExtra("word-symbol")
         this.wordCategory = intent.getStringExtra("word-category") ?: null
         this.wordUUID = intent.getStringExtra("word-uuid") ?: null
+        this.moveNextWindow = intent.getBooleanExtra("need-open", true)
+        val openAds = intent.getBooleanExtra("ad", false)
 
-        this.caulyAD = Ads.createAds(this)
+        if(openAds) {
+            // 01.24 2019 광고 실행
+            this.caulyAD = Ads.createADRandom(this, this)
+        }
 
         // set listener
         preview_share_image.setOnClickListener {
@@ -64,7 +72,7 @@ class DrawingPreviewActivity : AppCompatActivity() {
 
         // Set next button click listener
         toolbar_default_close.setOnClickListener {
-            if(this.wordCategory != null && this.wordUUID != null) {
+            if(this.wordCategory != null && this.wordUUID != null && this.moveNextWindow) {
                 val intent = Intent(applicationContext, MyCardActivity::class.java)
                 intent.putExtra("category", this.wordCategory)
                 intent.putExtra("uuid", this.wordUUID)
@@ -77,11 +85,15 @@ class DrawingPreviewActivity : AppCompatActivity() {
         preview_content.text = R.string.preview_message_shuffle.str(this)
     }
 
-    override fun onResume() {
-        super.onResume()
-        this.caulyAD?.resume(this)
+    override fun onLeaveInterstitialAd(p0: CaulyInterstitialAd?) {}
+
+    override fun onReceiveInterstitialAd(ads: CaulyInterstitialAd?, charge: Boolean) {
+        ads?.show()
     }
 
+    override fun onClosedInterstitialAd(p0: CaulyInterstitialAd?) {}
+
+    override fun onFailedToReceiveInterstitialAd(p0: CaulyInterstitialAd?, p1: Int, p2: String?) {}
 
     override fun onStart() {
         super.onStart()

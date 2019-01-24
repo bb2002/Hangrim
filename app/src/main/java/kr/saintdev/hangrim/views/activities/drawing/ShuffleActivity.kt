@@ -38,6 +38,8 @@ class ShuffleActivity : AppCompatActivity() {
             fragmentTemp["word-preload"] = true
         }
 
+        fragmentTemp["need-open"] = intent.getBooleanExtra("need-open", true)
+
         // 화면을 이동 한다.
         gotoForward()
     }

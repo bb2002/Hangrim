@@ -105,6 +105,7 @@ class MyCardActivity : AppCompatActivity(), OnCardClickListener {
                     intent.putExtra("word-uuid", item.prop_uuid)
                     intent.putExtra("word-symbol", item.word_symbol)
                     intent.putExtra("word-category", item.prop_category)
+                    intent.putExtra("need-open", false)
                     startActivity(intent)
                 }
             }

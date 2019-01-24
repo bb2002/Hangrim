@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#F1F2F2</color>
+    <color name="colorPrimary">#FBFBFB</color>
     <color name="colorPrimaryDark">#2f3640</color>
     <color name="colorAccent">#c23616</color>
 
@@ -8,7 +8,6 @@
     <color name="hgpaint_toolbar">#F1F2F2</color>
 
     <color name="toolbar_text_color">#58595B</color>
-    <color name="main_portal_background">#FBFBFB</color>
     <color name="preview_text_color">#58595B</color>
 
     <color name="hgpaint_color_comment">#58595B</color>
