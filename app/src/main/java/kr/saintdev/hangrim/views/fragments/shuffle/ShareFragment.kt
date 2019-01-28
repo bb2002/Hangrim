@@ -1,11 +1,9 @@
 package kr.saintdev.hangrim.views.fragments.shuffle
 
-import android.content.ContentValues
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.AsyncTask
 import android.os.Bundle
-import android.provider.MediaStore
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -18,7 +16,6 @@ import kr.saintdev.hangrim.libs.func.save
 import kr.saintdev.hangrim.libs.func.saveInGallery
 import kr.saintdev.hangrim.libs.sql.SQLManager
 import kr.saintdev.hangrim.modules.hgimage.HGImage
-import kr.saintdev.hangrim.modules.retrofit.HangrimWord
 import kr.saintdev.hangrim.views.activities.drawing.ShuffleActivity
 import kr.saintdev.hangrim.views.activities.preview.DrawingPreviewActivity
 import java.io.File
@@ -26,7 +23,6 @@ import java.io.File
 class ShareFragment : Fragment() {
     private lateinit var v: View
     private lateinit var rootActivity: ShuffleActivity
-    private lateinit var progressBar: WP10ProgressBar
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         this.v = inflater.inflate(R.layout.fragment_drawing_load, container, false)
@@ -34,9 +30,6 @@ class ShareFragment : Fragment() {
 
         // Set custom toolbar
         this.rootActivity.setToolbarBackbutton(false)
-
-        this.progressBar = this.v.findViewById(R.id.empty_progress)
-        progressBar.showProgressBar()
 
         // is resume fragment?
         val filename = this.rootActivity.fragmentTemp["word-uuid"] as String
@@ -75,7 +68,6 @@ class ShareFragment : Fragment() {
         override fun onPostExecute(result: File?) {
             super.onPostExecute(result)
 
-            progressBar.hideProgressBar()
             if(result == null) {
                 // 저장 실패.
                 R.string.common_error.alert(R.string.shuffle_attach_failed, rootActivity, DialogInterface.OnClickListener {

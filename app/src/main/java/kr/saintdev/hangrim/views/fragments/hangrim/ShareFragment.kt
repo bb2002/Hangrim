@@ -23,14 +23,10 @@ import java.io.File
 class ShareFragment : Fragment() {
     private lateinit var v: View
     private lateinit var rootActivity: CreateCardActivity
-    private lateinit var progressBar: WP10ProgressBar
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         this.v = inflater.inflate(R.layout.fragment_drawing_load, container, false)
         this.rootActivity = activity as CreateCardActivity
-
-        this.progressBar = this.v.findViewById(R.id.empty_progress)
-        progressBar.showProgressBar()
 
         // is resume fragment?
         val savePath = HGFunctions.getMyExpressPath(context!!)
@@ -67,7 +63,6 @@ class ShareFragment : Fragment() {
         override fun onPostExecute(result: File?) {
             super.onPostExecute(result)
 
-            progressBar.hideProgressBar()
             if(result == null) {
                 // 저장 실패.
                 R.string.common_error.alert(R.string.shuffle_attach_failed, rootActivity, DialogInterface.OnClickListener {
