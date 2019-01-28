@@ -3,19 +3,22 @@
      android:layout_width="match_parent"
      android:layout_height="match_parent"
      android:background="@color/colorPrimary">
-    <ir.alirezabdn.wp7progress.WP10ProgressBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/empty_progress"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/empty_progress"
-        android:text="@string/shuffle_loading"
-        android:textColor="#222222"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="8dp"/>
+    <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:orientation="vertical">
+        <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:id="@+id/splash_load"
+                android:src="@drawable/ic_data_loading"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/ent_splash_text"
+                android:layout_marginTop="32dp"/>
+    </LinearLayout>
 </RelativeLayout>

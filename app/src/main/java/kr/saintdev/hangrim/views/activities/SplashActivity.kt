@@ -23,9 +23,9 @@ class SplashActivity : AppCompatActivity() {
         handler.sendEmptyMessageDelayed(0, 2000)
     }
 
-    override fun onResume() {
-        super.onResume()
-        val anime = AnimationUtils.loadAnimation(this, R.anim.rotate_anime)
-        splash_load.startAnimation(anime)
-    }
+//    override fun onResume() {
+//        super.onResume()
+//        val anime = AnimationUtils.loadAnimation(this, R.anim.rotate_anime)
+//        splash_load.startAnimation(anime)
+//    }
 }

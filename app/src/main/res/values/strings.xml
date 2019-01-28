@@ -37,7 +37,7 @@
     <string name="hg_category_7">BODY</string>
     <string name="hg_category_8">PLACE</string>
     <string name="hg_category_9">ANIMAL</string>
-    <string name="hg_category_10">ETC</string>
+    <string name="hg_category_10">ETC.</string>
 
     <string name="toolbar_mycard">MY HANGRIM CARD</string>
     <string name="main_portal_myhgcard">MY HANGRIM CARD</string>
@@ -45,11 +45,11 @@
     <string name="main_portal_mysign">MY SIGNATURE</string>
     <string name="main_portal_err">남은 단어를 확인 할 수 없습니다..</string>
     <string name="main_portal_no_remain">Congratulations!</string>
-    <string name="main_portal_no_remain_ctx">Mastered all of our basic words!!\nHow about your own HANGRIM now?</string>
+    <string name="main_portal_no_remain_ctx">Mastered all of our basic words!!\nHow about your own HanGrim now?</string>
 
     <string name="my_cards_remove">HEY!!!</string>
     <string name="my_cards_remove_content">Are you sure to delete?</string>
-    <string name="my_card_empty">Empty set.</string>
+    <string name="my_card_empty">Tab on [CREATE HANGRIM] to create your own HanGrim.</string>
 
     <string name="preview_message_shuffle">You have gaind a new HanGrim.\nShare the card with your friends!</string>
     <string name="preview_message_sign">Congratulation!!\nYou have made your own signature.</string>
@@ -62,6 +62,7 @@
     <string name="ent_pag_dialog_9p">Create your own signature!</string>
 
     <string name="ent_splash_text">Ready for your HanGrim gift? 두근두근♡</string>
+    <string name="copyright">Copyright © 2019 HAPPY-IT All rights reserved.</string>
 
     <string name="goto_next">NEXT</string>
     <string name="goto_back">BACK</string>

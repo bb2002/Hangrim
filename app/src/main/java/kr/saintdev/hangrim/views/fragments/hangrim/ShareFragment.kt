@@ -81,7 +81,7 @@ class ShareFragment : Fragment() {
                     MyExpressWord(result.path, result.name, "", ""))
 
                 // 01.28 2019 겔러리에 저장 한다.
-                context?.saveInGallery(result, File(HGFunctions.getGalleryPath(), "self_${getDateText()}"))
+                context?.saveInGallery(result, File(HGFunctions.getGalleryPath(), "self_${getDateText()}.png"))
                 // 01.28 2019 겔러리 저장 끝.
 
 
