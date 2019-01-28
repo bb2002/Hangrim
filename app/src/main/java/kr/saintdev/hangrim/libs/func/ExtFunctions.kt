@@ -2,6 +2,7 @@ package kr.saintdev.hangrim.libs.func
 
 import android.Manifest
 import android.app.Activity
+import android.content.ContentValues
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
@@ -9,6 +10,7 @@ import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Vibrator
+import android.provider.MediaStore
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.support.v4.content.FileProvider
@@ -23,6 +25,7 @@ import kr.saintdev.hangrim.R
 import java.io.File
 import java.io.FileOutputStream
 import java.lang.Exception
+import java.text.SimpleDateFormat
 import java.util.*
 
 fun Int.str(context: Context) = context.resources.getString(this)
@@ -73,6 +76,20 @@ fun File.share(context: Context) {
     intent.putExtra(Intent.EXTRA_STREAM, targetImage)
     intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
     context.startActivity(Intent.createChooser(intent, "Select!"))
+}
+
+fun Context.saveInGallery(targetFile: File, newFile: File) {
+    targetFile.copyTo(newFile, true, 1024)
+
+    val values = ContentValues()
+    values.put(MediaStore.Images.Media.DATA, newFile.absolutePath)
+    values.put(MediaStore.Images.Media.MIME_TYPE, "image/png")
+    this.contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values)
+}
+
+fun getDateText() : String {
+    val format = SimpleDateFormat("yyyy-MM-dd-HH-mm-ss", Locale.KOREA)
+    return format.format(Date())
 }
 
 fun Int.vibration(context: Context)  = (context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator).vibrate(this.toLong())

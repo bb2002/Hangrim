@@ -15,6 +15,7 @@ import kr.saintdev.hangrim.R
 import kr.saintdev.hangrim.libs.func.HGFunctions
 import kr.saintdev.hangrim.libs.func.alert
 import kr.saintdev.hangrim.libs.func.save
+import kr.saintdev.hangrim.libs.func.saveInGallery
 import kr.saintdev.hangrim.libs.sql.SQLManager
 import kr.saintdev.hangrim.modules.hgimage.HGImage
 import kr.saintdev.hangrim.modules.retrofit.HangrimWord
@@ -88,14 +89,7 @@ class ShareFragment : Fragment() {
                 SQLManager.addShuffleCompleteWord(uuid, context!!)
 
                 // 01.23 2019 겔러리에 저장 한다.
-                val path = HGFunctions.getGalleryPath()
-                val imagePath = File(path, "${rootActivity.fragmentTemp["word-english"]}.png")
-                result?.copyTo(imagePath, true, 1024)
-
-                val values = ContentValues()
-                values.put(MediaStore.Images.Media.DATA, imagePath.absolutePath)
-                values.put(MediaStore.Images.Media.MIME_TYPE, "image/png")
-                context?.contentResolver?.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values)
+                context?.saveInGallery(result, File(HGFunctions.getGalleryPath(), "${rootActivity.fragmentTemp["word-english"]}.png"))
                 // 01.23 2019 겔러리 저장 끝.
 
                 // 저장 성공.

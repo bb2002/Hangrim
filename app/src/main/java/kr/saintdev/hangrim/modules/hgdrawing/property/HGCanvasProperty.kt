@@ -8,7 +8,7 @@ import kr.saintdev.hangrim.modules.hgdrawing.libs.HGConvert
 
 object DefaultPaint {
     fun getPlaceHolderTextSize(context: Context) =
-            HGConvert.pxToDpi(100, context)
+            HGConvert.pxToDpi(120, context)
 
     fun getDefaultPaint() : Paint {
         val paint = Paint()

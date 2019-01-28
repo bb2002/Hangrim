@@ -108,10 +108,10 @@ class HGSurfaceView(context: Context, val isAlpha: Boolean = false, val useColor
         for(i in 0 until pointArray.size) {
             val p = pointArray[i]
             if(p.isDraw && p.isUndo) {
-                // Redo 처리 한다.
+                // Undo 처리 한다.
                 p.isUndo = false
-                invalidate()
 
+                invalidate()
                 return true
             }
         }
@@ -127,17 +127,6 @@ class HGSurfaceView(context: Context, val isAlpha: Boolean = false, val useColor
     fun setPlaceHolder(text: String) {
         this.placeHolderPaint = DefaultPaint.getPlaceHolderPaint(DefaultPaint.getPlaceHolderTextSize(context).toFloat())
         val rect = Rect()
-
-//        val textArr = arrayListOf<Char>()
-//        for(i in 0 until text.length) {
-//            if(i != text.length - 1) {
-//                textArr.add(text[i])
-//                textArr.add(' ')
-//            } else {
-//                textArr.add(text[i])
-//            }
-//        }
-//        val text = textArr.joinToString("", "", "")
 
         this.placeHolderPaint?.getTextBounds(text, 0, text.length, rect)
         this.placeHolderX = (width / 2 - rect.width() / 2).toFloat()
@@ -155,13 +144,6 @@ class HGSurfaceView(context: Context, val isAlpha: Boolean = false, val useColor
 
         invalidate()
     }
-
-//    override fun onWindowFocusChanged(hasWindowFocus: Boolean) {
-//        super.onWindowFocusChanged(hasWindowFocus)
-//        if(this.placeHolderText != null)
-//            setPlaceHolder(this.placeHolderText!!)
-//    }
-
 
 
     fun clearCanvas() {

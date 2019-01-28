@@ -10,9 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import ir.alirezabdn.wp7progress.WP10ProgressBar
 import kr.saintdev.hangrim.R
-import kr.saintdev.hangrim.libs.func.HGFunctions
-import kr.saintdev.hangrim.libs.func.alert
-import kr.saintdev.hangrim.libs.func.save
+import kr.saintdev.hangrim.libs.func.*
 import kr.saintdev.hangrim.libs.sql.SQLManager
 import kr.saintdev.hangrim.modules.hgimage.HGImage
 import kr.saintdev.hangrim.modules.retrofit.MyExpressWord
@@ -81,6 +79,11 @@ class ShareFragment : Fragment() {
                 // DB 에 해당 표현 등록
                 SQLManager.insertMyExpressWord(rootActivity,
                     MyExpressWord(result.path, result.name, "", ""))
+
+                // 01.28 2019 겔러리에 저장 한다.
+                context?.saveInGallery(result, File(HGFunctions.getGalleryPath(), "self_${getDateText()}"))
+                // 01.28 2019 겔러리 저장 끝.
+
 
                 // 저장 성공.
                 val intent = Intent(rootActivity, MyExprViewActivity::class.java)

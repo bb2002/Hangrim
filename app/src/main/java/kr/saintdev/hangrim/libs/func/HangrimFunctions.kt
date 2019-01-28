@@ -42,7 +42,7 @@ object HGFunctions {
 
     // 겔러리 경로
     fun getGalleryPath() =
-            File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).absolutePath + File.separator + "Hangrim" + File.separator)
+            File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).absolutePath + File.separator + "HanGrim" + File.separator)
 
     /**
      * @Date 01.01 2019
