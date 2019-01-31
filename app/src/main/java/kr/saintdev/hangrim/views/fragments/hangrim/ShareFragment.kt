@@ -8,15 +8,14 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import ir.alirezabdn.wp7progress.WP10ProgressBar
+import android.view.animation.AnimationUtils
+import android.widget.ImageView
 import kr.saintdev.hangrim.R
 import kr.saintdev.hangrim.libs.func.*
 import kr.saintdev.hangrim.libs.sql.SQLManager
 import kr.saintdev.hangrim.modules.hgimage.HGImage
 import kr.saintdev.hangrim.modules.retrofit.MyExpressWord
 import kr.saintdev.hangrim.views.activities.drawing.CreateCardActivity
-import kr.saintdev.hangrim.views.activities.drawing.ShuffleActivity
-import kr.saintdev.hangrim.views.activities.preview.DrawingPreviewActivity
 import kr.saintdev.hangrim.views.activities.preview.MyExprViewActivity
 import java.io.File
 
@@ -27,6 +26,10 @@ class ShareFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         this.v = inflater.inflate(R.layout.fragment_drawing_load, container, false)
         this.rootActivity = activity as CreateCardActivity
+
+        // Init anim
+        val anime = AnimationUtils.loadAnimation(context, R.anim.rotate_anime)
+        this.v.findViewById<ImageView>(R.id.splash_load).startAnimation(anime)
 
         // is resume fragment?
         val savePath = HGFunctions.getMyExpressPath(context!!)

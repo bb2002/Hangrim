@@ -8,7 +8,8 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import ir.alirezabdn.wp7progress.WP10ProgressBar
+import android.view.animation.AnimationUtils
+import android.widget.ImageView
 import kr.saintdev.hangrim.R
 import kr.saintdev.hangrim.libs.func.HGFunctions
 import kr.saintdev.hangrim.libs.func.alert
@@ -30,6 +31,11 @@ class ShareFragment : Fragment() {
 
         // Set custom toolbar
         this.rootActivity.setToolbarBackbutton(false)
+
+
+        // Init anim
+        val anime = AnimationUtils.loadAnimation(context, R.anim.rotate_anime)
+        this.v.findViewById<ImageView>(R.id.splash_load).startAnimation(anime)
 
         // is resume fragment?
         val filename = this.rootActivity.fragmentTemp["word-uuid"] as String

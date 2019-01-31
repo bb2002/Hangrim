@@ -25,7 +25,7 @@ class DrawPictureFragment : Fragment(), View.OnClickListener {
         this.paintBoard.setForwardListener(this, R.drawable.ic_hgpaint_action_download)
 
         this.rootActivity.setToolbarBackbutton(false)
-        Toast.makeText(context, R.string.ent_pag_dialog_3p, Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, R.string.ent_pag_dialog_3p, Toast.LENGTH_LONG).show()
         return this.v
     }
 

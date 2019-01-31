@@ -1,9 +1,7 @@
 package kr.saintdev.hangrim.views.fragments.shuffle
 
-import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -76,7 +74,7 @@ class ShuffleFragment : Fragment(), View.OnClickListener {
                     rootActivity.fragmentTemp["word-korean"] = body.word_korean
 
                     // Toast 를 열어 작성을 시작을 요청 한다.
-                    Toast.makeText(context, R.string.ent_pag_dialog_2p, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, R.string.ent_pag_dialog_2p, Toast.LENGTH_LONG).show()
                 } else {
                     onFailure(null, null)
                 }

@@ -2,29 +2,29 @@
     <string name="app_name">Hangrim</string>
     <string name="app_name_upper">HANGRIM</string>
 
-    <string name="main_portal_createcard">카드를 만들기</string>
-    <string name="main_permission_grant_failed">파일을 저장하기 위해 접근 권한을 허용해주세요!</string>
-    <string name="main_permission_grant_err">대부분 기능이 작동하지 않을 것 입니다.</string>
+    <string name="main_portal_createcard">Create card.</string>
+    <string name="main_permission_grant_failed">Allow us to save the files in your device.</string>
+    <string name="main_permission_grant_err">Most of applications may not function.</string>
 
     <string name="hgpaint_reset_title">HEY!!</string>
     <string name="hgpaint_reset_content">Would you like to try again?</string>
-    <string name="hgpaint_unredo_error">데이터 없음</string>
-    <string name="hgpaint_undo_error_content">Undo 를 실행할 수 없습니다.</string>
-    <string name="hgpaint_redo_error_content">Redo 를 실행할 수 없습니다.</string>
+    <string name="hgpaint_unredo_error">No data found.</string>
+    <string name="hgpaint_undo_error_content">Can’t Undo.</string>
+    <string name="hgpaint_redo_error_content">Can’t Redo.</string>
 
     <string name="common_error">An error occurred.</string>
     <string name="common_file_err">File not found.</string>
 
-    <string name="shuffle_call_word_error">단어를 가져올 수 없습니다.</string>
-    <string name="shuffle_attach_failed">드로잉 데이터를 찾을 수 없습니다!</string>
-    <string name="shuffle_loading">이미지를 생성하고 있습니다...</string>
+    <string name="shuffle_call_word_error">Not able to fetch the words.</string>
+    <string name="shuffle_attach_failed">No drawing data found.</string>
+    <string name="shuffle_loading">Projecting the image.</string>
 
     <string name="drawing_preview_content">You have created a new HanGrim\nShare the card with your friends!</string>
     <string name="drawing_preview_input1">What is it called?</string>
     <string name="drawing_preview_input2">How to pronounciate in your language?</string>
-    <string name="drawing_preview_nofile">파일이 저장되지 않은 것 같습니다.</string>
+    <string name="drawing_preview_nofile">The  file may not be saved.</string>
 
-    <string name="sign_saveerr">사인을 저장 할 수 없습니다.</string>
+    <string name="sign_saveerr">Not able to save the signature.</string>
     <string name="sign_404">Sign is not found</string>
 
     <string name="hg_category_0">OBJECT</string>
@@ -43,7 +43,7 @@
     <string name="main_portal_myhgcard">MY HANGRIM CARD</string>
     <string name="main_portal_createhg">CREATE HANGRIM</string>
     <string name="main_portal_mysign">MY SIGNATURE</string>
-    <string name="main_portal_err">남은 단어를 확인 할 수 없습니다..</string>
+    <string name="main_portal_err">Internal server error.</string>
     <string name="main_portal_no_remain">Congratulations!</string>
     <string name="main_portal_no_remain_ctx">Mastered all of our basic words!!\nHow about your own HanGrim now?</string>
 
@@ -63,6 +63,8 @@
 
     <string name="ent_splash_text">Ready for your HanGrim gift? 두근두근♡</string>
     <string name="copyright">Copyright © 2019 HAPPY-IT All rights reserved.</string>
+
+    <string name="sign_exsit">You have ALREADY made your signature.\nAre you sure to make a new one?</string>
 
     <string name="goto_next">NEXT</string>
     <string name="goto_back">BACK</string>

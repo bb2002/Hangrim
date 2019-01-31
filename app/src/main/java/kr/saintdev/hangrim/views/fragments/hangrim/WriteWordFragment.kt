@@ -30,7 +30,7 @@ class WriteWordFragment : Fragment(), View.OnClickListener {
         this.paintBoard.setBackwardListener(View.OnClickListener {if(!this.rootActivity.gotoBackward()) this.rootActivity.finish() }, null)
         this.paintBoard.setForwardListener(this, null)
 
-        Toast.makeText(context, R.string.ent_pag_dialog_6p, Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, R.string.ent_pag_dialog_6p, Toast.LENGTH_LONG).show()
 
         return this.v
     }
