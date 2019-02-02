@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="?android:attr/actionBarSize">
+                android:layout_width="match_parent"
+                android:layout_height="?android:attr/actionBarSize">
     <ImageButton
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:background="@null"
-        android:src="@drawable/ic_hgpaint_action_next"
-        android:scaleType="centerInside"
-        android:layout_gravity="end"
-        android:layout_marginEnd="16dp"
-        android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"/>
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/toolbar_default_close"
+            android:background="@null"
+            android:src="@drawable/ic_hgpaint_action_next"
+            android:scaleType="centerInside"
+            android:layout_gravity="end"
+            android:layout_marginEnd="16dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"/>
 </RelativeLayout>

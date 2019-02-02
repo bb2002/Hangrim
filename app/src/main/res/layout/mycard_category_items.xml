@@ -1,259 +1,281 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal">
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
     <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_weight="1"
-        android:layout_margin="4dp">
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/mycard_cate_0"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_margin="4dp">
         <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:scaleType="centerInside"
-            android:src="@drawable/ic_cardmenu_object"
-            android:background="@null"
-            android:padding="2dp"/>
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_cardmenu_object"
+                android:background="@null"
+                android:padding="2dp"/>
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/hg_category_0"
-            android:visibility="invisible"
-            android:textSize="10.2sp"
-            android:textStyle="bold"
-            android:gravity="center"/>
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/mycard_cate_0_title"
+                android:text="@string/hg_category_0"
+                android:visibility="invisible"
+                android:textSize="10.2sp"
+                android:textStyle="bold"
+                android:gravity="center"/>
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_weight="1"
-        android:layout_margin="4dp" >
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/mycard_cate_1"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_margin="4dp" >
         <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:scaleType="centerInside"
-            android:src="@drawable/ic_cardmenu_express"
-            android:background="@null"
-            android:padding="2dp" />
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_cardmenu_express"
+                android:background="@null"
+                android:padding="2dp" />
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/hg_category_1"
-            android:visibility="invisible"
-            android:textSize="10.2sp"
-            android:textStyle="bold"
-            android:gravity="center"/>
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/mycard_cate_1_title"
+                android:text="@string/hg_category_1"
+                android:visibility="invisible"
+                android:textSize="10.2sp"
+                android:textStyle="bold"
+                android:gravity="center"/>
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_weight="1"
-        android:layout_margin="4dp">
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/mycard_cate_2"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_margin="4dp">
         <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:scaleType="centerInside"
-            android:src="@drawable/ic_cardmenu_talk"
-            android:background="@null"
-            android:padding="2dp" />
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_cardmenu_talk"
+                android:background="@null"
+                android:padding="2dp" />
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/hg_category_2"
-            android:visibility="invisible"
-            android:textSize="10.2sp"
-            android:textStyle="bold"
-            android:gravity="center"/>
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/mycard_cate_2_title"
+                android:text="@string/hg_category_2"
+                android:visibility="invisible"
+                android:textSize="10.2sp"
+                android:textStyle="bold"
+                android:gravity="center"/>
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_weight="1"
-        android:layout_margin="4dp">
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/mycard_cate_3"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_margin="4dp">
         <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:scaleType="centerInside"
-            android:src="@drawable/ic_cardmenu_kitchen"
-            android:background="@null"
-            android:padding="2dp" />
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_cardmenu_kitchen"
+                android:background="@null"
+                android:padding="2dp" />
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/hg_category_3"
-            android:visibility="invisible"
-            android:textSize="10.2sp"
-            android:textStyle="bold"
-            android:gravity="center"/>
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/mycard_cate_3_title"
+                android:text="@string/hg_category_3"
+                android:visibility="invisible"
+                android:textSize="10.2sp"
+                android:textStyle="bold"
+                android:gravity="center"/>
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_weight="1"
-        android:layout_margin="4dp">
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/mycard_cate_4"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_margin="4dp">
         <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:scaleType="centerInside"
-            android:src="@drawable/ic_cardmenu_people"
-            android:background="@null"
-            android:padding="2dp" />
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_cardmenu_people"
+                android:background="@null"
+                android:padding="2dp" />
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/hg_category_4"
-            android:visibility="invisible"
-            android:textSize="10.2sp"
-            android:textStyle="bold"
-            android:gravity="center"/>
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/mycard_cate_4_title"
+                android:text="@string/hg_category_4"
+                android:visibility="invisible"
+                android:textSize="10.2sp"
+                android:textStyle="bold"
+                android:gravity="center"/>
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_weight="1"
-        android:layout_margin="4dp">
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/mycard_cate_5"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_margin="4dp">
         <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:scaleType="centerInside"
-            android:src="@drawable/ic_cardmenu_time"
-            android:background="@null"
-            android:padding="2dp" />
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_cardmenu_time"
+                android:background="@null"
+                android:padding="2dp" />
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/hg_category_5"
-            android:visibility="invisible"
-            android:textSize="10.2sp"
-            android:textStyle="bold"
-            android:gravity="center"/>
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/mycard_cate_5_title"
+                android:text="@string/hg_category_5"
+                android:visibility="invisible"
+                android:textSize="10.2sp"
+                android:textStyle="bold"
+                android:gravity="center"/>
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_weight="1"
-        android:layout_margin="4dp">
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/mycard_cate_6"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_margin="4dp">
         <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:scaleType="centerInside"
-            android:src="@drawable/ic_cardmenu_number"
-            android:background="@null"
-            android:padding="2dp" />
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_cardmenu_number"
+                android:background="@null"
+                android:padding="2dp" />
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/hg_category_6"
-            android:visibility="invisible"
-            android:textSize="10.2sp"
-            android:textStyle="bold"
-            android:gravity="center"/>
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/mycard_cate_6_title"
+                android:text="@string/hg_category_6"
+                android:visibility="invisible"
+                android:textSize="10.2sp"
+                android:textStyle="bold"
+                android:gravity="center"/>
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_weight="1"
-        android:layout_margin="4dp">
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/mycard_cate_7"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_margin="4dp">
         <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:scaleType="centerInside"
-            android:src="@drawable/ic_cardmenu_body"
-            android:background="@null"
-            android:padding="2dp" />
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_cardmenu_body"
+                android:background="@null"
+                android:padding="2dp" />
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/hg_category_7"
-            android:visibility="invisible"
-            android:textSize="10.2sp"
-            android:textStyle="bold"
-            android:gravity="center"/>
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/mycard_cate_7_title"
+                android:text="@string/hg_category_7"
+                android:visibility="invisible"
+                android:textSize="10.2sp"
+                android:textStyle="bold"
+                android:gravity="center"/>
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_weight="1"
-        android:layout_margin="4dp">
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/mycard_cate_8"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_margin="4dp">
         <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:scaleType="centerInside"
-            android:src="@drawable/ic_cardmenu_place"
-            android:background="@null"
-            android:padding="2dp" />
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_cardmenu_place"
+                android:background="@null"
+                android:padding="2dp" />
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/hg_category_8"
-            android:visibility="invisible"
-            android:textSize="10.2sp"
-            android:textStyle="bold"
-            android:gravity="center"/>
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/mycard_cate_8_title"
+                android:text="@string/hg_category_8"
+                android:visibility="invisible"
+                android:textSize="10.2sp"
+                android:textStyle="bold"
+                android:gravity="center"/>
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_weight="1"
-        android:layout_margin="4dp">
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/mycard_cate_9"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_margin="4dp">
         <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:scaleType="centerInside"
-            android:src="@drawable/ic_cardmenu_animal"
-            android:background="@null"
-            android:padding="2dp" />
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_cardmenu_animal"
+                android:background="@null"
+                android:padding="2dp" />
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/hg_category_9"
-            android:visibility="invisible"
-            android:textSize="10.2sp"
-            android:textStyle="bold"
-            android:gravity="center"/>
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/mycard_cate_9_title"
+                android:text="@string/hg_category_9"
+                android:visibility="invisible"
+                android:textSize="10.2sp"
+                android:textStyle="bold"
+                android:gravity="center"/>
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_weight="1"
-        android:layout_margin="4dp">
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/mycard_cate_10"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_margin="4dp">
         <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:scaleType="centerInside"
-            android:src="@drawable/ic_cardmenu_etc"
-            android:background="@null"
-            android:padding="2dp" />
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_cardmenu_etc"
+                android:background="@null"
+                android:padding="2dp" />
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/hg_category_10"
-            android:visibility="invisible"
-            android:textSize="10.2sp"
-            android:textStyle="bold"
-            android:gravity="center"/>
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/mycard_cate_10_title"
+                android:text="@string/hg_category_10"
+                android:visibility="invisible"
+                android:textSize="10.2sp"
+                android:textStyle="bold"
+                android:gravity="center"/>
     </LinearLayout>
 </LinearLayout>

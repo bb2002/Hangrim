@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#ffffff">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#ffffff">
     <android.support.v7.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -17,17 +17,17 @@
             android:layout_alignParentEnd="true"
             android:layout_below="@id/hgpaint_actionbar"/>
 
-        <!-- Canvas area -->
-        <RelativeLayout
+    <!-- Canvas area -->
+    <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_toStartOf="@+id/hgpaint_toolbar_container"
             android:layout_below="@id/hgpaint_actionbar">
-            <RelativeLayout
+        <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-            >
-                <FrameLayout
+                android:id="@+id/hgpaint_canvas_area">
+            <FrameLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/hgpaint_canvas_container"
@@ -35,8 +35,8 @@
                     android:layout_centerVertical="true"
                     android:layout_centerHorizontal="true"/>
 
-                <!-- Divide Line draw -->
-                <ImageView
+            <!-- Divide Line draw -->
+            <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="6dp"
                     android:id="@+id/hgpaint_divide_top"
@@ -44,7 +44,7 @@
                     android:src="@drawable/hgpaint_divide_hor"
                     android:layout_alignTop="@id/hgpaint_canvas_container"/>
 
-                <ImageView
+            <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="6dp"
                     android:id="@+id/hgpaint_divide_bottom"
@@ -52,8 +52,8 @@
                     android:src="@drawable/hgpaint_divide_hor"
                     android:layout_alignBottom="@id/hgpaint_canvas_container"/>
 
-                <!-- Divide Line Left -->
-                <ImageView
+            <!-- Divide Line Left -->
+            <ImageView
                     android:layout_width="5dp"
                     android:layout_height="match_parent"
                     android:id="@+id/hgpaint_divide_right"
@@ -61,17 +61,17 @@
                     android:src="@drawable/hgpaint_divide_vert"
                     android:layout_alignEnd="@id/hgpaint_canvas_container"/>
 
-                <ImageView
+            <ImageView
                     android:layout_width="5dp"
                     android:layout_height="match_parent"
                     android:id="@+id/hgpaint_divide_left"
                     android:layerType="software"
                     android:src="@drawable/hgpaint_divide_vert"
                     android:layout_alignStart="@id/hgpaint_canvas_container"/>
-            </RelativeLayout>
+        </RelativeLayout>
 
-            <!-- Comment layout -->
-            <TextView
+        <!-- Comment layout -->
+        <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/hgpaint_comment_title"
@@ -80,7 +80,7 @@
                 android:textStyle="bold"
                 android:layout_marginTop="4dp"
                 android:textColor="@color/hgpaint_color_comment"/>
-            <TextView
+        <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/hgpaint_comment_content"
@@ -88,7 +88,7 @@
                 android:layout_centerHorizontal="true"
                 android:textSize="14sp"
                 android:textColor="@color/hgpaint_color_comment"/>
-        </RelativeLayout>
+    </RelativeLayout>
 
 
     <!-- Sub toolbar -->

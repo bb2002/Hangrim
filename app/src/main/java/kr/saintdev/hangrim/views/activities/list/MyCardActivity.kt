@@ -1,20 +1,12 @@
 package kr.saintdev.hangrim.views.activities.list
 
-import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
-import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.os.Handler
-import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.RecyclerView
-import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
 import android.view.View.*
-import android.view.ViewGroup
 import android.widget.*
 import kotlinx.android.synthetic.main.activity_my_card.*
 import kotlinx.android.synthetic.main.mycard_category_items.*
@@ -36,7 +28,6 @@ import kr.saintdev.hangrim.views.adapter.OnCardClickListener
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.io.File
 
 class MyCardActivity : AppCompatActivity(), OnCardClickListener {
     private lateinit var categoryButtons: Array<View>           // Category IMAGE VIEW
