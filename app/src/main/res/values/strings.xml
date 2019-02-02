@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Hangrim</string>
+    <string name="app_name">HanGrim</string>
     <string name="app_name_upper">HANGRIM</string>
 
     <string name="main_portal_createcard">Create card.</string>
@@ -8,16 +8,12 @@
 
     <string name="hgpaint_reset_title">HEY!!</string>
     <string name="hgpaint_reset_content">Would you like to try again?</string>
-    <string name="hgpaint_unredo_error">No data found.</string>
-    <string name="hgpaint_undo_error_content">Can’t Undo.</string>
-    <string name="hgpaint_redo_error_content">Can’t Redo.</string>
 
     <string name="common_error">An error occurred.</string>
     <string name="common_file_err">File not found.</string>
 
     <string name="shuffle_call_word_error">Not able to fetch the words.</string>
     <string name="shuffle_attach_failed">No drawing data found.</string>
-    <string name="shuffle_loading">Projecting the image.</string>
 
     <string name="drawing_preview_content">You have created a new HanGrim\nShare the card with your friends!</string>
     <string name="drawing_preview_input1">What is it called?</string>

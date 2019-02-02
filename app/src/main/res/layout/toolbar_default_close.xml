@@ -5,7 +5,6 @@
     <ImageButton
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:id="@+id/toolbar_default_close"
         android:background="@null"
         android:src="@drawable/ic_hgpaint_action_next"
         android:scaleType="centerInside"

@@ -12,7 +12,6 @@
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/toolbar_title"
                 android:text="@string/toolbar_mycard"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
@@ -22,7 +21,6 @@
         <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:id="@+id/mycard_go_home"
                 android:layout_gravity="end"
                 android:layout_marginEnd="16dp"
                 android:src="@drawable/ic_hgpaint_action_home"/>
@@ -43,13 +41,11 @@
         <include
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/my_card_container"
             android:layout_marginStart="4dp"
             android:layout_marginEnd="4dp"
             layout="@layout/mycard_category_items" />
 
         <android.support.v7.widget.RecyclerView
-                android:id="@+id/my_card_grid"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -62,14 +58,12 @@
     <ir.alirezabdn.wp7progress.WP10ProgressBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/mycard_progress"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"/>
 
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/my_card_empty"
             android:text="@string/my_card_empty"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"

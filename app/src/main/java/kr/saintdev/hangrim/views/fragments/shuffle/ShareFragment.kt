@@ -11,10 +11,7 @@ import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import kr.saintdev.hangrim.R
-import kr.saintdev.hangrim.libs.func.HGFunctions
-import kr.saintdev.hangrim.libs.func.alert
-import kr.saintdev.hangrim.libs.func.save
-import kr.saintdev.hangrim.libs.func.saveInGallery
+import kr.saintdev.hangrim.libs.func.*
 import kr.saintdev.hangrim.libs.sql.SQLManager
 import kr.saintdev.hangrim.modules.hgimage.HGImage
 import kr.saintdev.hangrim.views.activities.drawing.ShuffleActivity
@@ -87,7 +84,7 @@ class ShareFragment : Fragment() {
                 SQLManager.addShuffleCompleteWord(uuid, context!!)
 
                 // 01.23 2019 겔러리에 저장 한다.
-                context?.saveInGallery(result, File(HGFunctions.getGalleryPath(), "${rootActivity.fragmentTemp["word-english"]}.png"))
+                context?.saveInGallery(result, File(HGFunctions.getGalleryPath(), "${rootActivity.fragmentTemp["word-english"]}_${getDateText()}.png"))
                 // 01.23 2019 겔러리 저장 끝.
 
                 // 저장 성공.

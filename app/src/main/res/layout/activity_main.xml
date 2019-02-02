@@ -112,7 +112,6 @@
 
     <com.fsn.cauly.CaulyAdView
             xmlns:app="http://schemas.android.com/apk/res/kr.saintdev.hangrim"
-            android:id="@+id/ads"
             android:layout_width="380dp"
             android:layout_height="wrap_content"
             app:appcode="CAULY"

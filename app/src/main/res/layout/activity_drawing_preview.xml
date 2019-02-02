@@ -29,7 +29,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/preview_col1"
             android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical">
@@ -38,7 +37,6 @@
             <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/preview_title_editor"
                     android:background="@null"
                     android:textSize="20sp"
                     android:layout_marginBottom="8dp"
@@ -50,7 +48,6 @@
             <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/preview_title_view"
                     android:text="@string/common_error"
                     android:textSize="22sp"
                     android:layout_marginBottom="8dp"
@@ -60,7 +57,6 @@
             <android.support.v7.widget.CardView
                 android:layout_width="wrap_content"
                 android:layout_height="140dp"
-                android:id="@+id/preview_icon_cont"
                 app:cardCornerRadius="4dp"
                 app:cardElevation="4dp"
                 android:layout_marginStart="16dp"
@@ -68,7 +64,6 @@
                 <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:id="@+id/preview_image"
                         android:scaleType="centerInside"
                         android:src="@drawable/ic_main_icon"/>
             </android.support.v7.widget.CardView>
@@ -78,7 +73,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:id="@+id/preview_col2"
                 android:layout_weight="0.7"
                 android:gravity="center">
             <LinearLayout
@@ -91,13 +85,11 @@
                 <ImageView
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:id="@+id/ic_preview_hgicon"
                         android:src="@drawable/ic_main_icon"
                         android:layout_marginEnd="8dp"/>
                 <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/preview_logo"
                         android:text="@string/app_name_upper"
                         android:gravity="center"
                         android:textSize="28sp"
@@ -108,7 +100,6 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/preview_content"
                 android:layout_margin="8dp"
                 app:layout_constraintTop_toBottomOf="@id/preview_logo_cont"
                 android:text="@string/drawing_preview_content"
@@ -119,7 +110,6 @@
             <ImageButton
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:id="@+id/preview_share_image"
                 android:layout_marginBottom="8dp"
                 android:background="@null"
                 android:src="@drawable/ic_share"
@@ -129,7 +119,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:id="@+id/preview_comment_cont"
                 android:layout_marginBottom="32dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp">
@@ -137,7 +126,6 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/preview_comment_editor"
                     android:background="@null"
                     android:textSize="14sp"
                     android:padding="8dp"
@@ -148,7 +136,6 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/preview_comment_view"
                     android:text="@string/common_error"
                     android:gravity="center"
                     android:textSize="18sp"

@@ -2,14 +2,13 @@
 <resources>
     <color name="colorPrimary">#FBFBFB</color>
     <color name="colorPrimaryDark">#2f3640</color>
-    <color name="colorAccent">#c23616</color>
+    <color name="colorAccent">#2980b9</color>
 
     <color name="hgpaint2Divide">#A7A8AA</color>
     <color name="hgpaint_toolbar">#F1F2F2</color>
 
     <color name="toolbar_text_color">#58595B</color>
     <color name="preview_text_color">#58595B</color>
-
     <color name="hgpaint_color_comment">#58595B</color>
 
     <color name="hgpaintColor1">#303030</color>
