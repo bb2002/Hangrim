@@ -115,7 +115,7 @@
             android:id="@+id/ads"
             android:layout_width="380dp"
             android:layout_height="wrap_content"
-            app:appcode="CAULY"
+            app:appcode="@string/cauly_key"
             app:effect="None"
             app:dynamicReloadInterval="true"
             app:reloadInterval="20"

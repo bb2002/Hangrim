@@ -1,11 +1,14 @@
 package kr.saintdev.hangrim.modules.retrofit
 
+import android.content.Context
+import okhttp3.OkHttpClient
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Path
+import java.security.cert.CertificateFactory
 
 interface HangrimService {
     @GET("words/random/{category}/{except}")

@@ -82,6 +82,7 @@ class MainActivity : AppCompatActivity() {
         request.enqueue(object : Callback<VerifyReamin> {
             override fun onFailure(call: Call<VerifyReamin>, t: Throwable) {
                 R.string.common_error.alert(R.string.main_portal_err, this@MainActivity)
+                t.printStackTrace()
             }
 
             override fun onResponse(call: Call<VerifyReamin>, response: Response<VerifyReamin>) {
