@@ -50,7 +50,8 @@
     <string name="preview_message_shuffle">You have gaind a new HanGrim.\nShare the card with your friends!</string>
     <string name="preview_message_sign">Congratulation!!\nYou have made your own signature.</string>
 
-    <string name="cauly_key">hFZCdHXO</string>
+    <!--<string name="cauly_key">hFZCdHXO</string>-->
+    <string name="cauly_key">CAULY</string>
 
     <string name="ent_pag_dialog_2p">Write Hangeul along the line!</string>
     <string name="ent_pag_dialog_3p">Draw a picture that reminds you of the word!</string>
