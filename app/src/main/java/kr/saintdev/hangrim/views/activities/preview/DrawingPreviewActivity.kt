@@ -4,12 +4,10 @@ import android.content.Intent
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.View
 import android.widget.Toast
-import com.fsn.cauly.CaulyCloseAd
-import com.fsn.cauly.CaulyCloseAdListener
-import com.fsn.cauly.CaulyInterstitialAd
-import com.fsn.cauly.CaulyInterstitialAdListener
+import com.fsn.cauly.*
 import kotlinx.android.synthetic.main.activity_drawing_preview.*
 import kotlinx.android.synthetic.main.toolbar_default_close.*
 import kr.saintdev.hangrim.R
@@ -34,8 +32,9 @@ class DrawingPreviewActivity : AppCompatActivity(), CaulyInterstitialAdListener 
     private lateinit var wordSymbol: String
     private var wordCategory: String? = null
     private var wordUUID: String? = null
-    private var caulyAD: CaulyInterstitialAd? = null
     private var moveNextWindow = true
+
+    private var showInterstitial = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,9 +53,15 @@ class DrawingPreviewActivity : AppCompatActivity(), CaulyInterstitialAdListener 
         this.moveNextWindow = intent.getBooleanExtra("need-open", true)
         val openAds = intent.getBooleanExtra("ad", false)
 
-        if(openAds) {
-            // 01.24 2019 광고 실행
-            this.caulyAD = Ads.createADRandom(this, this)
+        if(openAds && Ads.isOpenAds()) {
+            // 03.14 2019 광고 오류 해결
+            val adInfo = CaulyAdInfoBuilder(R.string.cauly_key.str(this)).build()
+            val interstial = CaulyInterstitialAd()
+            interstial.setAdInfo(adInfo)
+            interstial.setInterstialAdListener(this)
+            interstial.requestInterstitialAd(this)
+
+            this.showInterstitial = true
         }
 
         // set listener
@@ -85,16 +90,6 @@ class DrawingPreviewActivity : AppCompatActivity(), CaulyInterstitialAdListener 
         preview_content.text = R.string.preview_message_shuffle.str(this)
     }
 
-    override fun onLeaveInterstitialAd(p0: CaulyInterstitialAd?) {}
-
-    override fun onReceiveInterstitialAd(ads: CaulyInterstitialAd?, charge: Boolean) {
-        ads?.show()
-    }
-
-    override fun onClosedInterstitialAd(p0: CaulyInterstitialAd?) {}
-
-    override fun onFailedToReceiveInterstitialAd(p0: CaulyInterstitialAd?, p1: Int, p2: String?) {}
-
     override fun onStart() {
         super.onStart()
 
@@ -103,4 +98,19 @@ class DrawingPreviewActivity : AppCompatActivity(), CaulyInterstitialAdListener 
         preview_title_view.text = this.wordEnglish
         preview_comment_view.text = this.wordSymbol
     }
+
+    override fun onLeaveInterstitialAd(p0: CaulyInterstitialAd?) {
+
+    }
+
+    override fun onReceiveInterstitialAd(ad: CaulyInterstitialAd?, isChargeAd: Boolean) {
+        if (showInterstitial)
+            ad?.show()
+        else
+            ad?.cancel()
+    }
+
+    override fun onClosedInterstitialAd(p0: CaulyInterstitialAd?) {}
+
+    override fun onFailedToReceiveInterstitialAd(p0: CaulyInterstitialAd?, p1: Int, p2: String?) {}
 }

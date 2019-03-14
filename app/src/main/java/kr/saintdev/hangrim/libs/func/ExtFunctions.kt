@@ -95,21 +95,8 @@ fun getDateText() : String {
 fun Int.vibration(context: Context)  = (context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator).vibrate(this.toLong())
 
 object Ads {
-    const val AD_OPEN_RD = 30           // 광고 노출 확률
+    const val AD_OPEN_RD = 100           // 광고 노출 확률
     fun isOpenAds() = Random().nextInt(99) < AD_OPEN_RD
-
-    fun createAds(context: AppCompatActivity, listener: CaulyInterstitialAdListener) : CaulyInterstitialAd {
-        val code = R.string.cauly_key.str(context)
-
-        val adInfo = CaulyAdInfoBuilder(code).build()
-        val interstial = CaulyInterstitialAd()
-        interstial.setAdInfo(adInfo)
-        interstial.setInterstialAdListener(listener)
-        interstial.requestInterstitialAd(context)
-        return interstial
-    }
-
-    fun createADRandom(context: AppCompatActivity, listener: CaulyInterstitialAdListener) = if(isOpenAds()) createAds(context, listener) else null
 }
 
 object Permission {
